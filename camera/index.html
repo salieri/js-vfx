@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Camera</title>
+	
+	<link rel='stylesheet' type='text/css' href='http://ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/themes/ui-lightness/jquery-ui.min.css' />	
+	<link rel='stylesheet' type='text/css' href='http://cdnjs.cloudflare.com/ajax/libs/foundation/4.3.1/css/foundation.min.css' />
+	
+	
+	<script src='http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js'></script>
+	<script src='http://ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js'></script>
+	
+	<script src='../lib/FX/Core/Helper.js'></script>
+	<script src='../lib/FX/Core/Point2D.js'></script>
+	<script src='../lib/FX/Core/Color.js'></script>
+	<script src='../lib/FX/Core/Surface.js'></script>
+	<script src='../lib/FX/Core/Draw.js'></script>
+	<script src='../lib/FX/Core/CanvasTexture.js'></script>
+	<script src='../lib/FX/Core/Triangle.js'></script>
+	
+	<script src='../lib/FX/Core/Point3D.js'></script>
+	<script src='../lib/FX/Core/Vector3D.js'></script>
+
+	<script src='../lib/FX/3D/Camera.js'></script>
+	<script src='../lib/FX/3D/Facet.js'></script>
+	<script src='../lib/FX/3D/Material.js'></script>
+	<script src='../lib/FX/3D/Mesh.js'></script>
+	<script src='../lib/FX/3D/Scene.js'></script>
+	
+	<script src='../lib/FX/3D/Factory/TorusFactory.js'></script>
+	<script src='../lib/FX/3D/Factory/CuboidFactory.js'></script>
+	<script src='../lib/FX/3D/Factory/SphereFactory.js'></script>
+	
+	
+</head>
+<body>
+	<div class='row'>
+		<div class='twenty columnns'>
+			<h1>Camera</h1>
+			
+			<p>Pure JavaScript implementation of camera projection</p>
+		</div>
+	</div>	
+
+	<div class='row'>
+		<div class='twenty columns'>
+			<canvas id='surface' width='640' height='480' style='border: 1px solid #000000;'></canvas>
+		</div>
+	</div>
+	
+	<div class='row'>
+		<button id='drawButton'>Draw</button>
+	</div>
+	
+<script type='text/javascript'>	
+	var surface		= new Surface( 'surface', false );
+	
+	Draw.setSurface( surface );
+	Draw.bgColor.set( 220, 220, 220 );
+	Draw.color.set( 0, 0, 0 );
+
+	
+	var scene		= new Scene();
+	var torus		= TorusFactory.generate( 25, 25, 25, 10, 0.2 );
+	var camera		= new Camera();
+	
+	scene.addMesh( torus );
+	scene.addCamera( camera );
+	
+	Draw.beginPaint();
+		scene.render();
+	Draw.endPaint();
+	
+	
+
+/*	setInterval( 
+			function()
+			{
+				if( surface.isDrawing() === false )
+				{
+					var curTime	= new Date();					
+					var rad		= ( curTime.getTime() - startTime.getTime() ) / 1000;
+				
+					drawAll( rad );
+				}
+			},
+			25
+		);
+*/	
+	
+
+	
+	$( document ).on( 
+			'click', 
+			'#drawButton',
+			function()
+			{
+				drawAll( 0 );
+			}
+		);
+	
+	
+	
+	
+	
+</script>
+
+</body>
+</html>
+

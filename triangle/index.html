@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Triangle</title>
+	
+	<link rel='stylesheet' type='text/css' href='http://ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/themes/ui-lightness/jquery-ui.min.css' />	
+	<link rel='stylesheet' type='text/css' href='http://cdnjs.cloudflare.com/ajax/libs/foundation/4.3.1/css/foundation.min.css' />
+	
+	
+	<script src='http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js'></script>
+	<script src='http://ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js'></script>
+	
+	<script src='../lib/FX/Core/Helper.js'></script>
+	<script src='../lib/FX/Core/Point2D.js'></script>
+	<script src='../lib/FX/Core/Color.js'></script>
+	<script src='../lib/FX/Core/Surface.js'></script>
+	<script src='../lib/FX/Core/Draw.js'></script>
+	<script src='../lib/FX/Core/CanvasTexture.js'></script>
+	<script src='../lib/FX/Core/Triangle.js'></script>
+	
+</head>
+<body>
+	<div class='row'>
+		<div class='twenty columnns'>
+			<h1>Triangle</h1>
+			
+			<p>Pure JavaScript implementation of triangle polygon (<i>not</i> Canvas path)</p>
+		</div>
+	</div>	
+
+	<div class='row'>
+		<div class='twenty columns'>
+			<canvas id='surface' width='640' height='480' style='border: 1px solid #000000;'></canvas>
+		</div>
+	</div>
+	
+	<div class='row'>
+		<button id='drawButton'>Draw</button>
+	</div>
+	
+<script type='text/javascript'>	
+
+	function drawTriangles( radAdjustment, posY, triangle )
+	{
+		var triCount			= 10;
+		var translatedTriangle	= [ new Point2D(), new Point2D(), new Point2D() ];
+		
+		var pixelColor			= new Color(   255, 0, 0, 128 );
+
+		for( var i = 0; i < triCount; i++ )
+		{
+			var rad		= i * ( Math.PI * 2 ) / triCount + radAdjustment;
+			var posX	= ( Draw.surface.getWidth() / triCount ) * ( i + 0.5 );
+
+			for( var j = 0; j < 3; j++ )
+			{
+				translatedTriangle[ j ].x = 
+						posX +
+						triangle[ j ].x * Math.cos( rad ) - triangle[ j ].y * Math.sin( rad );
+
+				translatedTriangle[ j ].y = 
+						posY +
+						triangle[ j ].y * Math.cos( rad ) + triangle[ j ].x * Math.sin( rad );
+			}
+
+			Triangle.draw( 
+					translatedTriangle[ 0 ],
+					translatedTriangle[ 1 ],
+					translatedTriangle[ 2 ]
+				);
+
+			
+			for( var j = 0; j < 3; j++ )
+			{
+				Draw.blendPixel( translatedTriangle[ j ], pixelColor );			
+			}
+		}
+	}
+
+
+	function drawAll( rad )
+	{
+		Draw.beginPaint();
+			Draw.color.set( 32, 255, 32 );
+
+			Triangle.draw( new Point2D( 0, -100 ), new Point2D( 100, 100 ), new Point2D( -100, 100 ) );
+			Triangle.draw( new Point2D( 0, 380 ), new Point2D( 100, 580 ), new Point2D( -100, 580 ) );
+
+			Triangle.draw( new Point2D( 630, -100 ), new Point2D( 740, 100 ), new Point2D( 540, 100 ) );
+			Triangle.draw( new Point2D( 630, 380 ), new Point2D( 740, 580 ), new Point2D( 540, 580 ) );
+
+			Draw.color.set( 32, 32, 255 );
+			drawTriangles( rad, 150, [ new Point2D( 0, -10 ), new Point2D( -10, 10 ), new Point2D( 10, 0 ) ] );
+			drawTriangles( rad, 200, [ new Point2D( 0, -8 ), new Point2D( 7, 4 ), new Point2D( 10, 0 ) ] );
+			drawTriangles( rad, 250, [ new Point2D( 0, -10 ), new Point2D( -30, 10 ), new Point2D( 30, 35 ) ] );
+		Draw.endPaint();		
+	}
+
+
+	var surface		= new Surface( 'surface', false );
+
+	var startTime	= new Date();
+	
+	Draw.setSurface( surface );
+	Draw.bgColor.set( 220, 220, 220 );
+	
+	drawAll( 0 );
+	
+
+	setInterval( 
+			function()
+			{
+				if( surface.isDrawing() === false )
+				{
+					var curTime	= new Date();					
+					var rad		= ( curTime.getTime() - startTime.getTime() ) / 1000;
+				
+					drawAll( rad );
+				}
+			},
+			25
+		);
+	
+	
+
+	
+	$( document ).on( 
+			'click', 
+			'#drawButton',
+			function()
+			{
+				drawAll( 0 );
+			}
+		);
+	
+	
+	
+	
+	
+</script>
+
+</body>
+</html>
+
