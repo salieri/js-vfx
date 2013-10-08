@@ -40,7 +40,7 @@
 	
 <script type='text/javascript'>	
 
-	function drawLine( p1, p2 )
+	function drawLine( p1, p2, rad )
 	{
 		var lineColor	= new Color( 32, 255, 32 );
 		var pixelColor	= new Color(   255, 0, 0, 128 );
@@ -50,11 +50,41 @@
 		Draw.blendPixel( p2, pixelColor );
 	}
 
+	
+	function rotateLine( x, y, length, rad )
+	{
+		var lineColor	= new Color( 32, 255, 32 );
+		var pixelColor	= new Color(   255, 0, 0, 128 );
+		
+		var lx1 = -length / 2;
+		var lx2 = length / 2;		
+		var ly1 = 0;
+		var ly2 = 0;
+		
+		var p1 = new Point2D( 
+				x + lx1 * Math.cos( rad ) - ly1 * Math.sin( rad ),
+				y + ly1 * Math.cos( rad ) + lx1 * Math.sin( rad )
+			);
+		
+		var p2 = new Point2D(
+				x + lx2 * Math.cos( rad ) - ly2 * Math.sin( rad ),
+				y + ly2 * Math.cos( rad ) + lx2 * Math.sin( rad )
+			);
+	
+		Line.draw( p1, p2, lineColor );
+		
+		Draw.blendPixel( p1, pixelColor );
+		Draw.blendPixel( p2, pixelColor );
+	}
+
 
 	function drawAll( rad )
 	{
 		Draw.beginPaint();
-			drawLine( new Point2D( 10, 20 ), new Point2D( 30, 40 ) );
+			
+			rotateLine( 320, 240, 100, rad );
+		
+			/*drawLine( new Point2D( 10, 20 ), new Point2D( 30, 40 ) );
 
 			drawLine( new Point2D( 200, 200 ), new Point2D( 500, 200 ) );
 			drawLine( new Point2D( 200, 300 ), new Point2D( 500, 300 ) );
@@ -65,7 +95,7 @@
 			drawLine( new Point2D( 500, 200 ), new Point2D( 200, 300 ) ); 
 			
 			drawLine( new Point2D( 500, 450 ), new Point2D( 200, 449 ) );			
-			drawLine( new Point2D( 600, 100 ), new Point2D( 601, 400 ) );
+			drawLine( new Point2D( 600, 100 ), new Point2D( 601, 400 ) );*/
 		Draw.endPaint();		
 	}
 

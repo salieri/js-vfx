@@ -18,12 +18,14 @@
 	<script src='../lib/FX/Core/CanvasTexture.js'></script>
 	<script src='../lib/FX/Core/Triangle.js'></script>
 	<script src='../lib/FX/Core/Matrix.js'></script>
+	<script src='../lib/FX/Core/Line.js'></script>
 	
 	<script src='../lib/FX/Core/Point3D.js'></script>
 	<script src='../lib/FX/Core/Vector3D.js'></script>
 
 	<script src='../lib/FX/3D/Camera.js'></script>
 	<script src='../lib/FX/3D/Facet.js'></script>
+	<script src='../lib/FX/3D/Edge.js'></script>
 	<script src='../lib/FX/3D/Material.js'></script>
 	<script src='../lib/FX/3D/Mesh.js'></script>
 	<script src='../lib/FX/3D/Scene.js'></script>
@@ -57,55 +59,6 @@
 		</div>
 	</div>
 
-	<div class='row'>
-		<h4>Z-position</h4>
-		
-		<div id='inputZPosition'></div>
-		
-		<script type='text/javascript'>
-			$(
-				function()
-				{
-					$( '#inputZPosition' ).slider({
-							value		: 50,
-							orientation	: 'horizontal',
-							min			: 1,
-							max			: 500,
-							slide		: function()
-							{
-								mesh.position.z = $( '#inputZPosition' ).slider( 'value' );
-							}
-						});
-				}
-			);
-		</script>
-	</div>
-	
-	<div class='row'>
-		<h4>Perspective Depth</h4>
-		
-		<div id='inputPerspectiveDepth'></div>
-		
-		<script type='text/javascript'>
-			$(
-				function()
-				{
-					$( '#inputPerspectiveDepth' ).slider({
-							value		: 10000,
-							orientation	: 'horizontal',
-							min			: 1,
-							max			: 10000,
-							slide		: function()
-							{
-								camera.perspectiveDepth = $( '#inputPerspectiveDepth' ).slider( 'value' ) / 100;
-							}
-						});
-				}
-			);
-		</script>
-	</div>
-	
-	
 	
 <script type='text/javascript'>	
 	var surface		= new Surface( 'surface', false );
@@ -117,27 +70,16 @@
 	
 	var scene		= new Scene();
 	var mesh		= TorusFactory.generate( 250, 250, 250, 100, 0.2 );
-	// var mesh		= CuboidFactory.generate( 25, 25, 25, 0.2 );
-	
-	/*var mesh = new Mesh();
-	
-	mesh.addVertex( new Point3D( 0, 0, 0 ) );
-	mesh.addVertex( new Point3D( 0, 25, 0 ) );*/
-	// mesh.addVertex( new Point3D( 25, 0, 0 ) );
-	
-	
-	var camera		= new SimpleCamera();
-	
-	var camera = new Camera();
-	
-	
-	
+	var camera		= new Camera();
+	// var renderer	= new VertexRenderer();	
+	var renderer	= new WireframeRenderer();	
 	
 	
 	mesh.position.z = -1200;
 	
 	scene.addMesh( mesh );
 	scene.addCamera( camera );
+	scene.addRenderer( renderer );
 	
 	Draw.beginPaint();
 		scene.render();
@@ -163,9 +105,6 @@
 			{
 				if( surface.isDrawing() === false )
 				{
-					// var curTime	= new Date();					
-					// var rad		= ( curTime.getTime() - startTime.getTime() ) / 1000;
-				
 					rotateMesh();
 				}
 			},
