@@ -17,6 +17,7 @@ function Face( a, b, c, material )
 	
 	this.material		= material || new SolidColorMaterial();
 	this.normal			= new Vector3D();
+	this.position		= new Point3D();	
 	this.lightData		= new LightData();
 }
 

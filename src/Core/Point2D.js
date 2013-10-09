@@ -1,17 +1,35 @@
 
 /**
- * @param {float} x
+ * @param {float|Vector3D|Point3D|Point2D} x
  * @param {float} y
  */
 
 function Point2D( x, y )
 {
-	this.x = x || 0;
-	this.y = y || 0;
+	if( ( x instanceof Vector3D ) || ( x instanceof Point3D ) || ( x instanceof Point2D ) )
+	{
+		this.x = x.x;
+		this.y = x.y;
+	}
+	else
+	{
+		this.x = x || 0;
+		this.y = y || 0;
+	}
 }
 
 
 Point2D.prototype = {
+	
+	/**
+	 * @returns {Point2D}
+	 */
+	
+	clone : function()
+	{
+		return new Point2D( this.x, this.y );
+	},
+	
 	
 	/**
 	 * @param {Point2D} p
@@ -34,6 +52,26 @@ Point2D.prototype = {
 	{
 		this.x = Math.round( this.x );
 		this.y = Math.round( this.y );
+	},
+
+	
+	/**
+	 * @param {float|Vector3D|Point3D|Point2D} x
+	 * @param {float} y
+	 */
+	
+	set : function( x, y )
+	{
+		if( ( x instanceof Vector3D ) || ( x instanceof Point3D ) || ( x instanceof Point2D ) )
+		{
+			this.x = x.x;
+			this.y = x.y;
+		}
+		else
+		{
+			this.x = x;
+			this.y = y;
+		}
 	}
 	
 };

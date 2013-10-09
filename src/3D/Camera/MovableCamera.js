@@ -15,14 +15,13 @@ MovableCamera.prototype = Helper.extend( Camera.prototype );
 	
 	
 /**
- * @param {Point3D[]} sourcePoints
- * @param {Point3D[]} targetPoints
+ * @param {Vertex[]} vertices
  */
 
-MovableCamera.prototype.transform = function( sourcePoints, targetPoints )
+MovableCamera.prototype.transform = function( vertices )
 {
 	var camPos	= this.position;
-	var l		= sourcePoints.length;
+	var l		= vertices.length;
 
 	var cosX	= Math.cos( this.orientation.x );
 	var sinX	= Math.sin( this.orientation.x );
@@ -35,9 +34,10 @@ MovableCamera.prototype.transform = function( sourcePoints, targetPoints )
 
 	for( var i = 0; i < l; i++ )
 	{
-		var sourcePoint	= sourcePoints[ i ];
-		var targetPoint	= targetPoints[ i ];			
-
+		var vertex		= vertices[ i ];
+		var sourcePoint = vertex.transformed;
+		var targetPoint	= vertex.cameraTransformed;
+		
 		var sourceMinusCamX = sourcePoint.x - camPos.x;
 		var sourceMinusCamY = sourcePoint.y - camPos.y;
 		var sourceMinusCamZ = sourcePoint.z - camPos.z;
@@ -91,19 +91,20 @@ MovableCamera.prototype.transform = function( sourcePoints, targetPoints )
 
 
 /**
- * @param {Point3D[]} sourcePoints
- * @param {Point2D[]} targetPoints
+ * @param {Vertex[]} vertices
  */
 
-MovableCamera.prototype.project = function( sourcePoints, targetPoints )
+MovableCamera.prototype.project = function( vertices )
 {
 	var l				= sourcePoints.length;
 	var viewerPosition	= this.viewerPosition;
 
 	for( var i = 0; i < l; i++ )
 	{
-		var sourcePoint = sourcePoints[ i ];
-		var targetPoint = targetPoints[ i ];
+		var vertex		= vertices[ i ];
+		var sourcePoint = vertex.cameraTransformed;
+		var targetPoint	= vertex.cameraProjected;
+		
 		var zDiv		= viewerPosition.z / sourcePoint.z;
 
 		targetPoint.x	= zDiv * sourcePoint.x - viewerPosition.x;
@@ -112,7 +113,7 @@ MovableCamera.prototype.project = function( sourcePoints, targetPoints )
 };
 
 
-MovableCamera.prototype.applyMatrix = function( matrix )
+/* MovableCamera.prototype.applyMatrix = function( matrix )
 {
 	var cosX	= Math.cos( this.orientation.x );
 	var sinX	= Math.sin( this.orientation.x );
@@ -143,7 +144,7 @@ MovableCamera.prototype.applyMatrix = function( matrix )
 
 	var m1m2	= m1.multiplyMatrix( m2 );		
 	var m1m2m3	= m1m2.multiplyMatrix( m3 );
-};
+}; */
 
 
 

@@ -4,29 +4,14 @@ function Mesh( name )
 	this.name		= name;
 	this.visible	= true;
 		
-		
 	/**
-	 * @type Point3D[]
+	 * @type Vertex[]
 	 */
-	this.originVertices	= [];
+	this.vertices	= [];	
+	
 	
 	/**
-	 * @type Point3D[]
-	 */
-	this.vertices	= [];
-
-	/**
-	 * @type Point3D[]
-	 */
-	this.cameraVertices	= [];
-	
-	/**
-	 * @type Point2D[]
-	 */
-	this.projectedVertices		= [];
-	
-	/**
-	 * @type Facet[]
+	 * @type Face[]
 	 */
 	this.faces		= [];
 	
@@ -51,10 +36,7 @@ Mesh.prototype = {
 
 	addVertex : function( point )
 	{
-		this.originVertices.push( point );
-		this.vertices.push( new Point3D() );
-		this.cameraVertices.push( new Point3D() );
-		this.projectedVertices.push( new Point2D() );
+		this.vertices.push( new Vertex( point ) );
 	},
 	
 	
@@ -75,6 +57,12 @@ Mesh.prototype = {
 	addFace : function( face )
 	{
 		this.faces.push( face );
+		
+		var faceNo = this.faces.length - 1;
+		
+		this.vertices[ face.a ].faces.push( faceNo );
+		this.vertices[ face.b ].faces.push( faceNo );
+		this.vertices[ face.c ].faces.push( faceNo );
 	},
 	
 
@@ -98,27 +86,32 @@ Mesh.prototype = {
 		
 		for( var i = 0; i < l; i++ )
 		{
-			var ov	= this.originVertices[ i ];
-			var v	= this.vertices[ i ];
+			/**
+			 * @type Vertex
+			 */
+			var vertex = this.vertices[ i ];
 			
-			var x2 = ov.x;
-			var y = ov.y;
-			var z = ov.z;
+			var ov	= vertex.origin;
+			var v	= vertex.transformed;
+			
+			var x2	= ov.x;
+			var y	= ov.y;
+			var z	= ov.z;
 
 			// ROT X
 			// var x2 = x;
-			var y3 = y * cosX - z * sinX;
-			var z2 = y * sinX + z * cosX;
+			var y3	= y * cosX - z * sinX;
+			var z2	= y * sinX + z * cosX;
 
 			// ROT Y
-			var x3 = x2 * cosY + z2 * sinY;
+			var x3	= x2 * cosY + z2 * sinY;
 			// var y3 = y2;
-			v.z = x2 * ( -sinY ) + z2 * cosY;
+			v.z		= x2 * ( -sinY ) + z2 * cosY;
 			
 			// ROT Z
-			v.x = x3 * cosZ - y3 * sinZ;
-			v.y = x3 * sinZ + y3 * cosZ;
-			// v.z = z3;
+			v.x		= x3 * cosZ - y3 * sinZ;
+			v.y		= x3 * sinZ + y3 * cosZ;
+			// v.z	= z3;
 		}
 	},
 
@@ -132,7 +125,7 @@ Mesh.prototype = {
 			
 			for( var i = 0; i < l; i++ )
 			{
-				this.vertices[ i ].multiply( this.scale );
+				this.vertices[ i ].transformed.multiply( this.scale );
 			}
 		}
 	},
@@ -144,7 +137,7 @@ Mesh.prototype = {
 		
 		for( var i = 0; i < l; i++ )
 		{
-			this.vertices[ i ].add( this.position );
+			this.vertices[ i ].transformed.add( this.position );
 		}
 	},
 
@@ -164,7 +157,7 @@ Mesh.prototype = {
 	 */
 	transformCamera : function( camera )
 	{
-		camera.transform( this.vertices, this.cameraVertices );
+		camera.transform( this.vertices );
 	},
 
 	
@@ -173,17 +166,17 @@ Mesh.prototype = {
 	 */
 	project : function( camera )
 	{
-		camera.project( this.cameraVertices, this.projectedVertices );
+		camera.project( this.vertices );
 	},
 	
 	
 	drawVertices : function()
 	{
-		var l = this.projectedVertices.length;
+		var l = this.vertices.length;
 		
 		for( var i = 0; i < l; i++ )
 		{
-			Draw.setPixel( this.projectedVertices[ i ], Draw.color );
+			Draw.setPixel( this.vertices[ i ].cameraProjected, Draw.color );
 		}
 	},
 	
@@ -194,7 +187,7 @@ Mesh.prototype = {
 		
 		for( var i = 0; i < l; i++ )
 		{
-			Draw.line( this.projectedVertices[ this.edges[ i ].a ], this.projectedVertices[ this.edges[ i ].b ], Draw.color );
+			Draw.line( this.vertices[ this.edges[ i ].a ].cameraProjected, this.vertices[ this.edges[ i ].b ].cameraProjected, Draw.color );
 		}
 	},
 	
@@ -205,7 +198,7 @@ Mesh.prototype = {
 		
 		for( var i = 0; i < l; i++ )
 		{
-			Draw.triangle( this.projectedVertices[ this.faces[ i ].a ], this.projectedVertices[ this.faces[ i ].b ], this.projectedVertices[ this.faces[ i ].c ] );
+			Draw.triangle( this.vertices[ this.faces[ i ].a ].cameraProjected, this.vertices[ this.faces[ i ].b ].cameraProjected, this.vertices[ this.faces[ i ].c ].cameraProjected );
 		}
 	},
 			
@@ -216,7 +209,68 @@ Mesh.prototype = {
 		
 		for( var i = 0; i < l; i++ )
 		{
-			this.faces[ i ].normal.setNormal( this.cameraVertices[ this.faces[ i ].a ], this.cameraVertices[ this.faces[ i ].b ], this.cameraVertices[ this.faces[ i ].c ] );
+			var p1 = this.vertices[ this.faces[ i ].a ].cameraTransformed;
+			var p2 = this.vertices[ this.faces[ i ].b ].cameraTransformed;
+			var p3 = this.vertices[ this.faces[ i ].c ].cameraTransformed;
+			
+			this.faces[ i ].normal.setNormal( p1, p2, p3 );			
+			this.faces[ i ].position.setToCenter( p1, p2, p3 );			
+		}
+	},
+	
+	
+	calculateVertexNormals : function()
+	{
+		var l = this.vertices.length;
+		
+		for( var i = 0; i < l; i++ )
+		{
+			var vertexFaces		= this.vertices[ i ].faces;
+			var faceLength		= vertexFaces.length;
+			var normalVertex	= this.vertices[ i ].normal;
+			
+			normalVertex.set( 0, 0, 0 );
+			
+			for( var j = 0; j < faceLength; j++ )
+			{
+				normalVertex.add( this.faces[ vertexFaces[ j ] ].normal );
+			}			
+			
+			normalVertex.divideByVal( faceLength );
+		}
+	},
+	
+	
+	calculateFaceLightData : function( scene, camera )
+	{
+		var lightCount	= scene.lights.length;
+		var faceCount	= this.faces.length;
+		
+		for( var j = 0; j < faceCount; j++ )
+		{
+			var face = this.faces[ j ];
+			
+			for( var i = 0; i < lightCount; i++ )
+			{
+				scene.lights[ i ].calculateLightData( camera.orientation, face.position, face.normal, face.lightData );
+			}
+		}
+	},
+	
+	
+	calculateVertexLightData : function( scene, camera )
+	{
+		var lightCount	= scene.lights.length;
+		var vertexCount	= this.vertices.length;
+		
+		for( var j = 0; j < vertexCount; j++ )
+		{
+			var vertex = this.vertices[ j ];
+			
+			for( var i = 0; i < lightCount; i++ )
+			{
+				scene.lights[ i ].calculateLightData( camera.orientation, vertex.cameraTransformed, vertex.normal, vertex.lightData );
+			}
 		}
 	}
 	

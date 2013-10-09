@@ -1,45 +1,17 @@
 
-function LightData( intensity, color )
+/**
+ * @returns {LightData}
+ */
+
+function LightData()
 {
-	this.active		= true;
-	this.intensity	= intensity || 1.0;
-	this.color		= color || new Color( 255, 255, 255 );	
+	this.specular	= new Color( 0, 0, 0 );
+	this.diffuse	= new Color( 0, 0, 0 );
 }
 	
 	
 LightData.prototype = {
 	
-	/**
-	 * @param {int} r
-	 * @param {int} g
-	 * @param {int} b
-	 * @returns {undefined}
-	 */
-	
-	setColor : function( r, g, b )
-	{
-		this.color.set( r, g, b );
-	},
-
-	
-	/**
-	 * @param {float} intensity
-	 */
-	
-	setIntensity : function( intensity )
-	{
-		this.intensity = intensity;
-	},
-	
-
-	/**
-	 * @param {Boolean} isActive
-	 */
-	
-	setActive : function( isActive )
-	{
-		this.active = isActive;
-	}
 	
 };
 

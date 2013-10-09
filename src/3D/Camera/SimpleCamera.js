@@ -13,18 +13,18 @@ SimpleCamera.prototype = Helper.extend( Camera.prototype );
 
 
 /**
- * @param {Point3D[]} sourcePoints
- * @param {Point3D[]} targetPoints
+ * @param {Vertex[]} vertices
  */
 
-SimpleCamera.prototype.transform = function( sourcePoints, targetPoints )
+SimpleCamera.prototype.transform = function( vertices )
 {
-	var l = sourcePoints.length;
+	var l = vertices.length;
 
 	for( var i = 0; i < l; i++ )
 	{
-		var sourcePoint	= sourcePoints[ i ];
-		var targetPoint	= targetPoints[ i ];
+		var vertex		= vertices[ i ];
+		var sourcePoint = vertex.transformed;
+		var targetPoint	= vertex.cameraTransformed;
 
 		targetPoint.x = sourcePoint.x;
 		targetPoint.y = sourcePoint.y;
@@ -34,19 +34,20 @@ SimpleCamera.prototype.transform = function( sourcePoints, targetPoints )
 
 	
 /**
- * @param {Point3D[]} sourcePoint
- * @param {Point2D[]} targetPoint
+ * @param {Vertex[]} vertices
  */
 
-SimpleCamera.prototype.project = function( sourcePoints, targetPoints )
+SimpleCamera.prototype.project = function( vertices )
 {
-	var l				= sourcePoints.length;
+	var l				= vertices.length;
 	var viewerPosition	= this.viewerPosition;
 
 	for( var i = 0; i < l; i++ )
 	{
-		var sourcePoint = sourcePoints[ i ];
-		var targetPoint = targetPoints[ i ];
+		var vertex		= vertices[ i ];
+		var sourcePoint = vertex.cameraTransformed;
+		var targetPoint	= vertex.cameraProjected;
+		
 		var pd			= this.perspectiveDepth / sourcePoint.z;
 
 		targetPoint.x	= ( sourcePoint.x * pd ) + this.viewerPosition.x;

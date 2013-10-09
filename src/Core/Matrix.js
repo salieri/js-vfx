@@ -31,6 +31,26 @@ function Matrix( width, height )
 
 
 Matrix.prototype = {
+	
+	/**
+	 * @returns {Matrix}
+	 */
+	
+	clone : function()
+	{
+		var m = new Matrix( this.width, this.height );
+		
+		for( var y = 0; y < this.height; y++ )
+		{
+			for( var x = 0; x < this.width; x++ )
+			{
+				m.data[ y ][ x ] = this.data[ y ][ x ];
+			}
+		}
+		
+		return m;
+	},
+	
 
 	/**
 	 * @param {Matrix|Array} matrix
@@ -87,6 +107,7 @@ Matrix.prototype = {
 	 * 
 	 * @param {Point3D} sourcePoint
 	 * @param {Point3D} targetPoint
+	 * @todo Remove hardcoding
 	 */
 
 	multiplyPoint3D : function( sourcePoint, targetPoint )
@@ -120,9 +141,9 @@ Matrix.prototype = {
 		var m		= new Matrix( matrix.width, this.height );
 		var size	= this.height;
 		
-		for( y = 0; y < this.height; y++ )
+		for( var y = 0; y < this.height; y++ )
 		{
-			for( x = 0; x < matrix.width; x++ )
+			for( var x = 0; x < matrix.width; x++ )
 			{
 				var val = 0;
 				
@@ -141,53 +162,43 @@ Matrix.prototype = {
 
 	/**
 	 * @param {Matrix} matrix
-	 * @returns {Matrix|null}
 	 */
 
 	add : function( matrix )
 	{
 		if( ( this.width !== matrix.width ) || ( this.height !== matrix.height ) )
 		{
-			return null;
+			return;
 		}		
 				
-		var m = new Matrix( matrix.width, this.height );
-		
-		for( y = 0; y < this.height; y++ )
+		for( var y = 0; y < this.height; y++ )
 		{
-			for( x = 0; x < matrix.width; x++ )
+			for( var x = 0; x < matrix.width; x++ )
 			{
-				m.data[ y ][ x ] = this.data[ y ][ x ] + matrix.data[ y ][ x ];
+				this.data[ y ][ x ] += matrix.data[ y ][ x ];
 			}
 		}
-		
-		return m;
 	},
 	
 	
 	/**
 	 * @param {Matrix} matrix
-	 * @returns {Matrix|null}
 	 */
 
 	subtract : function( matrix )
 	{
 		if( ( this.width !== matrix.width ) || ( this.height !== matrix.height ) )
 		{
-			return null;
+			return;
 		}		
 				
-		var m = new Matrix( matrix.width, this.height );
-		
-		for( y = 0; y < this.height; y++ )
+		for( var y = 0; y < this.height; y++ )
 		{
-			for( x = 0; x < matrix.width; x++ )
+			for( var x = 0; x < matrix.width; x++ )
 			{
-				m.data[ y ][ x ] = this.data[ y ][ x ] - matrix.data[ y ][ x ];
+				this.data[ y ][ x ] -= matrix.data[ y ][ x ];
 			}
 		}
-		
-		return m;
 	},
 	
 
