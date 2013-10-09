@@ -6,15 +6,11 @@
 	<link rel='stylesheet' type='text/css' href='http://ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/themes/ui-lightness/jquery-ui.min.css' />	
 	<link rel='stylesheet' type='text/css' href='http://cdnjs.cloudflare.com/ajax/libs/foundation/4.3.1/css/foundation.min.css' />
 	
-	
 	<script src='http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js'></script>
 	<script src='http://ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js'></script>
 	
-	<script src='../lib/FX/Core/Vector3D.js'></script>
-	<script src='../lib/FX/Core/CanvasTexture.js'></script>
-	<script src='../lib/FX/Core/Helper.js'></script>
-	
-	<script src='../lib/FX/App/Bumper.js'></script>
+	<script data-main='../src/core-loader'  src='../vendor/require.js'></script>
+	<script src='../src/App/Bumper.js'></script>
 </head>
 <body>
 	<div class='row'>
@@ -86,50 +82,8 @@
 	
 	
 <script type='text/javascript'>
-	var heightmap	= new CanvasTexture( 'resources/mbaco-heightmap2.png' );
-	var texture		= new CanvasTexture( 'resources/mbaco-texture.png' );
-	/*var heightmap	= new CanvasTexture( 'resources/empty-heightmap.png' );
-	var texture		= new CanvasTexture( 'resources/empty-texture.png' ); */
-	var bumpApp		= new Bumper( 'surface', texture, heightmap );
+	var bumpApp;
 	
-	bumpApp.setLightPos( 0, 0, 77 );
-
-	
-	$( document ).on(
-			'mousemove',
-			'#surface',
-			function( event )
-			{
-				coordinates = Helper.getCanvasCoordinates( event, 'surface' );
-				
-				bumpApp.setLightPos( coordinates.x, coordinates.y, bumpApp.lightPosition.z );
-				bumpApp.draw();
-			}
-		);
-	
-	
-	$( document ).on(
-			'mouseout',
-			'#surface',
-			function()
-			{
-				isPaused = false;
-			}
-		);
-
-
-	$( document ).on(
-			'mouseover',
-			'#surface',
-			function()
-			{
-				isPaused	= true;
-			}
-		);
-	
-
-	// Rotating light
-
 	var startTime		= new Date();
 	var radsPerSecond	= 0.8;
 	var radius			= 120;
@@ -137,25 +91,76 @@
 	var lightPosY		= 100;
 	var isPaused		= false;
 
-	var myInterval = setInterval( 
+	var myInterval;
+	
+	
+	$( document ).on( 
+			'EVS:CoreLoaded', 
 			function()
 			{
-				if( ( bumpApp.isDrawing() === true ) || ( isPaused === true ) )
-				{
-					return;
-				}
+				var heightmap	= new CanvasTexture( 'resources/mbaco-heightmap2.png' );
+				var texture		= new CanvasTexture( 'resources/mbaco-texture.png' );
+				/*var heightmap	= new CanvasTexture( 'resources/empty-heightmap.png' );
+				var texture		= new CanvasTexture( 'resources/empty-texture.png' ); */
+				bumpApp			= new Bumper( 'surface', texture, heightmap );
 
-				var curTime	= new Date();
-				var runTime	= ( curTime.getTime() - startTime.getTime() ) / 1000.00;
+				bumpApp.setLightPos( 0, 0, 77 );
 
-				var x		= lightPosX + radius * Math.sin( radsPerSecond * runTime );
-				var y		= lightPosY + radius * Math.cos( radsPerSecond * runTime );
-				var z		= bumpApp.lightPosition.z;
+				$( document ).on(
+						'mousemove',
+						'#surface',
+						function( event )
+						{
+							coordinates = Helper.getCanvasCoordinates( event, 'surface' );
 
-				bumpApp.setLightPos( x, y, z );
-				bumpApp.draw();
-			},
-			25
+							bumpApp.setLightPos( coordinates.x, coordinates.y, bumpApp.lightPosition.z );
+							bumpApp.draw();
+						}
+					);
+
+
+				$( document ).on(
+						'mouseout',
+						'#surface',
+						function()
+						{
+							isPaused = false;
+						}
+					);
+
+
+				$( document ).on(
+						'mouseover',
+						'#surface',
+						function()
+						{
+							isPaused	= true;
+						}
+					);
+	
+
+				// Rotating light
+				myInterval = setInterval( 
+						function()
+						{
+							if( ( bumpApp.isDrawing() === true ) || ( isPaused === true ) )
+							{
+								return;
+							}
+
+							var curTime	= new Date();
+							var runTime	= ( curTime.getTime() - startTime.getTime() ) / 1000.00;
+
+							var x		= lightPosX + radius * Math.sin( radsPerSecond * runTime );
+							var y		= lightPosY + radius * Math.cos( radsPerSecond * runTime );
+							var z		= bumpApp.lightPosition.z;
+
+							bumpApp.setLightPos( x, y, z );
+							bumpApp.draw();
+						},
+						25
+					);
+			}
 		);
 </script>
 

@@ -207,6 +207,17 @@ Mesh.prototype = {
 		{
 			Draw.triangle( this.projectedVertices[ this.faces[ i ].a ], this.projectedVertices[ this.faces[ i ].b ], this.projectedVertices[ this.faces[ i ].c ] );
 		}
+	},
+			
+	
+	calculateFaceNormals : function()
+	{
+		var l = this.faces.length;
+		
+		for( var i = 0; i < l; i++ )
+		{
+			this.faces[ i ].normal.setNormal( this.cameraVertices[ this.faces[ i ].a ], this.cameraVertices[ this.faces[ i ].b ], this.cameraVertices[ this.faces[ i ].c ] );
+		}
 	}
 	
 };

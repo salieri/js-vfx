@@ -122,7 +122,34 @@ Vector3D.prototype = {
 		this.x = x || 0;
 		this.y = y || 0;
 		this.z = z || 0;
+	},
+
+
+	/**
+	 * @param {Point3D|Vector3D} p1
+	 * @param {Point3D|Vector3D} p2
+	 * @param {Point3D|Vector3D} p3
+	 * @returns {Vector3D}
+	 * @link http://www.opengl.org/wiki/Calculating_a_Surface_Normal
+	 */
+
+	setNormal : function( p1, p2, p3 )
+	{
+		var ux = p2.x - p1.x;
+		var uy = p2.y - p1.y;
+		var uz = p2.z - p1.z;
+		
+		var vx = p3.x - p1.x;
+		var vy = p3.y - p1.y;
+		var vz = p3.z - p1.z;
+		
+		this.set(
+				( uy * vz ) - ( uz * vy ),
+				( uz * vx ) - ( ux * vz ),
+				( ux * vy ) - ( uy * vx )
+			);		
 	}
+
 
 
 };

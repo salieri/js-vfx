@@ -1,0 +1,14 @@
+
+function Camera()
+{
+	
+}
+
+
+Camera.prototype = {
+	
+	
+};
+
+
+

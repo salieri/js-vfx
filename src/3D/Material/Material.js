@@ -1,0 +1,14 @@
+
+function Material()
+{
+	
+	
+}
+	
+	
+Material.prototype = {
+	
+	
+	
+};
+

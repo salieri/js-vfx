@@ -5,19 +5,11 @@
 	
 	<link rel='stylesheet' type='text/css' href='http://ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/themes/ui-lightness/jquery-ui.min.css' />	
 	<link rel='stylesheet' type='text/css' href='http://cdnjs.cloudflare.com/ajax/libs/foundation/4.3.1/css/foundation.min.css' />
-	
-	
+		
 	<script src='http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js'></script>
 	<script src='http://ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js'></script>
 	
-	<script src='../lib/FX/Core/Helper.js'></script>
-	<script src='../lib/FX/Core/Point2D.js'></script>
-	<script src='../lib/FX/Core/Color.js'></script>
-	<script src='../lib/FX/Core/Surface.js'></script>
-	<script src='../lib/FX/Core/Draw.js'></script>
-	<script src='../lib/FX/Core/CanvasTexture.js'></script>
-	<script src='../lib/FX/Core/Triangle.js'></script>
-	
+	<script data-main='../src/core-loader'  src='../vendor/require.js'></script>
 </head>
 <body>
 	<div class='row'>
@@ -97,42 +89,51 @@
 	}
 
 
-	var surface		= new Surface( 'surface', false );
-
+	var surface;
 	var startTime	= new Date();
 	
-	Draw.setSurface( surface );
-	Draw.bgColor.set( 220, 220, 220 );
 	
-	drawAll( 0 );
-	
-
-	setInterval( 
+	$( document ).on(
+			'EVS:CoreLoaded',
 			function()
 			{
-				if( surface.isDrawing() === false )
-				{
-					var curTime	= new Date();					
-					var rad		= ( curTime.getTime() - startTime.getTime() ) / 1000;
-				
-					drawAll( rad );
-				}
-			},
-			25
-		);
-	
-	
+				var surface		= new Surface( 'surface', false );
 
-	
-	$( document ).on( 
-			'click', 
-			'#drawButton',
-			function()
-			{
+
+
+				Draw.setSurface( surface );
+				Draw.bgColor.set( 220, 220, 220 );
+
 				drawAll( 0 );
+
+
+				setInterval( 
+						function()
+						{
+							if( surface.isDrawing() === false )
+							{
+								var curTime	= new Date();					
+								var rad		= ( curTime.getTime() - startTime.getTime() ) / 1000;
+
+								drawAll( rad );
+							}
+						},
+						25
+					);
+
+
+
+
+				$( document ).on( 
+						'click', 
+						'#drawButton',
+						function()
+						{
+							drawAll( 0 );
+						}
+					);
 			}
 		);
-	
 	
 	
 	

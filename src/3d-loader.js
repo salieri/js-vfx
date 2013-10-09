@@ -1,0 +1,52 @@
+
+document.addEventListener( 
+		'EVS:CoreLoaded', 
+		function()
+		{
+			// console.log( 'third' );
+
+			require(
+					[
+						'3D/Edge',
+						'3D/Face',
+						'3D/Mesh',
+						'3D/Scene',
+
+						'3D/Camera/Camera',
+						'3D/Camera/MovableCamera',
+						'3D/Camera/SimpleCamera',
+
+						'3D/Factory/CuboidFactory',
+						'3D/Factory/SphereFactory',
+						'3D/Factory/TorusFactory',
+
+						'3D/Light/Light',
+						'3D/Light/LightData',
+						'3D/Light/OmniLight',
+
+						'3D/Material/Material',
+						'3D/Material/SolidColorMaterial',
+						
+						'3D/Renderer/Renderer',
+						'3D/Renderer/VertexRenderer',
+						'3D/Renderer/WireframeRenderer'
+					],
+
+					function()
+					{
+						// console.log( 'fourth' );
+
+						var event = new Event( 'EVS:3DLoaded' );
+						document.dispatchEvent( event );
+					}
+				);
+		}
+	);
+
+
+require( 
+	[
+		'core-loader'
+	]
+);
+

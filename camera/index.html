@@ -5,41 +5,11 @@
 	
 	<link rel='stylesheet' type='text/css' href='http://ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/themes/ui-lightness/jquery-ui.min.css' />	
 	<link rel='stylesheet' type='text/css' href='http://cdnjs.cloudflare.com/ajax/libs/foundation/4.3.1/css/foundation.min.css' />
-	
-	
+
 	<script src='http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js'></script>
 	<script src='http://ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js'></script>
 	
-	<script src='../lib/FX/Core/Helper.js'></script>
-	<script src='../lib/FX/Core/Point2D.js'></script>
-	<script src='../lib/FX/Core/Color.js'></script>
-	<script src='../lib/FX/Core/Surface.js'></script>
-	<script src='../lib/FX/Core/Draw.js'></script>
-	<script src='../lib/FX/Core/CanvasTexture.js'></script>
-	<script src='../lib/FX/Core/Triangle.js'></script>
-	<script src='../lib/FX/Core/Matrix.js'></script>
-	<script src='../lib/FX/Core/Line.js'></script>
-	
-	<script src='../lib/FX/Core/Point3D.js'></script>
-	<script src='../lib/FX/Core/Vector3D.js'></script>
-
-	<script src='../lib/FX/3D/Camera.js'></script>
-	<script src='../lib/FX/3D/Facet.js'></script>
-	<script src='../lib/FX/3D/Edge.js'></script>
-	<script src='../lib/FX/3D/Material.js'></script>
-	<script src='../lib/FX/3D/Mesh.js'></script>
-	<script src='../lib/FX/3D/Scene.js'></script>
-	<script src='../lib/FX/3D/SimpleCamera.js'></script>
-	
-	<script src='../lib/FX/3D/Factory/TorusFactory.js'></script>
-	<script src='../lib/FX/3D/Factory/CuboidFactory.js'></script>
-	<script src='../lib/FX/3D/Factory/SphereFactory.js'></script>
-	
-	<script src='../lib/FX/3D/Renderer/Renderer.js'></script>
-	<script src='../lib/FX/3D/Renderer/VertexRenderer.js'></script>
-	<script src='../lib/FX/3D/Renderer/WireframeRenderer.js'></script>
-	
-	
+	<script data-main='../src/3d-loader'  src='../vendor/require.js'></script>	
 </head>
 <body>
 	<div class='row'>
@@ -60,37 +30,92 @@
 	</div>
 
 	
-<script type='text/javascript'>	
-	var surface		= new Surface( 'surface', false );
+<script type='text/javascript'>		
+	/**
+	 * @type Surface
+	 */
+	var surface;
 	
-	Draw.setSurface( surface );
-	Draw.bgColor.set( 220, 220, 220 );
-	Draw.color.set( 0, 0, 0 );
+	/**
+	 * @type Scene
+	 */
+	var scene;
+	
+	/**
+	 * @type Mesh
+	 */
+	var mesh;
+	
+	/**
+	 * @type Renderer
+	 */
+	var renderer;
+	
+	/**
+	 * @type Camera
+	 */
+	var camera;
+	
+	
+	$( document ).on( 
+			'EVS:3DLoaded', 
+			function()
+			{
+				surface		= new Surface( 'surface', false );
+
+				Draw.setSurface( surface );
+				Draw.bgColor.set( 220, 220, 220 );
+				Draw.color.set( 0, 0, 0 );
+
+
+				scene		= new Scene();
+				mesh		= TorusFactory.generate( 250, 250, 250, 100, 0.2 );
+				camera		= new MovableCamera();
+				// var renderer	= new VertexRenderer();	
+				renderer	= new WireframeRenderer();	
+
+
+				mesh.position.z = -1200;
+
+				scene.addMesh( mesh );
+				scene.addCamera( camera );
+				scene.addRenderer( renderer );
+
+				/* Draw.beginPaint();
+					scene.render();
+				Draw.endPaint(); */
+	
+				setInterval( 
+						function()
+						{
+							if( surface.isDrawing() === false )
+							{
+								rotateMesh();
+							}
+						},
+						25
+					);
+
+		
+				$( document ).on( 
+						'click', 
+						'#drawButton',
+						function()
+						{
+							drawAll( 0 );
+						}
+					);
+			}					
+		);
 
 	
-	var scene		= new Scene();
-	var mesh		= TorusFactory.generate( 250, 250, 250, 100, 0.2 );
-	var camera		= new Camera();
-	// var renderer	= new VertexRenderer();	
-	var renderer	= new WireframeRenderer();	
-	
-	
-	mesh.position.z = -1200;
-	
-	scene.addMesh( mesh );
-	scene.addCamera( camera );
-	scene.addRenderer( renderer );
-	
-	Draw.beginPaint();
-		scene.render();
-	Draw.endPaint();
-	
+
 	
 	function rotateMesh()
 	{
-		mesh.rotation.z += 0.01;
-		mesh.rotation.x += 0.01;
-		mesh.rotation.y += 0.01;
+		mesh.rotation.z	+= 0.01;
+		mesh.rotation.x	+= 0.01;
+		mesh.rotation.y	+= 0.01;
 		
 		Draw.beginPaint();
 			scene.render();
@@ -98,33 +123,6 @@
 		
 		$( '#sceneFPS' ).html( scene.renderFPS );
 	}
-	
-
-	setInterval( 
-			function()
-			{
-				if( surface.isDrawing() === false )
-				{
-					rotateMesh();
-				}
-			},
-			25
-		);
-	
-	
-
-	
-	$( document ).on( 
-			'click', 
-			'#drawButton',
-			function()
-			{
-				drawAll( 0 );
-			}
-		);
-	
-	
-	
 	
 	
 </script>
