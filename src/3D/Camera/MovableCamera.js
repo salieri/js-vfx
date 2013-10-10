@@ -96,7 +96,7 @@ MovableCamera.prototype.transform = function( vertices )
 
 MovableCamera.prototype.project = function( vertices )
 {
-	var l				= sourcePoints.length;
+	var l				= vertices.length;
 	var viewerPosition	= this.viewerPosition;
 
 	for( var i = 0; i < l; i++ )

@@ -57,6 +57,14 @@
 	var camera;
 	
 	
+	/**
+	 * @type Light
+	 */
+	var light;
+	var light2;
+	
+	
+	
 	$( document ).on( 
 			'EVS:3DLoaded', 
 			function()
@@ -69,17 +77,31 @@
 
 
 				scene		= new Scene();
-				mesh		= TorusFactory.generate( 250, 250, 250, 100, 0.2 );
+				mesh		= TorusFactory.generate( 250, 250, 100, 15, 8 );
+				// mesh		= CuboidFactory.generate( 250, 250, 250 );
+				
+				
 				camera		= new MovableCamera();
-				// var renderer	= new VertexRenderer();	
-				renderer	= new WireframeRenderer();	
-
+				// renderer	= new VertexRenderer();	
+				// renderer	= new WireframeRenderer();	
+				// renderer	= new FlatRenderer();
+				renderer	= new FlatShaderRenderer();
+				
+				light		= new OmniLight( new Point3D( -250, 0, -800 ), new NormalizedColor( 1, 1, 1 ) );
+				light.diffusePower = 20000;
+				
+				// light2		= new OmniLight( new Point3D( +350, 0, -1000 ), new NormalizedColor( 1, 1, 1 ) );
+				light2		= new OmniLight( new Point3D( 0, 0, -1200 ), new NormalizedColor( 1, 1, 1 ) );
+				light2.diffusePower = 20000;
 
 				mesh.position.z = -1200;
 
 				scene.addMesh( mesh );
 				scene.addCamera( camera );
 				scene.addRenderer( renderer );
+				
+				scene.addLight( light );
+				scene.addLight( light2 );
 
 				/* Draw.beginPaint();
 					scene.render();

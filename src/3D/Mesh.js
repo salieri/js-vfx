@@ -51,7 +51,7 @@ Mesh.prototype = {
 	
 	
 	/**
-	 * @param {Facet} face
+	 * @param {Face} face
 	 */
 	
 	addFace : function( face )
@@ -59,6 +59,8 @@ Mesh.prototype = {
 		this.faces.push( face );
 		
 		var faceNo = this.faces.length - 1;
+		
+		face.order = faceNo;
 		
 		this.vertices[ face.a ].faces.push( faceNo );
 		this.vertices[ face.b ].faces.push( faceNo );
@@ -213,7 +215,9 @@ Mesh.prototype = {
 			var p2 = this.vertices[ this.faces[ i ].b ].cameraTransformed;
 			var p3 = this.vertices[ this.faces[ i ].c ].cameraTransformed;
 			
-			this.faces[ i ].normal.setNormal( p1, p2, p3 );			
+			this.faces[ i ].normal.normal( p1, p2, p3 );		
+			this.faces[ i ].normal.normalize();
+			
 			this.faces[ i ].position.setToCenter( p1, p2, p3 );			
 		}
 	},
@@ -237,6 +241,7 @@ Mesh.prototype = {
 			}			
 			
 			normalVertex.divideByVal( faceLength );
+			normalVertex.normalize();
 		}
 	},
 	
@@ -249,6 +254,8 @@ Mesh.prototype = {
 		for( var j = 0; j < faceCount; j++ )
 		{
 			var face = this.faces[ j ];
+			
+			face.lightData.reset( scene.ambience );
 			
 			for( var i = 0; i < lightCount; i++ )
 			{
@@ -266,6 +273,8 @@ Mesh.prototype = {
 		for( var j = 0; j < vertexCount; j++ )
 		{
 			var vertex = this.vertices[ j ];
+			
+			vertex.lightData.reset( scene.ambience );
 			
 			for( var i = 0; i < lightCount; i++ )
 			{

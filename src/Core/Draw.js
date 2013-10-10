@@ -120,14 +120,31 @@ var Draw = {
 		data[ ptrpp ]		+= gd;
 		data[ ptrp2 ]		+= bd;
 	},
+
 	
+	/**
+	 * @param {Point2D} p1
+	 * @param {Point2D} p2
+	 * @param {Color} color
+	 */
 	
 	line : function( p1, p2, color )
 	{
 		Line.draw( p1, p2, color );
+	},
+	
+	
+	/**
+	 * @param {Point2D} p1
+	 * @param {Point2D} p2
+	 * @param {Point2D} p3
+	 * @param {Color} color
+	 */
+	
+	triangle : function( p1, p2, p3, color )
+	{
+		Triangle.draw( p1, p2, p3, color );
 	}
-	
-	
 	
 	
 	

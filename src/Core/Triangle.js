@@ -1,6 +1,11 @@
 
 var Triangle = {
 
+	p1	: new Point2D( 0, 0, 0 ),
+	p2	: new Point2D( 0, 0, 0 ),
+	p3	: new Point2D( 0, 0, 0 ),
+
+
 	/**
 	 * @param {Point2D} p1
 	 * @param {Point2D} p2
@@ -24,25 +29,31 @@ var Triangle = {
 	 * @param {Point2D} p1
 	 * @param {Point2D} p2
 	 * @param {Point2D} p3
+	 * @param {Color} color
 	 */
 	
-	draw : function( p1, p2, p3 )
+	draw : function( p1, p2, p3, color )
 	{
-		var bounds	= this.calculateBounds( p1, p2, p3 );
+		this.p1.set( p1 );
+		this.p2.set( p2 );
+		this.p3.set( p3 );
+		
+		var bounds	= this.calculateBounds( this.p1, this.p2, this.p3 );
 		
 		var rx = this.drawHalfTriangle( 
-				p1, 
-				p2, 
-				p3, 
+				this.p1, 
+				this.p2, 
+				this.p3, 
 				bounds.lSizeAdder,
 				bounds.rSizeAdder,
-				p1.x + bounds.lSizeAdder / 2,
-				p1.x
+				this.p1.x + bounds.lSizeAdder / 2,
+				this.p1.x,
+				color
 			);
 
-		p2.y++;
+		this.p2.y++;
 
-		this.drawHalfTriangle( p2, p3, p1, bounds.lSizeAdder2, bounds.rSizeAdder, p2.x, rx );
+		this.drawHalfTriangle( this.p2, this.p3, this.p1, bounds.lSizeAdder2, bounds.rSizeAdder, this.p2.x, rx, color );
 	},
 
 
@@ -53,17 +64,18 @@ var Triangle = {
 	 * @param {float} lAdder
 	 * @param {float} rAdder
 	 * @param {float} rx
+	 * @param {Color} color
 	 * @returns {Number}
 	 */
 
-	drawHalfTriangle : function( p1, p2, p3, lAdder, rAdder, lx, rx )
+	drawHalfTriangle : function( p1, p2, p3, lAdder, rAdder, lx, rx, color )
 	{
 		var surface		= Draw.getSurface();
 		var data		= surface.getData();
 		
-		var colR		= Draw.color.r;
-		var colG		= Draw.color.g;
-		var colB		= Draw.color.b;		
+		var colR		= color.r;
+		var colG		= color.g;
+		var colB		= color.b;		
 		
 		var width		= surface.getWidth();
 		var height		= surface.getHeight();

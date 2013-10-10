@@ -9,7 +9,10 @@ require.config(
 
 require( 	
 		[
-			'Core/Helper'
+			'Core/Helper',
+			'Core/Point2D',
+			'Core/Point3D',
+			'Core/Vector3D',
 		],
 		
 		function()
@@ -24,11 +27,12 @@ require(
 						'Core/Draw',
 						'Core/Line',
 						'Core/Matrix',
-						'Core/Point2D',
-						'Core/Point3D',
+						'Core/NormalizedColor',
+						// 'Core/Point2D',
+						// 'Core/Point3D',
 						'Core/Surface',
 						'Core/Triangle',
-						'Core/Vector3D'
+						//'Core/Vector3D'
 					],
 
 					function()

@@ -26,9 +26,17 @@ function Scene()
 
 	/**
 	 * @type Renderer[]
-	 */
-	
+	 */	
 	this.renderers		= [];
+
+	
+	/**
+	 * @type FaceSortPile
+	 */
+	this.faceSortPile	= new FaceSortPile( this );
+	
+	
+	this.ambience		= new Ambience();
 	
 	
 	/**
@@ -47,6 +55,8 @@ function Scene()
 	this.renderTime			= 0;
 	this.renderFrameCount	= 0;
 	this.renderFPS			= 0.00;
+	
+	this.forceReinitSort	= true;
 }
 
 
@@ -86,7 +96,25 @@ Scene.prototype = {
 	addMesh : function( mesh )
 	{
 		this.meshes.push( mesh );
+		
+		this.forceReinitSort = true;
 	},
+	
+	
+	/**
+	 * @param {Light} light
+	 */
+	addLight : function( light )
+	{
+		this.lights.push( light );
+	},
+	
+	
+	/**
+	 * 
+	 * @param {type} renderer
+	 * @returns {undefined}
+	 */
 
 	
 	/**
@@ -100,10 +128,10 @@ Scene.prototype = {
 			renderer = this.activeRenderer;
 		}
 		
-		
 		var renderStart = new Date();
 		
-		
+
+		// transform, project, and calculate normals
 		for( var i = 0; i < this.meshes.length; i++ )
 		{
 			if( this.meshes[ i ].visible === true )
@@ -111,8 +139,22 @@ Scene.prototype = {
 				this.meshes[ i ].transformOrigin();
 				this.meshes[ i ].transformCamera( this.activeCamera );
 				this.meshes[ i ].project( this.activeCamera );
+
+				this.meshes[ i ].calculateFaceNormals();
+				this.meshes[ i ].calculateVertexNormals();
+				this.meshes[ i ].calculateFaceLightData( this, this.activeCamera );
+				this.meshes[ i ].calculateVertexLightData( this, this.activeCamera );
 			}
 		}
+		
+		
+		if( this.faceSortPile.forceInit === true )
+		{
+			this.faceSortPile.init();
+		}
+		
+		this.faceSortPile.sort();
+				
 			
 		renderer.draw( this );
 		
@@ -122,6 +164,9 @@ Scene.prototype = {
 		this.renderTime	+= ( renderComplete.getTime() - renderStart.getTime() ) / 1000.0;
 		this.renderFPS	= this.renderFrameCount / this.renderTime;
 	}
+
+
+
 
 	
 };

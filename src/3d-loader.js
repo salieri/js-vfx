@@ -7,10 +7,14 @@ document.addEventListener(
 
 			require(
 					[
+						'3D/Ambience',
 						'3D/Edge',
 						'3D/Face',
+						'3D/FaceLookup',
+						'3D/FaceSortPile',
 						'3D/Mesh',
 						'3D/Scene',
+						'3D/Vertex',
 
 						'3D/Camera/Camera',
 						'3D/Camera/MovableCamera',
@@ -28,6 +32,8 @@ document.addEventListener(
 						'3D/Material/SolidColorMaterial',
 						
 						'3D/Renderer/Renderer',
+						'3D/Renderer/FlatRenderer',
+						'3D/Renderer/FlatShaderRenderer',
 						'3D/Renderer/VertexRenderer',
 						'3D/Renderer/WireframeRenderer'
 					],

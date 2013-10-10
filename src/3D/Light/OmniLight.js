@@ -1,8 +1,7 @@
 
 /**
  * @param {Point3D} position
- * @param {float} intensity
- * @param {Color} color
+ * @param {NormalizedColor} diffuseColor
  * @link http://en.wikipedia.org/wiki/Blinn%E2%80%93Phong_shading_model
  */
 
@@ -21,7 +20,7 @@ function OmniLight( position, diffuseColor )
 	
 	this.specularHardness	= 0.5;
 	this.specularPower		= 0.5;
-	this.specularColor		= new Color( 255, 255, 255 );
+	this.specularColor		= new NormalizedColor( 1, 1, 1 );
 }
 	
 
@@ -73,5 +72,4 @@ OmniLight.prototype.calculateLightData = function( viewerDirection, normal3DPosi
 		targetLightData.specularColor.b += this.specularColor.b * intensityPowerDistance;
 	}
 };
-
 
