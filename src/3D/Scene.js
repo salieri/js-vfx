@@ -144,6 +144,8 @@ Scene.prototype = {
 				this.meshes[ i ].calculateVertexNormals();
 				this.meshes[ i ].calculateFaceLightData( this, this.activeCamera );
 				this.meshes[ i ].calculateVertexLightData( this, this.activeCamera );
+				
+				this.meshes[ i ].cull( this.activeCamera );
 			}
 		}
 		

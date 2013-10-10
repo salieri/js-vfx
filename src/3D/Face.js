@@ -15,7 +15,8 @@ function Face( a, b, c, material )
 	this.b	= b;
 	this.c	= c;
 	
-	this.order = 0;
+	this.order		= 0;
+	this.visible	= false;
 	
 	this.material		= material || new SolidColorMaterial();
 	this.normal			= new Vector3D();

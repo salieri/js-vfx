@@ -13,6 +13,7 @@ require(
 			'Core/Point2D',
 			'Core/Point3D',
 			'Core/Vector3D',
+			'Core/Color',
 		],
 		
 		function()
@@ -23,8 +24,9 @@ require(
 					[
 						'Core/CanvasTexture',
 						'Core/CanvasTextureContainer',
-						'Core/Color',
+						//'Core/Color',
 						'Core/Draw',
+						'Core/InterpolatedTriangle',
 						'Core/Line',
 						'Core/Matrix',
 						'Core/NormalizedColor',

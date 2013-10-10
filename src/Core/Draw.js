@@ -144,9 +144,22 @@ var Draw = {
 	triangle : function( p1, p2, p3, color )
 	{
 		Triangle.draw( p1, p2, p3, color );
+	},
+
+	
+	/**
+	 * @param {Point2D} p1
+	 * @param {Point2D} p2
+	 * @param {Point2D} p3
+	 * @param {Color} c1
+	 * @param {Color} c2
+	 * @param {Color} c3
+	 */
+	
+	interpolatedTriangle : function( p1, p2, p3, c1, c2, c3 )
+	{
+		InterpolatedTriangle.draw( p1, p2, p3, c1, c2, c3 );
 	}
-	
-	
 	
 };
 

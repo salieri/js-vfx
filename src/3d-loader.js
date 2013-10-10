@@ -34,6 +34,7 @@ document.addEventListener(
 						'3D/Renderer/Renderer',
 						'3D/Renderer/FlatRenderer',
 						'3D/Renderer/FlatShaderRenderer',
+						'3D/Renderer/GouraudShaderRenderer',
 						'3D/Renderer/VertexRenderer',
 						'3D/Renderer/WireframeRenderer'
 					],

@@ -281,6 +281,26 @@ Mesh.prototype = {
 				scene.lights[ i ].calculateLightData( camera.orientation, vertex.cameraTransformed, vertex.normal, vertex.lightData );
 			}
 		}
+	},
+	
+	
+	cull : function( camera )
+	{
+		var faceCount	= this.faces.length;
+		
+		for( var j = 0; j < faceCount; j++ )
+		{
+			var face = this.faces[ j ];
+
+			if( camera.orientation.dot( face.normal ) > 0 )
+			{
+				face.visible = true;
+			}
+			else
+			{
+				face.visible = false;
+			}
+		}
 	}
 	
 };

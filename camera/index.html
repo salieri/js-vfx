@@ -85,14 +85,15 @@
 				// renderer	= new VertexRenderer();	
 				// renderer	= new WireframeRenderer();	
 				// renderer	= new FlatRenderer();
-				renderer	= new FlatShaderRenderer();
+				// renderer	= new FlatShaderRenderer();
+				renderer	= new GouraudShaderRenderer();
 				
-				light		= new OmniLight( new Point3D( -250, 0, -800 ), new NormalizedColor( 1, 1, 1 ) );
-				light.diffusePower = 20000;
+				light				= new OmniLight( new Point3D( -250, 0, -800 ), new NormalizedColor( 1, 1, 1 ) );
+				light.diffusePower	= 20000;
 				
-				// light2		= new OmniLight( new Point3D( +350, 0, -1000 ), new NormalizedColor( 1, 1, 1 ) );
-				light2		= new OmniLight( new Point3D( 0, 0, -1200 ), new NormalizedColor( 1, 1, 1 ) );
-				light2.diffusePower = 20000;
+				// light2			= new OmniLight( new Point3D( +350, 0, -1000 ), new NormalizedColor( 1, 1, 1 ) );
+				light2				= new OmniLight( new Point3D( 0, 0, -1200 ), new NormalizedColor( 1, 1, 1 ) );
+				light2.diffusePower	= 20000;
 
 				mesh.position.z = -1200;
 
