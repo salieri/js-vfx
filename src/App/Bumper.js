@@ -97,7 +97,9 @@ Bumper.prototype = {
 						data[ abovePtr ]						
 					);
 			
-				this.precalculatedNormals[ singlePtr ] = bumpNormal.normalize();
+				bumpNormal.normalize();
+			
+				this.precalculatedNormals[ singlePtr ] = bumpNormal;
 					
 				abovePtr	+= 4;
 				ptr			+= 4;
