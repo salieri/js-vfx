@@ -78,12 +78,13 @@ Scene.prototype = {
 
 	/**
 	 * @param {Renderer} renderer
+	 * @param {Boolean} setAsActive
 	 */
-	addRenderer : function( renderer )
+	addRenderer : function( renderer, setAsActive )
 	{
 		this.renderers.push( renderer );
 		
-		if( this.activeRenderer === null )
+		if( ( this.activeRenderer === null ) || ( setAsActive === true ) )
 		{
 			this.activeRenderer = renderer;
 		}

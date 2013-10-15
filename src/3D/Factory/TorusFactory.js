@@ -41,10 +41,12 @@ var TorusFactory = {
 
 	generateVertices : function( torus, outerRadiusX, outerRadiusY, weight, outerSteps, innerSteps )
 	{
-		var outerResolution = 2 * Math.PI / outerSteps;
-		var innerResolution = 2 * Math.PI / innerSteps;
+		var outerResolution	= 2 * Math.PI / ( outerSteps );
+		var innerResolution	= 2 * Math.PI / ( innerSteps );
+		var u				= 0;
 		
-		for( var u = 0; u < 2 * Math.PI; u += Math.abs( outerResolution ) )
+		// for( var u = 0; u < 2 * Math.PI; u += Math.abs( outerResolution ) )
+		for( var ui = 0; ui < outerSteps; ui++ )
 		{
 			var p = new Point3D( 
 					outerRadiusX * Math.cos( u ),
@@ -54,8 +56,11 @@ var TorusFactory = {
 			
 			var w = new Point3D( p.x, p.y, p.z );
 			w.normalize();
+			
+			var v = 0;
 
-			for( var v = 0; v < 2 * Math.PI; v += Math.abs( innerResolution ) )
+			// for( var v = 0; v < 2 * Math.PI; v += Math.abs( innerResolution ) )
+			for( var vi = 0; vi < innerSteps; vi++ )
 			{
 				var q = new Point3D(
 						outerRadiusX * w.x + weight * Math.cos( v ) * w.x + 0,
@@ -64,7 +69,11 @@ var TorusFactory = {
 					);
 
 				torus.addVertex( q );
+				
+				v += Math.abs( innerResolution );
 			}
+			
+			u += Math.abs( outerResolution );
 		}
 	},
 	
@@ -102,7 +111,7 @@ var TorusFactory = {
 				
 				var nextVI = vi + 1;
 				
-				if( nextVI > viCount )
+				if( nextVI >= viCount )
 				{
 					nextVI = 0;
 				}				
@@ -137,6 +146,7 @@ var TorusFactory = {
 				
 				if( nextUI >= uiCount )
 				{
+					// break;
 					nextUI = 0;
 				}
 				
@@ -145,6 +155,7 @@ var TorusFactory = {
 				
 				if( nextVI >= viCount )
 				{
+					// break;
 					nextVI = 0;
 				}
 
