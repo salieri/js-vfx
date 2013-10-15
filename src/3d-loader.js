@@ -43,8 +43,18 @@ document.addEventListener(
 					{
 						// console.log( 'fourth' );
 
-						var event = new Event( 'EVS:3DLoaded' );
-						document.dispatchEvent( event );
+						if( document.createEvent )
+						{
+							var event = document.createEvent( 'HTMLEvents' );
+							event.initEvent( 'EVS:3DLoaded', true, true );
+							document.dispatchEvent( event );
+						}
+						else
+						{
+							var event = document.createEventObject();
+							document.fireEvent( 'onEVS:3DLoaded', event );
+						}
+
 					}
 				);
 		}

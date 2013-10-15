@@ -105,7 +105,7 @@ var InterpolatedTriangle = {
 				bounds.rSizeAdder, 
 				this.p2.x, 
 				rx, 
-				this.c2,
+				this.cIntL,
 				this.cIntR,
 				bounds.lColAdder2,
 				bounds.rColAdder

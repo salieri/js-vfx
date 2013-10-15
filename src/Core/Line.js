@@ -2,6 +2,82 @@
 
 var Line = {
 	
+	calculate : function( p1, p2 )
+	{
+		var variables = {
+				px1		: Math.round( p1.x ),
+				py1		: Math.round( p1.y ),
+				px2		: Math.round( p2.x ),
+				py2		: Math.round( p2.y ),
+				done	: false,
+				pxStart	: 0
+			};
+	
+		variables.dx	= Math.abs( variables.px2 - variables.px1 );
+		variables.dy	= Math.abs( variables.py2 - variables.py1 );
+	
+		variables.err	= variables.dx - variables.dy;
+		variables.e2	= ( variables.dx - variables.dy ) * 2;
+	
+		variables.sx	= -1;
+		variables.sy	= -1;	
+		
+		if( variables.px1 < variables.px2 )
+		{
+			variables.sx = 1;
+		}
+		
+		if( variables.py1 < variables.py2 )
+		{
+			variables.sy = 1;
+		}
+		
+		return variables;
+	},
+	
+	
+	step : function( line )
+	{
+		line.pxStart = line.px1;
+		
+		while( true )
+		{
+			// plot here
+			
+			if( ( line.px1 === line.px2 ) && ( line.py1 === line.py2 ) )
+			{
+				line.done = true;
+				break;
+			}
+			
+			if( line.e2 > -line.dy )
+			{
+				line.err	= line.err - line.dy;
+				line.e2		= line.err + line.err;				
+				
+				line.px1	+= line.sx;
+			}			
+			
+			if( ( line.px1 === line.px2 ) && ( line.py1 === line.py2 ) )
+			{
+				// plot here
+				line.done = true;
+				break;
+			}
+			
+			if( line.e2 <  line.dx )
+			{
+				line.err	= line.err + line.dx;
+				line.e2		= line.err + line.err;
+				
+				line.py1	+= line.sy;
+				break;
+			}
+		}
+	},
+	
+	
+	
 	/**
 	 * @param {Point2D} p1
 	 * @param {Point2D} p2
