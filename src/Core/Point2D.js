@@ -72,6 +72,15 @@ Point2D.prototype = {
 			this.x = x;
 			this.y = y;
 		}
+	},
+			
+			
+	distance : function( point )
+	{
+		var a = point.x - this.x;
+		var b = point.y - this.y;
+		
+		return Math.sqrt( a * a + b * b );		
 	}
 	
 };

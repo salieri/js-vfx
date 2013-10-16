@@ -66,13 +66,39 @@ Color.prototype = {
 
 	/**
 	 * @param {Color} color
+	 * @param {Boolean} skipSafety
 	 */
 	
-	add : function( color )
+	add : function( color, skipSafety )
 	{
-		this.r = Math.round( Math.max( 0, Math.min( this.r + color.r, 255 ) ) );
-		this.g = Math.round( Math.max( 0, Math.min( this.g + color.g, 255 ) ) );
-		this.b = Math.round( Math.max( 0, Math.min( this.b + color.b, 255 ) ) );
+		this.r = this.r + color.r;
+		this.g = this.g + color.g;
+		this.b = this.b + color.b;
+		
+		if( skipSafety !== true )
+		{
+			this.round();
+			this.clamp();
+		}
+	},
+			
+			
+	/**
+	 * @param {Color} color
+	 * @param {Boolean} skipSafety
+	 */
+	
+	subtract : function( color, skipSafety )
+	{
+		this.r = this.r - color.r;
+		this.g = this.g - color.g;
+		this.b = this.b - color.b;
+		
+		if( skipSafety !== true )
+		{
+			this.round();
+			this.clamp();
+		}
 	},
 	
 	
@@ -102,15 +128,102 @@ Color.prototype = {
 	
 	/**
 	 * @param {Color|NormalizedColor} color
+	 * @param {Boolean} skipSafety
 	 */
 	
-	multiply : function( color )
+	multiply : function( color, skipSafety )
 	{
-		this.r = Math.min( 255, Math.max( Math.round( color.r * this.r ), 0 ) );
-		this.g = Math.min( 255, Math.max( Math.round( color.g * this.g ), 0 ) );
-		this.b = Math.min( 255, Math.max( Math.round( color.b * this.b ), 0 ) );
-		this.a = Math.min( 255, Math.max( Math.round( color.a * this.a ), 0 ) );
+		this.r = color.r * this.r;
+		this.g = color.g * this.g;
+		this.b = color.b * this.b;
+		this.a = color.a * this.a;
+		
+		if( skipSafety !== true )
+		{
+			this.round();
+			this.clamp();
+		}
+	},
+	
+	
+	/**
+	 * @param {float} value
+	 * @param {Boolean} skipSafety
+	 */
+	
+	multiplyByValue : function( value, skipSafety )
+	{
+		this.r = this.r * value;
+		this.g = this.g * value;
+		this.b = this.b * value;
+		
+		if( skipSafety !== true )
+		{
+			this.round();
+			this.clamp();
+		}
+	},
+	
+	
+	/**
+	 * @param {int|float} divisor
+	 * @param {Boolean} skipSafety
+	 */
+	
+	divideByValue : function( divisor, skipSafety )
+	{
+		this.r = this.r / divisor;
+		this.g = this.g / divisor;
+		this.b = this.b / divisor;
+		
+		if( skipSafety !== true )
+		{
+			this.round();
+			this.clamp();
+		}
+	},
+	
+	
+	/**
+	 * @param {Color} colorA
+	 * @param {Color} colorB
+	 * @param {int} stepCount
+	 * @param {Boolean} skipSafety
+	 */
+			
+	interpolate : function( colorA, colorB, stepCount, skipSafety )
+	{
+		this.r = ( colorB.r - colorA.r ) / stepCount;
+		this.g = ( colorB.g - colorA.g ) / stepCount;
+		this.b = ( colorB.b - colorA.b ) / stepCount;
+		
+		if( skipSafety !== true )
+		{
+			this.round();
+			this.clamp();
+		}
+	},
+	
+	
+	round : function()
+	{
+		this.r = Math.round( this.r );
+		this.g = Math.round( this.g );
+		this.b = Math.round( this.b );
+		this.a = Math.round( this.a );
+	},
+			
+			
+	clamp : function()
+	{
+		this.r = Math.max( Math.min( this.r, 255 ), 0 );
+		this.g = Math.max( Math.min( this.g, 255 ), 0 );
+		this.b = Math.max( Math.min( this.b, 255 ), 0 );
+		this.a = Math.max( Math.min( this.a, 255 ), 0 );
 	}
+	
+	
+	
 	
 };
 	

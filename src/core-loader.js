@@ -28,6 +28,7 @@ require(
 
 						require(
 								[
+									'Core/BetterInterpolatedTriangle',
 									'Core/BetterTriangle',
 									'Core/CanvasTexture',
 									'Core/CanvasTextureContainer',

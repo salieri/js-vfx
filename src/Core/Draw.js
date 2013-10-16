@@ -158,7 +158,7 @@ var Draw = {
 	
 	interpolatedTriangle : function( p1, p2, p3, c1, c2, c3 )
 	{
-		InterpolatedTriangle.draw( p1, p2, p3, c1, c2, c3 );
+		BetterInterpolatedTriangle.draw( p1, p2, p3, c1, c2, c3 );
 	}
 	
 };
