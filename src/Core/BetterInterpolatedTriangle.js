@@ -79,14 +79,15 @@ var BetterInterpolatedTriangle = {
 		
 		this.cRight.add( this.c1c3, true );
 	
-		// Line.step( line23 );
+		Line.step( line23 );
+		this.cLeft2.add( this.c2c3, true );
 		
-		this.drawHalf( line12, line13, this.cLeft, this.cRight, this.c1c2, this.c1c3 );		
-		this.drawHalf( line23, line13, this.cLeft2, this.cRight, this.c2c3, this.c1c3 );
+		this.drawHalf( line12, line13, this.cLeft, this.cRight, this.c1c2, this.c1c3, false );		
+		this.drawHalf( line23, line13, this.cLeft2, this.cRight, this.c2c3, this.c1c3, true );
 	},
 	
 
-	drawHalf : function( lineA, lineB, colLeft, colRight, colAdderLeft, colAdderRight )
+	drawHalf : function( lineA, lineB, colLeft, colRight, colAdderLeft, colAdderRight, secondHalf )
 	{		
 		var surface		= Draw.getSurface();
 		var data		= surface.getData();
@@ -102,22 +103,26 @@ var BetterInterpolatedTriangle = {
 		var ptr			= ( y * width + 1 ) << 2; // * 4
 		
 
-		while( ( lineA.done !== true ) && ( lineB.done !== true ) )
-		{
+		while
+		(
+			( ( secondHalf === true ) && ( ( lineA.done !== true ) || ( lineB.done !== true ) ) ) ||
+			( ( lineA.done !== true ) && ( lineB.done !== true ) )
+		)
+ 		{
 			Line.step( lineA );
 			Line.step( lineB );
 			
-			minX = Math.max( 0, Math.min( lineA.px1, lineA.pxStart, lineB.px1, lineB.pxStart ) );
+			minX = Math.max( 0, Math.min( lineA.lastPlotX, lineA.pxStart, lineB.lastPlotX, lineB.pxStart ) );
 
 			ptr	+= ( width - maxX + minX - 1 ) << 2; // * 4
 			
-			maxX = Math.min( width - 1, Math.max( lineA.px1, lineA.pxStart, lineB.px1, lineB.pxStart ) );
+			maxX = Math.min( width - 1, Math.max( lineA.lastPlotX, lineA.pxStart, lineB.lastPlotX, lineB.pxStart ) );
 						
 			if( ( y >= 0 ) && ( y < height ) && ( minX <= maxX ) )
 			{
 				var colR, colG, colB;
 				
-				if( Math.min( lineA.px1, lineA.pxStart ) < Math.min( lineB.px1, lineB.pxStart ) )
+				if( Math.min( lineA.lastPlotX, lineA.pxStart ) < Math.min( lineB.lastPlotX, lineB.pxStart ) )
 				{
 					this.colSlider.set( colRight );
 					this.colSlider.subtract( colLeft, true );

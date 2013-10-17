@@ -27,13 +27,13 @@ var BetterTriangle = {
 		
 		// Line.step( line23 );
 		
-		BetterTriangle.drawHalf( line12, line13, color );		
-		BetterTriangle.drawHalf( line23, line13, color );
+		BetterTriangle.drawHalf( line12, line13, color, false );		
+		BetterTriangle.drawHalf( line23, line13, color, true );
 		
 	},
 	
 
-	drawHalf : function( lineA, lineB, color )
+	drawHalf : function( lineA, lineB, color, secondHalf )
 	{		
 		var surface		= Draw.getSurface();
 		var data		= surface.getData();
@@ -53,16 +53,20 @@ var BetterTriangle = {
 		var ptr			= ( y * width + 1 ) << 2; // * 4
 		
 
-		while( ( lineA.done !== true ) && ( lineB.done !== true ) )
-		{
+		while
+		(
+			( ( secondHalf === true ) && ( ( lineA.done !== true ) || ( lineB.done !== true ) ) ) ||
+			( ( lineA.done !== true ) && ( lineB.done !== true ) )
+		)
+ 		{
 			Line.step( lineA );
 			Line.step( lineB );
 			
-			minX = Math.max( 0, Math.min( lineA.px1, lineA.pxStart, lineB.px1, lineB.pxStart ) );
+			minX = Math.max( 0, Math.min( lineA.lastPlotX, lineA.pxStart, lineB.lastPlotX, lineB.pxStart ) );
 
 			ptr	+= ( width - maxX + minX - 1 ) << 2; // * 4
 			
-			maxX = Math.min( width - 1, Math.max( lineA.px1, lineA.pxStart, lineB.px1, lineB.pxStart ) );
+			maxX = Math.min( width - 1, Math.max( lineA.lastPlotX, lineA.pxStart, lineB.lastPlotX, lineB.pxStart ) );
 			
 			if( ( y >= 0 ) && ( y < height ) )
 			{
@@ -81,6 +85,11 @@ var BetterTriangle = {
 			}
 			
 			y	+= lineA.sy;
+		}
+		
+		if( ( secondHalf === true ) && ( ( lineA.done !== true ) || ( lineB.done !== true ) ) )
+		{
+			y = y;
 		}
 	},
 	

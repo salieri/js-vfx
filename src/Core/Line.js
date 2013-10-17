@@ -4,12 +4,13 @@ var Line = {
 	calculate : function( p1, p2 )
 	{
 		var variables = {
-				px1		: Math.round( p1.x ),
-				py1		: Math.round( p1.y ),
-				px2		: Math.round( p2.x ),
-				py2		: Math.round( p2.y ),
-				done	: false,
-				pxStart	: 0
+				px1			: Math.round( p1.x ),
+				py1			: Math.round( p1.y ),
+				px2			: Math.round( p2.x ),
+				py2			: Math.round( p2.y ),
+				done		: false,
+				pxStart		: 0,
+				lastPlotX	: 0
 			};
 	
 		variables.dx	= Math.abs( variables.px2 - variables.px1 );
@@ -37,11 +38,12 @@ var Line = {
 	
 	step : function( line )
 	{
-		line.pxStart = line.px1;
+		line.pxStart		= line.px1;
 		
 		while( true )
 		{
 			// plot here
+			line.lastPlotX	= line.px1;
 			
 			if( ( line.px1 === line.px2 ) && ( line.py1 === line.py2 ) )
 			{
@@ -54,12 +56,13 @@ var Line = {
 				line.err	= line.err - line.dy;
 				line.e2		= line.err + line.err;				
 				
-				line.px1	+= line.sx;
-			}			
+				line.px1		+= line.sx;
+			}
 			
 			if( ( line.px1 === line.px2 ) && ( line.py1 === line.py2 ) )
 			{
 				// plot here
+				line.lastPlotX = line.px1;
 				line.done = true;
 				break;
 			}

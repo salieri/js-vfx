@@ -291,15 +291,17 @@ Mesh.prototype = {
 		for( var j = 0; j < faceCount; j++ )
 		{
 			var face = this.faces[ j ];
+			
+			face.visible = true;
 
-			if( camera.orientation.dot( face.normal ) > 0 )
+			/*if( camera.orientation.dot( face.normal ) > 0 )
 			{
 				face.visible = true;
 			}
 			else
 			{
 				face.visible = false;
-			}
+			}*/
 		}
 	}
 	
