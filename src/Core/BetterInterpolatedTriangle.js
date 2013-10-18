@@ -44,8 +44,6 @@ var BetterInterpolatedTriangle = {
 				this.c1, 
 				this.c2, 
 				this.p1.distance( this.p2 ),
-				// Math.abs( line12.py1 - line12.py2 ),
-				// this.p1.distance( this.p2 ) / ( Math.abs( this.p2.x - this.p1.x ) / Math.abs( this.p2.y - this.p1.y ) ),
 				true 
 			);
 				
@@ -53,7 +51,6 @@ var BetterInterpolatedTriangle = {
 				this.c1, 
 				this.c3, 
 				this.p1.distance( this.p3 ),
-				// this.p1.distance( this.p3 ) / ( Math.abs( this.p3.x - this.p1.x ) / Math.abs( this.p3.y - this.p1.y ) ),
 				true 
 			);
 				
@@ -61,15 +58,11 @@ var BetterInterpolatedTriangle = {
 				this.c2, 
 				this.c3,
 				this.p2.distance( this.p3 ),				
-				// this.p2.distance( this.p3 ) / ( Math.abs( this.p3.x - this.p2.x ) / Math.abs( this.p3.y - this.p2.y ) ),
 				true
 			);
 				
 				
-	/*	this.c1c2.multiplyByValue( Math.abs( this.p2.x - this.p1.x ) / Math.abs( this.p2.y - this.p1.y ), true );
-		this.c1c3.multiplyByValue( Math.abs( this.p3.x - this.p1.x ) / Math.abs( this.p3.y - this.p1.y ), true );
-		this.c2c3.multiplyByValue( Math.abs( this.p3.x - this.p2.x ) / Math.abs( this.p3.y - this.p2.y ), true );
-*/		this.c1c2.multiplyByValue( Math.abs( this.p1.distance( this.p2 ) / ( line12.py1 - line12.py2  ) ), true );
+		this.c1c2.multiplyByValue( Math.abs( this.p1.distance( this.p2 ) / ( line12.py1 - line12.py2  ) ), true );
 		this.c1c3.multiplyByValue( Math.abs( this.p1.distance( this.p3 ) / ( line13.py1 - line13.py2 ) ), true );
 		this.c2c3.multiplyByValue( Math.abs( this.p2.distance( this.p3 ) / ( line23.py1 - line23.py2  ) ), true );
 		

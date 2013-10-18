@@ -41,7 +41,8 @@ require(
 									// 'Core/Point2D',
 									// 'Core/Point3D',
 									'Core/Surface',
-									'Core/Triangle',
+									'Core/TexturedTriangle',
+									'Core/Triangle'
 									//'Core/Vector3D'
 								],
 

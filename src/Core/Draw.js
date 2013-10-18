@@ -159,7 +159,25 @@ var Draw = {
 	interpolatedTriangle : function( p1, p2, p3, c1, c2, c3 )
 	{
 		BetterInterpolatedTriangle.draw( p1, p2, p3, c1, c2, c3 );
+	},
+	
+	
+	/**
+	 * @param {Point2D} p1
+	 * @param {Point2D} p2
+	 * @param {Point2D} p3
+	 * @param {Point3D} uv1
+	 * @param {Point3D} uv2
+	 * @param {Point3D} uv3
+	 * @param {CanvasTexture} texture
+	 */
+	
+	texturedTriangle : function( p1, p2, p3, uv1, uv2, uv3, texture )
+	{
+		TexturedTriangle.draw( p1, p2, p3, uv1, uv2, uv3, texture );
 	}
+	
+	
 	
 };
 

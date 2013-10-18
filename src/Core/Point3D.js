@@ -143,6 +143,18 @@ Point3D.prototype = {
 	},
 	
 	
+	/**
+	 * @param {float} value
+	 */
+	
+	multiplyByVal : function( value )
+	{
+		this.x *= value;
+		this.y *= value;
+		this.z *= value;
+	},
+	
+	
 	negate : function()
 	{
 		this.x = -this.x;
@@ -167,7 +179,22 @@ Point3D.prototype = {
 		this.y = minY + ( ( Math.max( p1.y, p2.y, p3.y ) - minY ) / 2 );
 		this.z = minZ + ( ( Math.max( p1.z, p2.z, p3.z ) - minZ ) / 2 );
 		
-	}
+	},
+	
+	
+	/**
+	 * @param {Point3D} pointA
+	 * @param {Point3D} pointB
+	 * @param {int} stepCount
+	 * @param {Boolean} skipSafety
+	 */
+			
+	interpolate : function( pointA, pointB, stepCount )
+	{
+		this.x = ( pointB.x - pointA.x ) / stepCount;
+		this.y = ( pointB.y - pointA.y ) / stepCount;
+		this.z = ( pointB.z - pointA.z ) / stepCount;
+	},
 
 	
 };

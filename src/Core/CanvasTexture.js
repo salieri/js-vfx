@@ -11,7 +11,7 @@ function CanvasTexture( src )
 	this.loaded		= false;
 
 	this.image		= new Image();
-	this.image.src	= src;
+	this.image.src	= src;		
 	
 
 	// Let's update stuff once the image has loaded
@@ -21,7 +21,8 @@ function CanvasTexture( src )
 		{
 			me.loaded			= true;
 			me.canvas.width		= me.image.width;
-			me.canvas.height	= me.image.height;
+			me.canvas.height	= me.image.height;			
+			me.data				= me.getPixels().data;
 			
 			if( typeof( me.onload ) === 'function' )
 			{
