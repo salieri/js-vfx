@@ -85,7 +85,7 @@ var TexturedTriangle = {
 		this.uvLeft2.add( this.uv23, true );
 				
 		this.drawHalf( line12, line13, this.uvLeft, this.uvRight, this.uv12, this.uv13, texture, false );		
-		this.drawHalf( line23, line13, this.uvLeft2, this.uvRight, this.uv12, this.uv13, texture, true );
+		this.drawHalf( line23, line13, this.uvLeft2, this.uvRight, this.uv23, this.uv13, texture, true );
 	},
 	
 
