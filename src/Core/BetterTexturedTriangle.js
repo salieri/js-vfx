@@ -1,5 +1,5 @@
 
-var TexturedTriangle = {
+var BetterTexturedTriangle = {
 	
 	p1			: new Point2D(),
 	p2			: new Point2D(),
@@ -30,16 +30,29 @@ var TexturedTriangle = {
 	 * @param {Point3D} uv3
 	 */
 
-	draw : function( p1, p2, p3, uv1, uv2, uv3, texture )
+	draw : function( p1, p2, p3, color ) //( p1, p2, p3, uv1, uv2, uv3, texture )
 	{
 		this.p1.set( p1 );
 		this.p2.set( p2 );
 		this.p3.set( p3 );
-		this.uv1.set( uv1 );
+		/*this.uv1.set( uv1 );
 		this.uv2.set( uv2 );
-		this.uv3.set( uv3 );		
+		this.uv3.set( uv3 );*/
 		
 		this.sortPoints( this.p1, this.p2, this.p3, this.uv1, this.uv2, this.uv3 );
+
+		var midPoint = new Point2D( 
+				this.p1.x + ( ( this.p2.y - this.p1.y ) / ( this.p3.y - this.p1.y ) ) * ( this.p3.x - this.p1.x ),
+				this.p2.y
+			);
+		
+
+		this.drawHalf2( this.p1, this.p2, midPoint, color );
+		this.drawHalf2( this.p3, this.p2, midPoint, color );
+		
+		
+		/*
+		
 		
 		var line12		= Line.calculate( this.p1, this.p2 );
 		var line13		= Line.calculate( this.p1, this.p3 );
@@ -58,13 +71,6 @@ var TexturedTriangle = {
 		this.interpolate( line12, this.uv1, this.uv2, this.uv12 );
 		this.interpolate( line13, this.uv1, this.uv3, this.uv13 );
 		this.interpolate( line23, this.uv2, this.uv3, this.uv23 );
-		
-/*		this.uv12.x = 102.4;
-		this.uv12.y = -102.4;
-		this.uv12.x = 128;
-		this.uv12.y = -128;
-		
-		this.uv13.x = 3.5804195; */
 
 		Line.step( line23 );
 		
@@ -82,12 +88,94 @@ var TexturedTriangle = {
 		
 		this.drawHalf( line12, line13, this.uvLeft, this.uvRight, this.uv12, this.uv13, texture, false );		
 		this.drawHalf( line23, line13, this.uvLeft2, this.uvRight, this.uv23, this.uv13, texture, true );
+		*/
 	},
+	
+	
+	drawHalf2 : function( p1, p2, p3, color )
+	{
+		var surface		= Draw.getSurface();
+		var data		= surface.getData();
+		
+		var dxLeft		= Math.abs( ( p3.x - p1.x ) + 1 ) / ( Math.abs( p3.y - p1.y ) + 1 );
+		var dxRight		= Math.abs( ( p2.x - p1.x ) + 1 ) / ( Math.abs( p2.y - p1.y ) + 1 );
+		
+		if( p3.x - p1.x < 0 )
+			dxLeft = -dxLeft;
+		
+		if( p2.x - p1.x < 0 )
+			dxRight = -dxRight;
+		
+		if( dxLeft > dxRight )
+		{
+			var tmp = dxLeft;
+			dxLeft = dxRight;
+			dxRight = tmp;
+		}
+		
+		var minX = p1.x;
+		var maxX = p1.x;
+		
+		var colR		= color.r;
+		var colG		= color.g;
+		var colB		= color.b;		
+
+		var sy			= 1;
+		
+		if( p3.y < p1.y )
+		{
+			sy = -1;
+		}
+		
+		var yMax		= Math.max( Math.round( p1.y ), Math.round( p3.y ) );
+		var yMin		= Math.min( Math.round( p1.y ), Math.round( p3.y ) );
+		
+		
+		for( var y = Math.round( p1.y ); ( y <= yMax ) && ( y >= yMin ); y += sy )
+		{
+			if( ( y >= 0 ) && ( y < surface.getHeight() ) )
+			{
+				var minPlotX = Math.round( minX );
+				var maxPlotX = Math.round( maxX );
+				
+				if( 
+					( minPlotX < surface.getWidth() ) && 
+					( maxPlotX >= 0 )					
+				)
+				{
+					if( minPlotX < 0 )
+					{
+						minPlotX -= minPlotX;
+					}
+					
+					if( maxPlotX >= surface.getWidth() )
+					{
+						maxPlotX -= maxPlotX - ( surface.getWidth() - 1 );
+					}					
+					
+					for( var x = minPlotX; x <= maxPlotX; x++ )
+					{
+						var ptr = ( y * surface.getWidth() + x ) * 4;
+
+						data[ ptr++ ] = colR;
+						data[ ptr++ ] = colG;
+						data[ ptr++ ] = colB;
+
+						ptr++;
+					}	
+				}
+			}
+			
+			minX += dxLeft;
+			maxX += dxRight;
+		}		
+	},
+	
 	
 	
 	interpolate : function( line, uv1, uv2, resultLine )
 	{
-		this.pd.x = line.px2 - line.px1;
+	/*	this.pd.x = line.px2 - line.px1;
 		this.pd.y = line.py2 - line.py1;
 
 		this.ud.set( uv2 );
@@ -95,9 +183,9 @@ var TexturedTriangle = {
 
 		resultLine.x = this.ud.x / this.pd.x * this.pd.x / ( this.pd.y );
 		resultLine.y = this.ud.y / this.pd.y * this.pd.y / ( this.pd.y );
-		
-	/*	resultLine.x = ( uv2.x - uv1.x ) / ( Math.sqrt( line.dx * line.dx + line.dy * line.dy ) * line.sy );
-		resultLine.y = ( uv2.y - uv1.y ) / ( Math.sqrt( line.dx * line.dx + line.dy * line.dy ) * line.sy );			*/
+	*/	
+		resultLine.x = ( uv2.x - uv1.x ) / ( line.dy * line.sy );
+		resultLine.y = ( uv2.y - uv1.y ) / ( line.dy * line.sy );			
 	},
 	
 

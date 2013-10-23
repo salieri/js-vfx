@@ -73,7 +73,11 @@ Point2D.prototype = {
 			this.y = y;
 		}
 	},
-			
+
+	
+	/**
+	 * @param {Point2D} point
+	 */
 			
 	distance : function( point )
 	{
@@ -81,6 +85,17 @@ Point2D.prototype = {
 		var b = point.y - this.y;
 		
 		return Math.sqrt( a * a + b * b );		
+	},
+	
+	
+	/**
+	 * @param {Point2D} point
+	 */
+	
+	subtract : function( point )
+	{
+		this.x -= point.x;
+		this.y -= point.y;
 	}
 	
 };

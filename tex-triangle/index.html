@@ -65,6 +65,8 @@
 		Draw.beginPaint();
 			Draw.color.set( 32, 255, 32 );
 			
+			// rad = 38.50;
+			
 			/* InterpolatedTriangle.draw( 
 					new Point2D( 320, 100 ),
 					new Point2D( 220, 300 ),
@@ -75,14 +77,26 @@
 				); */
 			
 			
+			/* drawTriangle( 
+					rad, 160, 200,
+					[ new Point2D( 0, -10 ), new Point2D( 100, 10 ), new Point2D( -10, 10 ) ],
+					[ new Point3D( 1, 0, 0 ), new Point3D( 1, 1, 0 ), new Point3D( 0, 1, 0 ) ]
+				); */
+			
+			
+			
 			drawTriangle(
+					rad
+					
+					//  rad
+					// 32.154
+					// 29.024
 					// 77.458
-					 rad
 					// 61.758
 					// 36.231
 					// 9.2
 					// 91.503
-					//  /*1.108*/, 320, 240,
+					// 1.108
 					, 320, 240,
 					[ new Point2D( 100, -100 ), new Point2D( 100, 100 ), new Point2D( -100, 100 ) ],
 					[ new Point3D( 1, 0, 0 ), new Point3D( 1, 1, 0 ), new Point3D( 0, 1, 0 ) ]
@@ -119,7 +133,7 @@
 
 				// drawAll( 0 );
 
-				texture = new CanvasTexture( 'resources/smiley.png' );
+				texture = new CanvasTexture( 'resources/smiley2.png' );
 
 				texture.onload	= function()
 				{

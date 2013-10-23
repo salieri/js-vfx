@@ -143,7 +143,8 @@ var Draw = {
 	
 	triangle : function( p1, p2, p3, color )
 	{
-		BetterTriangle.draw( p1, p2, p3, color );
+		// BetterTriangle.draw( p1, p2, p3, color );
+		BetterTexturedTriangle.draw( p1, p2, p3, color );
 	},
 
 	
