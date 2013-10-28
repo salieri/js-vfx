@@ -3,6 +3,8 @@
  * @param {Point3D} position
  * @param {NormalizedColor} diffuseColor
  * @link http://en.wikipedia.org/wiki/Blinn%E2%80%93Phong_shading_model
+ * @extends Light
+ * @constructor
  */
 
 function OmniLight( position, diffuseColor )
@@ -22,7 +24,8 @@ function OmniLight( position, diffuseColor )
 	this.specularPower		= 0.5;
 	this.specularColor		= new NormalizedColor( 1, 1, 1 );
 }
-	
+
+
 
 OmniLight.prototype = Helper.extend( Light.prototype );
 

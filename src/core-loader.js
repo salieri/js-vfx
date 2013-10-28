@@ -2,7 +2,7 @@
 
 require.config(
 		{
-			baseUrl	: '../src',
+			baseUrl	: '../src'
 		}
 );
 
@@ -12,14 +12,14 @@ require(
 			'Core/Helper',
 			'Core/Point2D',
 			'Core/Point3D',
-			'Core/Color',
+			'Core/Color'
 		],
 		
 		function()
 		{
 			require(
 					[
-						'Core/Vector3D',
+						'Core/Vector3D'
 					],
 		
 					function()

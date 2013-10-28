@@ -1,4 +1,6 @@
-
+/**
+ * @class
+ */
 var TexturedTriangle = {
 	
 	p1			: new Point2D(),

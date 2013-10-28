@@ -1,3 +1,6 @@
+/**
+ * @constructor
+ */
 
 function Renderer()
 {
@@ -6,6 +9,10 @@ function Renderer()
 
 
 Renderer.prototype = {
+
+	/**
+	 * Rasterize scene
+	 */
 
 	draw : function()
 	{

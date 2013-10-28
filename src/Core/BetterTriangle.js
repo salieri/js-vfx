@@ -1,4 +1,6 @@
-
+/**
+ * @class
+ */
 var BetterTriangle = {
 	
 	p1	: new Point2D(),
@@ -87,10 +89,10 @@ var BetterTriangle = {
 			y	+= lineA.sy;
 		}
 		
-		if( ( secondHalf === true ) && ( ( lineA.done !== true ) || ( lineB.done !== true ) ) )
+		/* if( ( secondHalf === true ) && ( ( lineA.done !== true ) || ( lineB.done !== true ) ) )
 		{
 			y = y;
-		}
+		} */
 	},
 	
 	

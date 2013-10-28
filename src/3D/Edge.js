@@ -1,3 +1,8 @@
+/**
+ * @param a
+ * @param b
+ * @constructor
+ */
 
 function Edge( a, b )
 {

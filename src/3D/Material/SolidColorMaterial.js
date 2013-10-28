@@ -1,6 +1,7 @@
 
 /**
- * @param {Color} color
+ * @param {Color} [color]
+ * @extends Material
  */
 
 function SolidColorMaterial( color )
@@ -9,5 +10,5 @@ function SolidColorMaterial( color )
 }
 
 
-
+SolidColorMaterial.prototype = Helper.extend( Material.prototype );
 

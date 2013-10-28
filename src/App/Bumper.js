@@ -10,7 +10,7 @@
  * @param {string} targetCanvasID
  * @param {CanvasTexture} texture
  * @param {CanvasTexture} heightMapTexture
- * @returns {Bumper}
+ * @constructor
  */
 
 function Bumper( targetCanvasID, texture, heightMapTexture )

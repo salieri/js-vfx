@@ -1,7 +1,6 @@
-
-
 /**
- * @returns {WireframeRenderer}
+ * @constructor
+ * @extends Renderer
  */
 
 function WireframeRenderer()

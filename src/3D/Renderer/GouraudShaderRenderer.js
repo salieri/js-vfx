@@ -1,7 +1,8 @@
 
 
 /**
- * @returns {GouraudShaderRenderer}
+ * @constructor
+ * @extends Renderer
  */
 
 function GouraudShaderRenderer()

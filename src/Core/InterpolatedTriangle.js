@@ -1,9 +1,12 @@
+/**
+ * @class
+ */
 
 var InterpolatedTriangle = {
 
-	p1		: new Point2D( 0, 0, 0 ),
-	p2		: new Point2D( 0, 0, 0 ),
-	p3		: new Point2D( 0, 0, 0 ),
+	p1		: new Point2D( 0, 0 ),
+	p2		: new Point2D( 0, 0 ),
+	p3		: new Point2D( 0, 0 ),
 	
 	c1		: new Color( 0, 0, 0 ),
 	c2		: new Color( 0, 0, 0 ),

@@ -1,7 +1,7 @@
 
 /**
- * @param {NormalizedColor} light
- * @returns {undefined}
+ * @constructor
+ * @param {NormalizedColor} [light]
  */
 
 function Ambience( light )

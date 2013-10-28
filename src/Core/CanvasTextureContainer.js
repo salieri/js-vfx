@@ -1,4 +1,6 @@
-
+/**
+ * @constructor
+ */
 
 function CanvasTextureContainer()
 {
@@ -53,9 +55,12 @@ CanvasTextureContainer.prototype = {
 	{
 		for( var textureName in srcReferenceObject )
 		{
-			if( this.textures.hasOwnProperty( textureName ) === true )
+			if( srcReferenceObject.hasOwnProperty( textureName ) === true )
 			{
-				this.add( textureName, srcReferenceObject[ textureName ] );
+				if( this.textures.hasOwnProperty( textureName ) === true )
+				{
+					this.add( textureName, srcReferenceObject[ textureName ] );
+				}
 			}
 		}
 	},

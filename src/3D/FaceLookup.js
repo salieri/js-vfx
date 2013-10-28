@@ -2,7 +2,7 @@
 /**
  * @param {Face} face
  * @param {Mesh} mesh
- * @returns {FaceLookup}
+ * @constructor
  */
 
 function FaceLookup( face, mesh )

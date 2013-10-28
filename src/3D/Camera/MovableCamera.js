@@ -1,6 +1,8 @@
 
 /**
  * @link http://en.wikipedia.org/wiki/3D_projection#Perspective_projection
+ * @constructor
+ * @extends Camera
  */
 
 function MovableCamera()

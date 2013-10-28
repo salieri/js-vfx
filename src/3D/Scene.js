@@ -1,4 +1,6 @@
-
+/**
+ * @constructor
+ */
 function Scene()
 {
 	/**

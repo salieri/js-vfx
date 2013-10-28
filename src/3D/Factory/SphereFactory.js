@@ -1,9 +1,7 @@
 /**
- * 
- * This function just generates a sphere-shaped mesh
- *
- * Implements what is described in: http://stackoverflow.com/a/9787745/844771
- *
+ * This just generates a sphere-shaped mesh
+ * @link http://stackoverflow.com/a/9787745/844771
+ * @class
  */
 
 var SphereFactory = {

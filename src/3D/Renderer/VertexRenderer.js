@@ -1,6 +1,7 @@
 
 /**
- * @returns {VertexRenderer}
+ * @constructor
+ * @extends Renderer
  */
 
 function VertexRenderer()

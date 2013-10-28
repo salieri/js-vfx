@@ -1,12 +1,11 @@
 
 
 /**
- * 
- * @param {float|NormalizedColor|Color} r
- * @param {float} g
- * @param {float} b
- * @param {float} a
- * @returns {NormalizedColor}
+ * @param {int|float|Number|NormalizedColor|Color} [r=0]
+ * @param {int|float|Number} [g=0]
+ * @param {int|float|Number} [b=0]
+ * @param {int|float|Number} [a=1]
+ * @constructor
  */
 
 function NormalizedColor( r, g, b, a )
@@ -18,10 +17,10 @@ function NormalizedColor( r, g, b, a )
 NormalizedColor.prototype = {
 	
 	/**
-	 * @param {float|Color|NormalizedColor} r
-	 * @param {float} g
-	 * @param {float} b
-	 * @param {float} a
+	 * @param {float|Color|NormalizedColor} [r=0]
+	 * @param {int|float|Number} [g=0]
+	 * @param {int|float|Number} [b=0]
+	 * @param {int|float|Number} [a=1]
 	 */
 	
 	set : function( r, g, b, a )

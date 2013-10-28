@@ -1,8 +1,9 @@
 
 /**
- * @param {float|Vector3D|Point3D} x
- * @param {float} y
- * @param {float} z
+ * @param {int|float|Number|Vector3D|Point3D} [x=0]
+ * @param {int|float|Number} [y=0]
+ * @param {int|float|Number} [z=0]
+ * @constructor
  */
 
 function Point3D( x, y, z )
@@ -73,9 +74,9 @@ Point3D.prototype = {
 	
 	
 	/**
-	 * @param {float|Vector3D|Point3D} x
-	 * @param {float} y
-	 * @param {float} z
+	 * @param {int|float|Number|Vector3D|Point3D} x
+	 * @param {int|float|Number} [y]
+	 * @param {int|float|Number} [z]
 	 */
 	
 	set : function( x, y, z )
@@ -186,7 +187,6 @@ Point3D.prototype = {
 	 * @param {Point3D} pointA
 	 * @param {Point3D} pointB
 	 * @param {int} stepCount
-	 * @param {Boolean} skipSafety
 	 */
 			
 	interpolate : function( pointA, pointB, stepCount )
@@ -194,7 +194,7 @@ Point3D.prototype = {
 		this.x = ( pointB.x - pointA.x ) / stepCount;
 		this.y = ( pointB.y - pointA.y ) / stepCount;
 		this.z = ( pointB.z - pointA.z ) / stepCount;
-	},
+	}
 
 	
 };

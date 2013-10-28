@@ -1,7 +1,7 @@
 
 /**
  * @param {string} src URI/URL to texture resource
- * @returns {CanvasTexture}
+ * @constructor
  */
 
 function CanvasTexture( src ) 

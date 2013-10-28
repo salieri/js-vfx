@@ -1,12 +1,9 @@
 
 /**
  * YX notated Matrix
- */
-
-/**
  * @param {int|Matrix|Array} width
  * @param {int} height
- * @returns {Matrix}
+ * @constructor
  */
 
 function Matrix( width, height )
@@ -58,6 +55,8 @@ Matrix.prototype = {
 	
 	set : function( matrix )
 	{
+		var y;
+
 		if( matrix instanceof Array )
 		{
 			this.data	= Array( matrix.length );
@@ -65,7 +64,7 @@ Matrix.prototype = {
 			this.height	= matrix.length;
 			this.width	= matrix[ 0 ].length;
 			
-			for( var y = 0; y < matrix.length; y++ )
+			for( y = 0; y < matrix.length; y++ )
 			{
 				this.data[ y ] = matrix[ y ].slice( 0 );
 			}		
@@ -76,7 +75,7 @@ Matrix.prototype = {
 			this.height	= matrix.height;
 			this.width	= matrix.width;
 
-			for( var y = 0; y < matrix.data.length; y++ )
+			for( y = 0; y < matrix.data.length; y++ )
 			{
 				this.data[ y ] = matrix.data[ y ].slice( 0 );
 			}		

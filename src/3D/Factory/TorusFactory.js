@@ -1,10 +1,8 @@
 
 /**
- *
  * This just generates a torus-shaped mesh
- *
+ * @class
  * @link http://gamedev.stackexchange.com/a/16850
- *
  */
 
 var TorusFactory = {
@@ -16,6 +14,7 @@ var TorusFactory = {
 	 * @param {int} outerSteps
 	 * @param {int} innerSteps
 	 * @returns {Mesh}
+	 * @public
 	 */
 
 	generate : function( outerRadiusX, outerRadiusY, weight, outerSteps, innerSteps )
@@ -37,6 +36,7 @@ var TorusFactory = {
 	 * @param {float} weight
 	 * @param {int} outerSteps
 	 * @param {int} innerSteps
+	 * @private
 	 */
 
 	generateVertices : function( torus, outerRadiusX, outerRadiusY, weight, outerSteps, innerSteps )
@@ -82,6 +82,7 @@ var TorusFactory = {
 	 * @param {Mesh} torus
 	 * @param {int} outerSteps
 	 * @param {int} innerSteps
+	 * @private
 	 */
 	
 	generateEdges : function( torus, outerSteps, innerSteps )
@@ -128,6 +129,7 @@ var TorusFactory = {
 	 * @param {Mesh} torus
 	 * @param {int} outerSteps
 	 * @param {int} innerSteps
+	 * @private
 	 */
 	
 	generateFaces : function( torus, outerSteps, innerSteps )

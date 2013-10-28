@@ -1,7 +1,8 @@
 
 
 /**
- * @returns {FlatShaderRenderer}
+ * @constructor
+ * @extends Renderer
  */
 
 function FlatShaderRenderer()

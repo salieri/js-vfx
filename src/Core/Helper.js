@@ -1,5 +1,6 @@
-
-
+/**
+ * @class
+ */
 var Helper = {
 	
 	/**
@@ -34,7 +35,7 @@ var Helper = {
 	
 	/**
 	 * @param {String} elementType Type of element
-	 * @param {String} elementID Optional element ID
+	 * @param {String} [elementID] Element ID
 	 * @returns {Element}
 	 */
 	

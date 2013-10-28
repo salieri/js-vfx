@@ -1,10 +1,9 @@
 
 /**
- * @param {int|Color} r
- * @param {int} g
- * @param {int} b
- * @param {int} a
- * @returns {Color}
+ * @param {int|Color} [r=0]
+ * @param {int} [g=0]
+ * @param {int} [b=0]
+ * @param {int} [a=255]
  */
 
 function Color( r, g, b, a )
@@ -26,10 +25,9 @@ function Color( r, g, b, a )
 Color.prototype = {
 	
 	/**
-	 * @param {int|Color} r
-	 * @param {int} g
-	 * @param {int} b
-	 * @returns {undefined}
+	 * @param {int|Color} [r=0]
+	 * @param {int} [g=0]
+	 * @param {int} [b=0]
 	 */
 	
 	set : function( r, g, b, a )
@@ -52,7 +50,7 @@ Color.prototype = {
 	
 	
 	/**
-	 * @param {NormalizedColor} color
+	 * @param {NormalizedColor} normalizedColor
 	 */
 	
 	getNormalizedColor : function( normalizedColor )

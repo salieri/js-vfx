@@ -1,4 +1,7 @@
-
+/**
+ * @param {Point3D} point
+ * @constructor
+ */
 
 function Vertex( point )
 {
@@ -10,7 +13,7 @@ function Vertex( point )
 	this.cameraProjected	= new Point2D( 0, 0 );
 	
 	this.lightData			= new LightData();	
-	this.faces				= new Array();	
+	this.faces				= [];
 }
 	
 

@@ -1,6 +1,6 @@
 
 /**
- * @returns {LightData}
+ * @constructor
  */
 
 function LightData()
@@ -13,7 +13,7 @@ function LightData()
 LightData.prototype = {
 	
 	/**
-	 * @param {Ambience} ambience
+	 * @param {Ambience} [ambience]
 	 */
 	
 	reset : function( ambience )

@@ -1,3 +1,7 @@
+/**
+ * @param scene
+ * @constructor
+ */
 
 function FaceSortPile( scene )
 {

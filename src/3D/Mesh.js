@@ -1,7 +1,11 @@
+/**
+ * @param [name=]
+ * @constructor
+ */
 
 function Mesh( name )
 {
-	this.name		= name;
+	this.name		= name || '';
 	this.visible	= true;
 		
 	/**

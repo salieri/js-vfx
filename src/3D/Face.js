@@ -5,8 +5,8 @@
  * @param {int} a
  * @param {int} b
  * @param {int} c
- * @param {Material} material
- * @returns {Face}
+ * @param {Material} [material]
+ * @constructor
  */
 
 function Face( a, b, c, material )

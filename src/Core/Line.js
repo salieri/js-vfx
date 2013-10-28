@@ -1,4 +1,6 @@
-
+/**
+ * @class
+ */
 var Line = {
 	
 	calculate : function( p1, p2 )

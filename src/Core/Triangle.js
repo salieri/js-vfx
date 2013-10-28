@@ -1,9 +1,12 @@
+/**
+ * @class
+ */
 
 var Triangle = {
 
-	p1	: new Point2D( 0, 0, 0 ),
-	p2	: new Point2D( 0, 0, 0 ),
-	p3	: new Point2D( 0, 0, 0 ),
+	p1	: new Point2D( 0, 0 ),
+	p2	: new Point2D( 0, 0 ),
+	p3	: new Point2D( 0, 0 ),
 
 
 	/**
@@ -61,9 +64,10 @@ var Triangle = {
 	 * @param {Point2D} p1
 	 * @param {Point2D} p2
 	 * @param {Point2D} p3
-	 * @param {float} lAdder
-	 * @param {float} rAdder
-	 * @param {float} rx
+	 * @param {Number} lAdder
+	 * @param {Number} rAdder
+	 * @param {Number} lx
+	 * @param {Number} rx
 	 * @param {Color} color
 	 * @returns {Number}
 	 */

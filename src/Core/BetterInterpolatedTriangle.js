@@ -1,4 +1,6 @@
-
+/**
+ * @class
+ */
 var BetterInterpolatedTriangle = {
 	
 	p1			: new Point2D(),

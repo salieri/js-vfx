@@ -1,7 +1,8 @@
 
 /**
- * @param {string} elementID
+ * @param {String} elementID
  * @param {Boolean} createElement
+ * @constructor
  */
 
 function Surface( elementID, createElement )

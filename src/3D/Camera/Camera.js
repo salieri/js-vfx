@@ -1,4 +1,8 @@
 
+/**
+ * @constructor
+ */
+
 function Camera()
 {
 	

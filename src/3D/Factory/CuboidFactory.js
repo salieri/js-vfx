@@ -1,3 +1,6 @@
+/**
+ * @class
+ */
 
 var CuboidFactory = {
 	
@@ -6,6 +9,7 @@ var CuboidFactory = {
 	 * @param {float} length
 	 * @param {float} depth
 	 * @returns {Mesh}
+	 * @public
 	 */
 	
 	generate : function( height, length, depth )
@@ -25,7 +29,7 @@ var CuboidFactory = {
 	 * @param {float} height
 	 * @param {float} length
 	 * @param {float} depth
-	 * @returns {undefined}
+	 * @private
 	 */
 	
 	generateVertices : function( cuboid, height, length, depth )
@@ -48,6 +52,7 @@ var CuboidFactory = {
 	
 	/**
 	 * @param {Mesh} cuboid
+	 * @private
 	 */
 	
 	generateEdges : function( cuboid )
@@ -71,6 +76,7 @@ var CuboidFactory = {
 	
 	/**
 	 * @param {Mesh} cuboid
+	 * @private
 	 */
 	
 	generateFaces : function( cuboid )

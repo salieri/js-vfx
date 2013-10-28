@@ -4,10 +4,11 @@
 
 
 /**
- * @param {float|Vector3D|Point3D} x
- * @param {float} y
- * @param {float} z
- * @returns {Vector3D}
+ * @param {Number|int|float|Vector3D|Point3D} [x=0]
+ * @param {int|float|Number} [y=0]
+ * @param {int|float|Number} [z=0]
+ * @constructor
+ * @extends Point3D
  */
 
 function Vector3D( x, y, z ) 
@@ -42,10 +43,10 @@ Vector3D.prototype.clone = function()
 
 /**
  * Distance from a point
- * @param {float|Number} x
- * @param {float|Number} y
- * @param {float|Number} z
- * @returns {float|Number}
+ * @param {int|float|Number} x
+ * @param {int|float|Number} y
+ * @param {int|float|Number} z
+ * @returns {Number}
  */
 
 Vector3D.prototype.distance = function( x, y, z )
@@ -78,7 +79,7 @@ Vector3D.prototype.length = function()
  * Dot product
  * 
  * @param {Vector3D} vector
- * @returns {float|Number}
+ * @returns {Number}
  */
 
 Vector3D.prototype.dot = function( vector )
@@ -107,7 +108,7 @@ Vector3D.prototype.cross = function( vector )
 
 Vector3D.prototype.normalize = function()
 {
-	vectorLength = this.length();
+	var vectorLength = this.length();
 
 	this.x = this.x / vectorLength;
 	this.y = this.y / vectorLength;

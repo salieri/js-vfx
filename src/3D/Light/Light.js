@@ -1,8 +1,12 @@
 
+/**
+ * Creates a new light
+ * @constructor
+ */
 
 function Light()
 {
-	this.position = new Point3D;
+	this.position = new Point3D();
 }
 
 

@@ -1,7 +1,8 @@
 
 /**
- * @param {float|Vector3D|Point3D|Point2D} x
- * @param {float} y
+ * @param {int|float|Number|Vector3D|Point3D|Point2D} [x=0]
+ * @param {int|float|Number} [y=0]
+ * @constructor
  */
 
 function Point2D( x, y )
@@ -56,8 +57,8 @@ Point2D.prototype = {
 
 	
 	/**
-	 * @param {float|Vector3D|Point3D|Point2D} x
-	 * @param {float} y
+	 * @param {int|float|Number|Vector3D|Point3D|Point2D} [x=0]
+	 * @param {int|float|Number} [y=0]
 	 */
 	
 	set : function( x, y )

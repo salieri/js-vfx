@@ -1,4 +1,8 @@
 
+/**
+ * @constructor
+ * @extends Camera
+ */
 
 function SimpleCamera()
 {

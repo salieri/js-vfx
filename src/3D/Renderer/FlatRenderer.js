@@ -1,7 +1,8 @@
 
 
 /**
- * @returns {FlatRenderer}
+ * @constructor
+ * @extends Renderer
  */
 
 function FlatRenderer()
