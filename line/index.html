@@ -14,7 +14,7 @@
 </head>
 <body>
 	<div class='row'>
-		<div class='twenty columnns'>
+		<div class='twenty columns'>
 			<h1>Line</h1>
 			
 			<p>Pure JavaScript implementation of line (<i>not</i> Canvas path)</p>
@@ -43,8 +43,14 @@
 		Draw.blendPixel( p2, pixelColor );
 	}
 
-	
-	function rotateLine( x, y, length, rad )
+
+	/**
+	 * @param {float|int|Number} x
+	 * @param {float|int|Number} y
+	 * @param {float|int|Number} length
+	 * @param {float|int|Number} rad
+	 */
+ 	function rotateLine( x, y, length, rad )
 	{
 		var lineColor	= new Color( 32, 255, 32 );
 		var pixelColor	= new Color(   255, 0, 0, 128 );

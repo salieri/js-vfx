@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<module type="WEB_MODULE" version="4">
+  <component name="CompassSettings">
+    <option name="compassExecutableFilePath" value="D:\prog\ruby-1.8.7\bin\compass.bat" />
+    <option name="compassSupportEnabled" value="true" />
+  </component>
+  <component name="NewModuleRootManager">
+    <content url="file://$MODULE_DIR$" />
+    <orderEntry type="inheritedJdk" />
+    <orderEntry type="sourceFolder" forTests="false" />
+    <orderEntry type="library" name="jQuery-2.0.0" level="application" />
+    <orderEntry type="library" name="jQuery UI-1.10.2" level="application" />
+    <orderEntry type="library" name="requirejs-DefinitelyTyped" level="application" />
+  </component>
+</module>
+
