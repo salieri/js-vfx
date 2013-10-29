@@ -90,7 +90,6 @@ var TorusFactory = {
 		var uiCount	= outerSteps;
 		var viCount = innerSteps;
 		
-		
 		for( var ui = 0; ui < uiCount; ui++ )
 		{
 			for( var vi = 0; vi < viCount; vi++ )
@@ -134,8 +133,15 @@ var TorusFactory = {
 	
 	generateFaces : function( torus, outerSteps, innerSteps )
 	{
-		var material = new SolidColorMaterial( new Color( 0, 192, 0 ) );
-		var material2 = new SolidColorMaterial( new Color( 0, 0, 192 ) );
+		/* var material = new SolidColorMaterial( new Color( 0, 192, 0 ) );
+		var material2 = new SolidColorMaterial( new Color( 0, 0, 192 ) );*/
+
+		var material	= new TexturedMaterial( new CanvasTexture( 'resources/plastic.jpg' ) );
+		material.color	= new Color( 0, 192, 0 );
+
+		var material2	= new TexturedMaterial( new CanvasTexture( 'resources/silver.jpg' ) );
+		material2.color	= new Color( 0, 0, 192 );
+
 		
 		var uiCount	= outerSteps;
 		var viCount = innerSteps;
@@ -161,9 +167,25 @@ var TorusFactory = {
 					nextVI = 0;
 				}
 
+				torus.addFace( new Face(
+						ui * viCount + vi,
+						nextUI * viCount + vi,
+						nextUI * viCount + nextVI,
+						material,
+						new Point3D( 0, 0, 0 ),
+						new Point3D( 0, 1, 0 ),
+						new Point3D( 1, 0, 0 )
+					) );
 
-				torus.addFace( new Face( ui * viCount + vi, nextUI * viCount + vi, nextUI * viCount + nextVI, material ) );
-				torus.addFace( new Face( ui * viCount + vi, nextUI * viCount + nextVI, ui * viCount + nextVI, material2 ) );
+				torus.addFace( new Face(
+						ui * viCount + vi,
+						nextUI * viCount + nextVI,
+						ui * viCount + nextVI,
+						material2,
+						new Point3D( 0, 1, 0 ),
+						new Point3D( 1, 0, 0 ),
+						new Point3D( 1, 1, 0 )
+					) );
 			}
 		}				
 	}

@@ -6,15 +6,21 @@
  * @param {int} b
  * @param {int} c
  * @param {Material} [material]
+ * @param {Number} [u]
+ * @param {Number} [v]
  * @constructor
  */
 
-function Face( a, b, c, material )
+function Face( a, b, c, material, uvA, uvB, uvC )
 {
 	this.a	= a;
 	this.b	= b;
 	this.c	= c;
-	
+
+	this.uvA	= uvA || new Point3D();
+	this.uvB	= uvB || new Point3D();
+	this.uvC	= uvC || new Point3D();
+
 	this.order		= 0;
 	this.visible	= false;
 	

@@ -186,9 +186,9 @@ var BetterTexturedTriangle = {
 
 		resultLine.x = this.ud.x / this.pd.x * this.pd.x / ( this.pd.y );
 		resultLine.y = this.ud.y / this.pd.y * this.pd.y / ( this.pd.y );
-	*/	
+	*/
 		resultLine.x = ( uv2.x - uv1.x ) / ( line.dy * line.sy );
-		resultLine.y = ( uv2.y - uv1.y ) / ( line.dy * line.sy );			
+		resultLine.y = ( uv2.y - uv1.y ) / ( line.dy * line.sy );
 	},
 	
 

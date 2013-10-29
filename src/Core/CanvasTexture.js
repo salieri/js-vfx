@@ -10,8 +10,9 @@ function CanvasTexture( src )
 	this.context	= this.canvas.getContext( '2d' );
 	this.loaded		= false;
 
-	this.image		= new Image();
-	this.image.src	= src;		
+	this.image				= new Image();
+	this.image.crossOrigin	= 'Anonymous';
+	this.image.src			= src;
 	
 
 	// Let's update stuff once the image has loaded

@@ -133,7 +133,7 @@ Point3D.prototype = {
 	
 	
 	/**
-	 * @param {float} value
+	 * @param {float|int|Number} value
 	 */
 	
 	divideByVal : function( value )
@@ -145,7 +145,7 @@ Point3D.prototype = {
 	
 	
 	/**
-	 * @param {float} value
+	 * @param {float|int|Number} value
 	 */
 	
 	multiplyByVal : function( value )

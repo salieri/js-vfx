@@ -21,6 +21,7 @@ document.addEventListener(
 						'3D/Camera/SimpleCamera',
 
 						'3D/Factory/CuboidFactory',
+						'3D/Factory/ObjFactory',
 						'3D/Factory/SphereFactory',
 						'3D/Factory/TorusFactory',
 
@@ -30,11 +31,13 @@ document.addEventListener(
 
 						'3D/Material/Material',
 						'3D/Material/SolidColorMaterial',
+						'3D/Material/TexturedMaterial',
 						
 						'3D/Renderer/Renderer',
 						'3D/Renderer/FlatRenderer',
 						'3D/Renderer/FlatShaderRenderer',
 						'3D/Renderer/GouraudShaderRenderer',
+						'3D/Renderer/TextureRenderer',
 						'3D/Renderer/VertexRenderer',
 						'3D/Renderer/WireframeRenderer'
 					],

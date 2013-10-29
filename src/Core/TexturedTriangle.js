@@ -60,50 +60,76 @@ var TexturedTriangle = {
 		this.interpolate( line12, this.uv1, this.uv2, this.uv12 );
 		this.interpolate( line13, this.uv1, this.uv3, this.uv13 );
 		this.interpolate( line23, this.uv2, this.uv3, this.uv23 );
-		
-/*		this.uv12.x = 102.4;
-		this.uv12.y = -102.4;
-		this.uv12.x = 128;
-		this.uv12.y = -128;
-		
-		this.uv13.x = 3.5804195; */
 
 		Line.step( line23 );
 		
 		this.uvLeft.set( this.uv1 );
 		this.uvRight.set( this.uv1 );
 		this.uvLeft2.set( this.uv2 );
-		
-	 	this.uvRight.add( this.uv13, true );
-		 
+
+		var uv12Length = Math.sqrt(
+				( this.uv2.x - this.uv1.x ) * ( this.uv2.x - this.uv1.x ) +
+				( this.uv2.y - this.uv1.y ) * ( this.uv2.y - this.uv1.y )
+			);
+
+		var uv13Length = Math.sqrt(
+				( this.uv3.x - this.uv1.x ) * ( this.uv3.x - this.uv1.x ) +
+				( this.uv3.y - this.uv1.y ) * ( this.uv3.y - this.uv1.y )
+		);
+
+		var uv23Length = Math.sqrt(
+				( this.uv3.x - this.uv2.x ) * ( this.uv3.x - this.uv2.x ) +
+				( this.uv3.y - this.uv2.y ) * ( this.uv3.y - this.uv2.y )
+		);
+
+		this.uvRight.add( this.uv13, true );
+		this.uvLeft.add( this.uv12, true );
+		this.uvLeft2.add( this.uv23 )
+
+		//this.uv23.set( -30.5, 30.5, 0 );
+
 		// this.uvLeft2.add( this.uv23, true );
-		this.uvLeft2.add( this.uv23, true );
-		
+		// this.uvLeft2.add( this.uv23, true );
+
+
 		// this.uvRight.add( this.uv13, true );
 		// this.uvLeft.add( this.uv12, true );
-		
-		this.drawHalf( line12, line13, this.uvLeft, this.uvRight, this.uv12, this.uv13, texture, false );		
-		this.drawHalf( line23, line13, this.uvLeft2, this.uvRight, this.uv23, this.uv13, texture, true );
+
+		this.drawHalf( line12, line13, this.uvLeft, this.uvRight, this.uv12, this.uv13, texture, false, uv12Length, uv13Length );
+	 	this.drawHalf( line23, line13, this.uvLeft2, this.uvRight, this.uv23, this.uv13, texture, true, uv23Length, uv13Length );
 	},
 	
 	
 	interpolate : function( line, uv1, uv2, resultLine )
 	{
-		this.pd.x = line.px2 - line.px1;
-		this.pd.y = line.py2 - line.py1;
+		var d = Math.sqrt(
+				( uv2.x - uv1.x ) * ( uv2.x - uv1.x ) +
+				( uv2.y - uv1.y ) * ( uv2.y - uv1.y )
+		);
 
-		this.ud.set( uv2 );
-		this.ud.subtract( uv1 );
 
-		resultLine.x = this.ud.x / this.pd.x * this.pd.x / ( this.pd.y );
-		resultLine.y = this.ud.y / this.pd.y * this.pd.y / ( this.pd.y );
-		
-	/*	resultLine.x = ( uv2.x - uv1.x ) / ( Math.sqrt( line.dx * line.dx + line.dy * line.dy ) * line.sy );
-		resultLine.y = ( uv2.y - uv1.y ) / ( Math.sqrt( line.dx * line.dx + line.dy * line.dy ) * line.sy );			*/
+		/* resultLine.x = ( uv2.x - uv1.x ) / d;
+		resultLine.y = ( uv2.y - uv1.y ) / d;*/
+
+		resultLine.x = ( uv2.x - uv1.x ) / ( ( line.dy + 1 ) * line.sy );
+		resultLine.y = ( uv2.y - uv1.y ) / ( ( line.dy + 1 ) * line.sy );
 	},
-	
 
-	drawHalf : function( lineA, lineB, uvLeft, uvRight, uvAdderLeft, uvAdderRight, texture, secondHalf )
+
+	/**
+	 * @param lineA
+	 * @param lineB
+	 * @param {Point3D} uvLeft
+	 * @param {Point3D} uvRight
+	 * @param {Point3D} uvAdderLeft
+	 * @param {Point3D} uvAdderRight
+	 * @param {Material} texture
+	 * @param {Boolean} secondHalf
+	 * @param {Number} uvLeftLength
+	 * @param {Number} uvRightLength
+	 */
+
+	drawHalf : function( lineA, lineB, uvLeft, uvRight, uvAdderLeft, uvAdderRight, texture, secondHalf, uvLeftLength, uvRightLength )
 	{		
 		var surface		= Draw.getSurface();
 		var data		= surface.getData();
@@ -121,7 +147,8 @@ var TexturedTriangle = {
 		var minX		= 0;
 				
 		var ptr			= ( y * width + 1 ) << 2; // * 4
-				
+
+		// var uvRight		= new Point3D();
 
 		while
 		(
@@ -131,7 +158,26 @@ var TexturedTriangle = {
  		{
 			Line.step( lineA );
 			Line.step( lineB );
-			
+
+			/* var traversePointA = lineA.traverseLength - Math.sqrt(
+					(lineA.px2 - lineA.px1) * (lineA.px2 - lineA.px1) +
+							(lineA.py2 - lineA.py2) * (lineA.py2 - lineA.py1)
+			);
+
+			var traversePointB = lineB.traverseLength - Math.sqrt(
+					(lineB.px2 - lineB.px1) * (lineB.px2 - lineB.px1) +
+							(lineB.py2 - lineB.py2) * (lineB.py2 - lineB.py1)
+			);
+
+			var uvLeft = new Point3D( uvAdderLeft );
+			uvLeft.multiplyByVal( ( lineA.traversed / lineA.traverseLength ) * uvLeftLength );
+			uvLeft.add( uvLeftOrig );
+
+			uvRight = new Point3D( uvAdderRight );
+			uvRight.multiplyByVal( ( lineB.traversed / lineB.traverseLength ) * uvRightLength );
+			uvRight.add( uvRightOrig ); */
+
+
 			minX = Math.max( 0, Math.min( lineA.lastPlotX, lineA.pxStart, lineB.lastPlotX, lineB.pxStart ) );
 
 			ptr	+= ( width - maxX + minX - 1 ) << 2; // * 4
@@ -153,11 +199,16 @@ var TexturedTriangle = {
 					this.uvPos.set( uvRight );
 				}
 				
-				this.uvSlider.divideByVal( Math.abs( Math.max( maxX - minX + 1 ), 1 ), true );
+				this.uvSlider.divideByVal( Math.max( maxX - minX + 1, 1 ) );
+
+				y = y;
 				
 				for( var x = minX; x <= maxX; x++ )
 				{
-					var uvPtr		= ( Math.round( this.uvPos.y ) * uvWidth + Math.round( this.uvPos.x ) ) << 2;
+					var uvX = Math.round( this.uvPos.x );
+					var uvY = Math.round( this.uvPos.y );
+
+					var uvPtr		= ( uvY * uvWidth + uvX ) << 2;
 					
 					data[ ptr++ ]	= uvData[ uvPtr ];
 					data[ ptr++ ]	= uvData[ uvPtr + 1 ];
@@ -167,6 +218,9 @@ var TexturedTriangle = {
 
 					this.uvPos.add( this.uvSlider );
 				}
+
+				this.uvPos.subtract( this.uvSlider );
+				y = y;
 			}
 			else
 			{
@@ -174,13 +228,15 @@ var TexturedTriangle = {
 			}
 			
 
-			uvLeft.add( uvAdderLeft, true );
-			uvRight.add( uvAdderRight, true );
+			uvLeft.add( uvAdderLeft );
+			uvRight.add( uvAdderRight );
 			
 			y	+= lineA.sy;
 		}
 		
-		uvLeft.subtract( uvAdderLeft, true );
+		uvLeft.subtract( uvAdderLeft );
+		uvRight.subtract( uvAdderRight );
+		// uvRightOrig.set( uvRight );
 	},
 	
 	

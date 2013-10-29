@@ -38,6 +38,7 @@
 				<dd id='renderer-solid'><a href='javascript:void(0)'>Solid</a></dd>
 				<dd id='renderer-flat'><a href='javascript:void(0)'>Flat</a></dd>
 				<dd id='renderer-gouraud'><a href='javascript:void(0)'>Gouraud</a></dd>
+				<dd id='renderer-texture'><a href='javascript:void(0)'>Texture</a></dd>
 			</dl>
 		</div>
 	</div>	
@@ -89,6 +90,9 @@
 
 				scene		= new Scene();
 				mesh		= TorusFactory.generate( 500, 500, 250, 15, 9 );
+
+				// mesh		= ObjFactory.load( 'resources/objects/teapot.obj', scene );
+
 				// mesh		= CuboidFactory.generate( 250, 250, 250 );
 				
 				
@@ -198,6 +202,10 @@
 				
 			case 'gouraud':
 				renderer = new GouraudShaderRenderer();
+				break;
+
+			case 'texture':
+				renderer = new TextureRenderer();
 				break;
 		}
 		

@@ -12,11 +12,21 @@ var Line = {
 				py2			: Math.round( p2.y ),
 				done		: false,
 				pxStart		: 0,
-				lastPlotX	: 0
+				lastPlotX	: 0,
+
+				traversed		: 0,
+				traverseLength	: 0
 			};
 	
 		variables.dx	= Math.abs( variables.px2 - variables.px1 );
 		variables.dy	= Math.abs( variables.py2 - variables.py1 );
+
+		variables.traverseLength = Math.sqrt( variables.dx * variables.dx + variables.dy * variables.dy );
+
+		if( variables.traverseLength < 1 )
+		{
+			variables.traverseLength = 1;
+		}
 	
 		variables.err	= variables.dx - variables.dy;
 		variables.e2	= ( variables.dx - variables.dy ) * 2;
@@ -45,6 +55,7 @@ var Line = {
 		while( true )
 		{
 			// plot here
+			line.traversed++;
 			line.lastPlotX	= line.px1;
 			
 			if( ( line.px1 === line.px2 ) && ( line.py1 === line.py2 ) )
@@ -64,6 +75,8 @@ var Line = {
 			if( ( line.px1 === line.px2 ) && ( line.py1 === line.py2 ) )
 			{
 				// plot here
+				line.traversed++;
+
 				line.lastPlotX = line.px1;
 				line.done = true;
 				break;

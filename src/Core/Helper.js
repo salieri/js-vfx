@@ -80,8 +80,26 @@ var Helper = {
 	extend : function( object )
 	{
 		return $.extend( {}, object );		
+	},
+
+	/**
+	 * Load data from URL
+	 * @param {String} url
+	 * @param {Function} successFunction
+	 * @param {Function} [errorFunction]
+	 */
+	load : function( url, successFunction, errorFunction )
+	{
+		$.ajax(
+				{
+					'url'		: url,
+					'error'		: errorFunction,
+					'success'	: successFunction
+				}
+			);
 	}
-	
-	
+
+
+
 	
 };

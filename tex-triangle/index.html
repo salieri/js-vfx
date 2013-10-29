@@ -65,7 +65,8 @@
 		Draw.beginPaint();
 			Draw.color.set( 32, 255, 32 );
 			
-			// rad = 38.50;
+			// rad = 0.76525;
+
 			
 			/* InterpolatedTriangle.draw( 
 					new Point2D( 320, 100 ),
@@ -83,24 +84,30 @@
 					[ new Point3D( 1, 0, 0 ), new Point3D( 1, 1, 0 ), new Point3D( 0, 1, 0 ) ]
 				); */
 			
+
+
+			var s = Math.cos( rad );
+
+			//rad = 0.76525;
+			//rad = 23.56;
+
+			//rad = 44.8;
+			//rad = 41.6;
+			s = 1;
 			
-			
-			drawTriangle(
-					rad
-					
-					//  rad
-					// 32.154
-					// 29.024
-					// 77.458
-					// 61.758
-					// 36.231
-					// 9.2
-					// 91.503
-					// 1.108
-					, 320, 240,
-					[ new Point2D( 100, -100 ), new Point2D( 100, 100 ), new Point2D( -100, 100 ) ],
+			 drawTriangle(
+					rad, 320, 300,					[ new Point2D( s * 100, s * -100 ), new Point2D( s * 100, s * 100 ), new Point2D( s * -100, s * 100 ) ],
 					[ new Point3D( 1, 0, 0 ), new Point3D( 1, 1, 0 ), new Point3D( 0, 1, 0 ) ]
 				);
+
+
+			drawTriangle(
+					rad, 320, 150,
+					[ new Point2D( s * 100, s * -100 ), new Point2D( s * 100, s * 100 ), new Point2D( s * -100, s * 100 ) ],
+					[ new Point3D( 0.25, 0.75, 0 ), new Point3D( 0.5, 0.25, 0 ), new Point3D( 0.75, 0.75, 0 ) ]
+					// [ new Point3D( 1, 0, 0 ), new Point3D( 1, 1, 0 ), new Point3D( 0, 1, 0 ) ]
+			);
+
 
 /*			Triangle.draw( new Point2D( 0, -100 ), new Point2D( 100, 100 ), new Point2D( -100, 100 ) );
 			Triangle.draw( new Point2D( 0, 380 ), new Point2D( 100, 580 ), new Point2D( -100, 580 ) );
@@ -110,7 +117,7 @@
 
 			Draw.color.set( 32, 32, 255 );
 			drawTriangles( rad, 150, [ new Point2D( 0, -10 ), new Point2D( -10, 10 ), new Point2D( 10, 0 ) ] );
-			drawTriangles( rad, 200, [ new Point2D( 0, -8 ), new Point2D( 7, 4 ), new Point2D( 10, 0 ) ] );
+				drawTriangles( rad, 200, [ new Point2D( 0, -8 ), new Point2D( 7, 4 ), new Point2D( 10, 0 ) ] );
 			drawTriangles( rad, 250, [ new Point2D( 0, -10 ), new Point2D( -30, 10 ), new Point2D( 30, 35 ) ] );*/
 		Draw.endPaint();
 	}
