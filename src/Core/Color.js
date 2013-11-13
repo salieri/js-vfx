@@ -149,7 +149,7 @@ Color.prototype = {
 	 * @param {Boolean} skipSafety
 	 */
 	
-	multiplyByValue : function( value, skipSafety )
+	multiplyByVal : function( value, skipSafety )
 	{
 		this.r = this.r * value;
 		this.g = this.g * value;
@@ -168,7 +168,7 @@ Color.prototype = {
 	 * @param {Boolean} skipSafety
 	 */
 	
-	divideByValue : function( divisor, skipSafety )
+	divideByVal : function( divisor, skipSafety )
 	{
 		this.r = this.r / divisor;
 		this.g = this.g / divisor;

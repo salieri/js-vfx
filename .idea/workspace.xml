@@ -1,27 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="AnalysisUIOptions">
+    <option name="SCOPE_TYPE" value="3" />
+  </component>
   <component name="ChangeListManager">
     <list default="true" id="81a504a5-6a80-4b7c-9c54-023260f1b093" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/3D/Factory/ObjFactory.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/3D/Renderer/TextureRenderer.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/3D/Material/TexturedMaterial.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/profiles_settings.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tex-triangle/resources/smiley.psd" afterPath="$PROJECT_DIR$/tex-triangle/resources/smiley.psd" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tex-triangle/resources/smiley2.png" afterPath="$PROJECT_DIR$/tex-triangle/resources/smiley2.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/3d-loader.js" afterPath="$PROJECT_DIR$/src/3d-loader.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Core/BetterTexturedTriangle.js" afterPath="$PROJECT_DIR$/src/Core/BetterTexturedTriangle.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Core/CanvasTexture.js" afterPath="$PROJECT_DIR$/src/Core/CanvasTexture.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Core/Draw.js" afterPath="$PROJECT_DIR$/src/Core/Draw.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/3D/Face.js" afterPath="$PROJECT_DIR$/src/3D/Face.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Core/Helper.js" afterPath="$PROJECT_DIR$/src/Core/Helper.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Core/Line.js" afterPath="$PROJECT_DIR$/src/Core/Line.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/3D/Material/Material.js" afterPath="$PROJECT_DIR$/src/3D/Material/Material.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Core/BetterInterpolatedTriangle.js" afterPath="$PROJECT_DIR$/src/Core/BetterInterpolatedTriangle.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Core/Color.js" afterPath="$PROJECT_DIR$/src/Core/Color.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/3D/FaceSortPile.js" afterPath="$PROJECT_DIR$/src/3D/FaceSortPile.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/3D/Mesh.js" afterPath="$PROJECT_DIR$/src/3D/Mesh.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/3D/Factory/ObjFactory.js" afterPath="$PROJECT_DIR$/src/3D/Factory/ObjFactory.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Core/Point3D.js" afterPath="$PROJECT_DIR$/src/Core/Point3D.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/3D/Material/SolidColorMaterial.js" afterPath="$PROJECT_DIR$/src/3D/Material/SolidColorMaterial.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Core/TexturedTriangle.js" afterPath="$PROJECT_DIR$/src/Core/TexturedTriangle.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/3D/Factory/TorusFactory.js" afterPath="$PROJECT_DIR$/src/3D/Factory/TorusFactory.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/codeStyleSettings.xml" afterPath="$PROJECT_DIR$/.idea/codeStyleSettings.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/3D/Renderer/Renderer.js" afterPath="$PROJECT_DIR$/src/3D/Renderer/Renderer.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/3D/Scene.js" afterPath="$PROJECT_DIR$/src/3D/Scene.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/camera/index.html" afterPath="$PROJECT_DIR$/camera/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tex-triangle/index.html" afterPath="$PROJECT_DIR$/tex-triangle/index.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="elements.iws" />
@@ -45,37 +40,64 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="TorusFactory.js" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/3D/Factory/TorusFactory.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="141" column="84" selection-start="3242" selection-end="3242" vertical-scroll-proportion="0.0" vertical-offset="2150" max-vertical-offset="3519">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="ObjFactory.js" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/3D/Factory/ObjFactory.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="17" column="84" selection-start="340" selection-end="340" vertical-scroll-proportion="0.0" vertical-offset="187" max-vertical-offset="3655">
+            <state line="35" column="6" selection-start="615" selection-end="615" vertical-scroll-proportion="0.0" vertical-offset="87" max-vertical-offset="3706">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Mesh.js" pinned="false" current="false" current-in-tab="false">
+      <file leaf-file-name="Mesh.js" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/3D/Mesh.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="204" max-vertical-offset="5440">
+            <state line="1" column="0" selection-start="14" selection-end="14" vertical-scroll-proportion="0.0" vertical-offset="17" max-vertical-offset="5797">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="FlatRenderer.js" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/3D/Renderer/FlatRenderer.js">
+      <file leaf-file-name="Scene.js" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/3D/Scene.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="13" column="0" selection-start="80" selection-end="80" vertical-scroll-proportion="0.0" vertical-offset="14" max-vertical-offset="1258">
+            <state line="147" column="6" selection-start="1827" selection-end="1827" vertical-scroll-proportion="0.0" vertical-offset="2025" max-vertical-offset="3638">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="index.html" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/camera/index.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="104" column="0" selection-start="2392" selection-end="2392" vertical-scroll-proportion="0.0" vertical-offset="1180" max-vertical-offset="4046">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Point3D.js" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/Core/Point3D.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="209" column="0" selection-start="3197" selection-end="3197" vertical-scroll-proportion="0.0" vertical-offset="2016" max-vertical-offset="3723">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Vector3D.js" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/Core/Vector3D.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="127" column="6" selection-start="2025" selection-end="2027" vertical-scroll-proportion="0.0" vertical-offset="1961" max-vertical-offset="2567">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Color.js" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/Core/Color.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="17" column="24" selection-start="232" selection-end="232" vertical-scroll-proportion="0.0" vertical-offset="289" max-vertical-offset="4012">
               <folding />
             </state>
           </provider>
@@ -84,43 +106,7 @@
       <file leaf-file-name="FaceSortPile.js" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/3D/FaceSortPile.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="20" column="45" selection-start="309" selection-end="309" vertical-scroll-proportion="0.0" vertical-offset="510" max-vertical-offset="1496">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="3d-loader.js" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/3d-loader.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="35" column="47" selection-start="725" selection-end="725" vertical-scroll-proportion="0.0" vertical-offset="153" max-vertical-offset="1326">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="index.html" pinned="false" current="true" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/camera/index.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="88" column="0" selection-start="2081" selection-end="2081" vertical-scroll-proportion="0.24385965" vertical-offset="1357" max-vertical-offset="3893">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="TextureRenderer.js" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/3D/Renderer/TextureRenderer.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="7" column="1" selection-start="56" selection-end="56" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1224">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="CanvasTexture.js" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/Core/CanvasTexture.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="34" column="0" selection-start="638" selection-end="638" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1819">
+            <state line="74" column="29" selection-start="1133" selection-end="1133" vertical-scroll-proportion="0.0" vertical-offset="1004" max-vertical-offset="1683">
               <folding />
             </state>
           </provider>
@@ -150,22 +136,22 @@
   <component name="IdeDocumentHistory">
     <option name="changedFiles">
       <list>
-        <option value="$PROJECT_DIR$/src/Core/Point3D.js" />
-        <option value="$PROJECT_DIR$/src/Core/Line.js" />
-        <option value="$PROJECT_DIR$/src/Core/BetterTexturedTriangle.js" />
-        <option value="$PROJECT_DIR$/src/Core/TexturedTriangle.js" />
-        <option value="$PROJECT_DIR$/tex-triangle/index.html" />
-        <option value="$PROJECT_DIR$/src/3D/Face.js" />
-        <option value="$PROJECT_DIR$/src/3D/Material/SolidColorMaterial.js" />
         <option value="$PROJECT_DIR$/src/3D/Material/Material.js" />
         <option value="$PROJECT_DIR$/src/3D/Material/TexturedMaterial.js" />
         <option value="$PROJECT_DIR$/src/Core/Draw.js" />
         <option value="$PROJECT_DIR$/src/3D/Renderer/TextureRenderer.js" />
         <option value="$PROJECT_DIR$/src/Core/Helper.js" />
         <option value="$PROJECT_DIR$/src/3d-loader.js" />
-        <option value="$PROJECT_DIR$/src/3D/Factory/ObjFactory.js" />
         <option value="$PROJECT_DIR$/src/3D/Factory/TorusFactory.js" />
+        <option value="ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.js" />
+        <option value="$PROJECT_DIR$/src/3D/FaceSortPile.js" />
+        <option value="$PROJECT_DIR$/src/3D/Factory/ObjFactory.js" />
+        <option value="$PROJECT_DIR$/src/Core/Point3D.js" />
+        <option value="$PROJECT_DIR$/src/Core/Color.js" />
+        <option value="$PROJECT_DIR$/src/3D/Renderer/Renderer.js" />
+        <option value="$PROJECT_DIR$/src/3D/Scene.js" />
         <option value="$PROJECT_DIR$/camera/index.html" />
+        <option value="$PROJECT_DIR$/src/3D/Mesh.js" />
       </list>
     </option>
   </component>
@@ -182,10 +168,13 @@
           <State>
             <id />
           </State>
+          <State>
+            <id>Portability issues</id>
+          </State>
         </expanded-state>
         <selected-state>
           <State>
-            <id>CoffeeScript</id>
+            <id>SASS/SCSS</id>
           </State>
         </selected-state>
       </profile-state>
@@ -381,10 +370,10 @@
     <property name="JavaScriptWeakerCompletionTypeGuess" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="recentsLimit" value="5" />
-    <property name="options.lastSelected" value="reference.settings.ide.settings.web.browsers" />
+    <property name="options.lastSelected" value="preferences.pluginManager" />
     <property name="JavaScriptLanguageLevel" value="ES5" />
     <property name="restartRequiresConfirmation" value="true" />
-    <property name="last_opened_file_path" value="D:/prog/ruby-1.8.7/bin/compass.bat" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../hpi.app/hpicheck" />
     <property name="FullScreen" value="false" />
     <property name="JavaScriptPreferStrict" value="true" />
     <property name="options.searchVisible" value="true" />
@@ -447,6 +436,9 @@
     </list>
   </component>
   <component name="ShelveChangesManager" show_recycled="false" />
+  <component name="StructureViewFactory">
+    <option name="ACTIVE_ACTIONS" value="SHOW_INHERITED_FROM_OBJECT,ALPHA_COMPARATOR" />
+  </component>
   <component name="SvnConfiguration" maxAnnotateRevisions="500" myUseAcceleration="nothing" myAutoUpdateAfterCommit="false" cleanupOnStartRun="false" SSL_PROTOCOLS="all">
     <option name="USER" value="" />
     <option name="PASSWORD" value="" />
@@ -479,27 +471,27 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="1912" y="-8" width="1936" height="1096" extended-state="6" />
-    <editor active="true" />
+    <editor active="false" />
     <layout>
-      <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.6725572" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.153125" sideWeight="0.6725572" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.32744282" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.18977332" sideWeight="0.45899895" order="1" side_tool="true" content_ui="tabs" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.18977332" sideWeight="0.5410011" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3264642" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3918919" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3918919" sideWeight="0.5" order="8" side_tool="true" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Documentation" active="true" anchor="right" auto_hide="false" internal_type="DOCKED" type="FLOATING" visible="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" x="2012" y="92" width="1736" height="896" />
-      <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32952183" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.16365568" sideWeight="0.5" order="11" side_tool="true" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32952183" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.7952183" order="2" side_tool="false" content_ui="combo" />
-      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.2889813" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
     </layout>
   </component>
   <component name="VcsContentAnnotationSettings">
@@ -514,7 +506,14 @@
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <option name="time" value="96" />
+      <breakpoints>
+        <line-breakpoint enabled="true" type="javascript">
+          <url>file://$PROJECT_DIR$/tex-triangle/index.html</url>
+          <line>135</line>
+          <option name="timeStamp" value="98" />
+        </line-breakpoint>
+      </breakpoints>
+      <option name="time" value="99" />
     </breakpoint-manager>
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
@@ -530,88 +529,29 @@
     </PATH>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/3D/Material/SolidColorMaterial.js">
+    <entry file="file://$PROJECT_DIR$/src/Core/Surface.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="16" column="0" selection-start="255" selection-end="255" vertical-scroll-proportion="0.4380032" vertical-offset="0" max-vertical-offset="621">
-          <folding />
-        </state>
+        <state line="26" column="0" selection-start="465" selection-end="465" vertical-scroll-proportion="0.30091184" vertical-offset="244" max-vertical-offset="2346" />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/3D/Face.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="24" column="0" selection-start="389" selection-end="389" vertical-scroll-proportion="0.65700483" vertical-offset="0" max-vertical-offset="765">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Core/TexturedTriangle.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="100" column="4" selection-start="2719" selection-end="2719" vertical-scroll-proportion="0.3558776" vertical-offset="1479" max-vertical-offset="4675">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Core/Draw.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="150" column="0" selection-start="2350" selection-end="2350" vertical-scroll-proportion="0.0" vertical-offset="2312" max-vertical-offset="3264">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/3D/Renderer/GouraudShaderRenderer.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="15" column="0" selection-start="160" selection-end="160" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1105">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Core/Helper.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="88" column="7" selection-start="1526" selection-end="1526" vertical-scroll-proportion="0.0" vertical-offset="1232" max-vertical-offset="1887">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/3D/FaceSortPile.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="20" column="45" selection-start="309" selection-end="309" vertical-scroll-proportion="0.0" vertical-offset="510" max-vertical-offset="1496">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Core/CanvasTexture.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="34" column="0" selection-start="638" selection-end="638" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1819">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/3D/Renderer/TextureRenderer.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="7" column="1" selection-start="56" selection-end="56" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1224">
-          <folding />
-        </state>
+    <entry file="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.js">
+      <provider selected="true" editor-type-id="httpFileEditor">
+        <state />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/3D/Renderer/FlatRenderer.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="13" column="0" selection-start="80" selection-end="80" vertical-scroll-proportion="0.0" vertical-offset="14" max-vertical-offset="1258">
-          <folding />
-        </state>
+        <state line="13" column="0" selection-start="80" selection-end="80" vertical-scroll-proportion="0.31458968" vertical-offset="14" max-vertical-offset="1258" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/3d-loader.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="35" column="47" selection-start="725" selection-end="725" vertical-scroll-proportion="0.0" vertical-offset="153" max-vertical-offset="1326">
-          <folding />
-        </state>
+        <state line="35" column="47" selection-start="725" selection-end="725" vertical-scroll-proportion="0.67173254" vertical-offset="153" max-vertical-offset="1326" />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/3D/Mesh.js">
+    <entry file="file://$PROJECT_DIR$/src/3D/Renderer/TextureRenderer.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="204" max-vertical-offset="5440">
-          <folding />
-        </state>
+        <state line="7" column="1" selection-start="56" selection-end="56" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1224" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/3D/Factory/SphereFactory.js">
@@ -621,23 +561,68 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/3D/Factory/ObjFactory.js">
+    <entry file="file://$PROJECT_DIR$/src/3D/Light/OmniLight.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="17" column="84" selection-start="340" selection-end="340" vertical-scroll-proportion="0.0" vertical-offset="187" max-vertical-offset="3655">
+        <state line="9" column="9" selection-start="195" selection-end="195" vertical-scroll-proportion="-0.0775076" vertical-offset="204" max-vertical-offset="1428" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/3D/FaceSortPile.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="74" column="29" selection-start="1133" selection-end="1133" vertical-scroll-proportion="0.0" vertical-offset="1004" max-vertical-offset="1683">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/3D/Factory/TorusFactory.js">
+    <entry file="file://$PROJECT_DIR$/src/Core/Point3D.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="141" column="84" selection-start="3242" selection-end="3242" vertical-scroll-proportion="0.0" vertical-offset="2150" max-vertical-offset="3519">
+        <state line="209" column="0" selection-start="3197" selection-end="3197" vertical-scroll-proportion="0.0" vertical-offset="2016" max-vertical-offset="3723">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Core/Vector3D.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="127" column="6" selection-start="2025" selection-end="2027" vertical-scroll-proportion="0.0" vertical-offset="1961" max-vertical-offset="2567">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Core/Color.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="17" column="24" selection-start="232" selection-end="232" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="4012">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/3D/Renderer/Renderer.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="17" column="0" selection-start="136" selection-end="136" vertical-scroll-proportion="0.37976348" vertical-offset="0" max-vertical-offset="761" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/3D/Scene.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="147" column="6" selection-start="1827" selection-end="1827" vertical-scroll-proportion="0.0" vertical-offset="2025" max-vertical-offset="3638">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/3D/Factory/ObjFactory.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="35" column="6" selection-start="615" selection-end="615" vertical-scroll-proportion="0.0" vertical-offset="87" max-vertical-offset="3706">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/camera/index.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="88" column="0" selection-start="2081" selection-end="2081" vertical-scroll-proportion="0.24385965" vertical-offset="1357" max-vertical-offset="3893">
+        <state line="104" column="0" selection-start="2392" selection-end="2392" vertical-scroll-proportion="0.0" vertical-offset="1180" max-vertical-offset="4046">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/3D/Mesh.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="1" column="0" selection-start="14" selection-end="14" vertical-scroll-proportion="0.0" vertical-offset="17" max-vertical-offset="5797">
           <folding />
         </state>
       </provider>

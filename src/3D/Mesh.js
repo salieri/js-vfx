@@ -1,3 +1,6 @@
+'use strict';
+
+
 /**
  * @param [name=]
  * @constructor
@@ -24,11 +27,21 @@ function Mesh( name )
 	 * @type Edge
 	 */
 	this.edges		= [];
-	
-	
+
+	/**
+ 	 * @type {Point3D}
+	 */
 	this.position	= new Point3D( 0, 0, 0 );
+
+	/**
+	 * @type {Point3D}
+	 */
 	this.scale		= new Point3D( 1.0, 1.0, 1.0 );
-	this.rotation	= new Point3D( 0.0, 0.0, 0.0 );	
+
+	/**
+	 * @type {Point3D}
+	 */
+	this.rotation	= new Point3D( 0.0, 0.0, 0.0 );
 }
 
 
@@ -307,7 +320,15 @@ Mesh.prototype = {
 				face.visible = false;
 			}*/
 		}
+	},
+
+
+	setName : function()
+	{
 	}
+
+
+
 	
 };
 

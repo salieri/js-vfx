@@ -12,9 +12,11 @@ Renderer.prototype = {
 
 	/**
 	 * Rasterize scene
+	 *
+	 * @param {Scene} scene
 	 */
 
-	draw : function()
+	draw : function( scene )
 	{
 		// do nothing
 	}

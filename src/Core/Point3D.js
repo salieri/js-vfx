@@ -194,6 +194,18 @@ Point3D.prototype = {
 		this.x = ( pointB.x - pointA.x ) / stepCount;
 		this.y = ( pointB.y - pointA.y ) / stepCount;
 		this.z = ( pointB.z - pointA.z ) / stepCount;
+	},
+
+
+	/**
+	 * @param {float|int|Number} value
+	 */
+
+	addByVal : function( value )
+	{
+		this.x += value;
+		this.y += value;
+		this.z += value;
 	}
 
 	

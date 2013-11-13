@@ -64,9 +64,9 @@ var BetterInterpolatedTriangle = {
 			);
 				
 				
-		this.c1c2.multiplyByValue( Math.abs( this.p1.distance( this.p2 ) / ( line12.py1 - line12.py2  ) ), true );
-		this.c1c3.multiplyByValue( Math.abs( this.p1.distance( this.p3 ) / ( line13.py1 - line13.py2 ) ), true );
-		this.c2c3.multiplyByValue( Math.abs( this.p2.distance( this.p3 ) / ( line23.py1 - line23.py2  ) ), true );
+		this.c1c2.multiplyByVal( Math.abs( this.p1.distance( this.p2 ) / ( line12.py1 - line12.py2  ) ), true );
+		this.c1c3.multiplyByVal( Math.abs( this.p1.distance( this.p3 ) / ( line13.py1 - line13.py2 ) ), true );
+		this.c2c3.multiplyByVal( Math.abs( this.p2.distance( this.p3 ) / ( line23.py1 - line23.py2  ) ), true );
 		
 		this.cLeft.set( this.c1 );
 		this.cRight.set( this.c1 );
@@ -136,7 +136,7 @@ var BetterInterpolatedTriangle = {
 					colB = colRight.b;					
 				}
 				
-				this.colSlider.divideByValue( maxX - minX + 1, true );
+				this.colSlider.divideByVal( maxX - minX + 1, true );
 				
 				
 				

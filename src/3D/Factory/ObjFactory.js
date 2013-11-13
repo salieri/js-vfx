@@ -6,7 +6,7 @@ var ObjFactory = {
 	/**
 	 * Load Wavefront OBJ file
 	 * @param {String} url
-	 * @param {Scene} scene
+	 * @param {Scene} [scene]
 	 * @returns {Mesh}
 	 * @link http://en.wikipedia.org/wiki/Wavefront_.obj_file
 	 */
@@ -23,9 +23,12 @@ var ObjFactory = {
 				url,
 				function( data, textStatus, jqXHR )
 				{
-					mesh.scale.set( 800, 800, 800 );
 					ObjFactory.process( data, mesh, material );
-					scene.faceSortPile.resize();
+
+					if( scene )
+					{
+						scene.faceSortPile.reInit();
+					}
 				}
 			);
 

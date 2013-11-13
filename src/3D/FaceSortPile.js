@@ -47,7 +47,13 @@ FaceSortPile.prototype = {
 			this.lookupTable = new Array( faceCount );
 		}	
 	},
-	
+
+
+	reInit : function()
+	{
+		this.forceInit = true;
+	},
+
 
 	init : function()
 	{
@@ -60,6 +66,11 @@ FaceSortPile.prototype = {
 
 	sort : function()
 	{
+		if( this.forceInit === true )
+		{
+			this.init();
+		}
+
 		this.lookupTable.sort( 
 				function( a, b )
 				{

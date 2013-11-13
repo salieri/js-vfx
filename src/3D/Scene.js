@@ -1,3 +1,6 @@
+"use strict";
+
+
 /**
  * @constructor
  */
@@ -80,7 +83,7 @@ Scene.prototype = {
 
 	/**
 	 * @param {Renderer} renderer
-	 * @param {Boolean} setAsActive
+	 * @param {Boolean} [setAsActive]
 	 */
 	addRenderer : function( renderer, setAsActive )
 	{
@@ -111,7 +114,39 @@ Scene.prototype = {
 	{
 		this.lights.push( light );
 	},
-	
+
+
+	/**
+	 * @param {String} name
+	 * @returns {int|null}
+	 */
+	findMeshIndex : function( name )
+	{
+		for( var i = 0; i < this.meshes.length; i++ )
+		{
+			if( this.meshes[ i ].name === name )
+			{
+				return i;
+			}
+		}
+
+		return null;
+	},
+
+
+	/**
+	 * @param {String} name
+	 */
+	removeMesh : function( name )
+	{
+		var i = this.findMeshIndex( name );
+
+		if( i !== null )
+		{
+			this.meshes.splice( i, 1 );
+		}
+	},
+
 	
 	/**
 	 * 
@@ -121,7 +156,7 @@ Scene.prototype = {
 
 	
 	/**
-	 * @param {Renderer} renderer
+	 * @param {Renderer} [renderer]
 	 */
 	
 	render : function( renderer )
@@ -152,11 +187,6 @@ Scene.prototype = {
 			}
 		}
 		
-		
-		if( this.faceSortPile.forceInit === true )
-		{
-			this.faceSortPile.init();
-		}
 		
 		this.faceSortPile.sort();
 				

@@ -57,7 +57,8 @@
 	/**
 	 * @type Mesh
 	 */
-	var mesh;
+	var torus;
+	var teapot;
 	
 	/**
 	 * @type Renderer
@@ -68,7 +69,9 @@
 	 * @type Camera
 	 */
 	var camera;
-	
+
+	/**
+	 * @
 	
 	/**
 	 * @type Light
@@ -89,9 +92,18 @@
 
 
 				scene		= new Scene();
-				mesh		= TorusFactory.generate( 500, 500, 250, 15, 9 );
 
-				// mesh		= ObjFactory.load( 'resources/objects/teapot.obj', scene );
+				torus		= TorusFactory.generate( 500, 500, 250, 15, 9 );
+				teapot		= ObjFactory.load( 'resources/objects/teapot.obj', scene );
+
+				torus.position.z	= -1200;
+				teapot.position.z	= -1200;
+
+				torus.setName( 'torus' );
+				teapot.setName( 'teapot' );
+
+
+				teapot.scale.set( 800, 800, 800 );
 
 				// mesh		= CuboidFactory.generate( 250, 250, 250 );
 				
@@ -112,9 +124,7 @@
 				light2				= new OmniLight( new Point3D( 0, 0, -1200 ), new NormalizedColor( 1, 1, 1 ) );
 				light2.diffusePower	= 20000;
 
-				mesh.position.z = -1200;
-
-				scene.addMesh( mesh );
+				scene.addMesh( torus );
 				scene.addCamera( camera );
 				scene.addRenderer( renderer );
 				
@@ -163,10 +173,9 @@
 	
 	function rotateMesh()
 	{
-		mesh.rotation.z	+= 0.01;
-		mesh.rotation.x	+= 0.01;
-		mesh.rotation.y	+= 0.01;
-		
+		torus.rotation.addByVal( 0.01 );
+		teapot.rotation.addByVal( 0.01 );
+
 		Draw.beginPaint();
 			scene.render();
 		Draw.endPaint();
