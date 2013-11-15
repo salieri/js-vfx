@@ -198,10 +198,14 @@ Scene.prototype = {
 		this.renderFrameCount++;
 		this.renderTime	+= ( renderComplete.getTime() - renderStart.getTime() ) / 1000.0;
 		this.renderFPS	= this.renderFrameCount / this.renderTime;
+	},
+
+
+	clearMeshes : function()
+	{
+		this.meshes = [];
+		this.faceSortPile.reInit();
 	}
-
-
-
 
 	
 };

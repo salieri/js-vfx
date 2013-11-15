@@ -81,9 +81,9 @@ var ObjFactory = {
 
 				}
 			}
-
-
 		}
+
+		mesh.buildWireframe();
 	},
 
 	/**
@@ -203,7 +203,6 @@ var ObjFactory = {
 
 		vertexTextures.push( p );
 	}
-
 
 
 };

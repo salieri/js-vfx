@@ -97,6 +97,19 @@ var Helper = {
 					'success'	: successFunction
 				}
 			);
+	},
+
+
+	create2DArray : function( sizeA, sizeB )
+	{
+		var a = new Array( sizeA );
+
+		for( var i = 0; i < sizeA; i++ )
+		{
+			a[ i ] = new Array( sizeB );
+		}
+
+		return a;
 	}
 
 

@@ -261,8 +261,12 @@ Mesh.prototype = {
 			normalVertex.normalize();
 		}
 	},
-	
-	
+
+
+	/**
+	 * @param {Scene} scene
+	 * @param {Camera} camera
+	 */
 	calculateFaceLightData : function( scene, camera )
 	{
 		var lightCount	= scene.lights.length;
@@ -280,8 +284,12 @@ Mesh.prototype = {
 			}
 		}
 	},
-	
-	
+
+
+	/**
+	 * @param {Scene} scene
+	 * @param {Camera} camera
+	 */
 	calculateVertexLightData : function( scene, camera )
 	{
 		var lightCount	= scene.lights.length;
@@ -299,8 +307,10 @@ Mesh.prototype = {
 			}
 		}
 	},
-	
-	
+
+	/**
+	 * @param {Camera} camera
+	 */
 	cull : function( camera )
 	{
 		var faceCount	= this.faces.length;
@@ -323,11 +333,51 @@ Mesh.prototype = {
 	},
 
 
-	setName : function()
+	/**
+	 * @param {String} name
+	 */
+	setName : function( name )
 	{
+		this.name = name;
+	},
+
+
+	/**
+	 * Figure out wireframe from face data
+	 */
+
+	buildWireframe : function()
+	{
+		var i, j;
+		var vertexLookup = Helper.create2DArray( this.vertices.length, this.vertices.length );
+
+		this.clearEdges();
+
+		for( i = 0; i < this.faces.length; i++ )
+		{
+			vertexLookup[ Math.min( this.faces[ i ].a, this.faces[ i ].b ) ][ Math.max( this.faces[ i ].a, this.faces[ i ].b ) ] = true;
+			vertexLookup[ Math.min( this.faces[ i ].a, this.faces[ i ].c ) ][ Math.max( this.faces[ i ].a, this.faces[ i ].c ) ] = true;
+			vertexLookup[ Math.min( this.faces[ i ].b, this.faces[ i ].c ) ][ Math.max( this.faces[ i ].b, this.faces[ i ].c ) ] = true;
+		}
+
+		for( i = 0; i < vertexLookup.length; i++ )
+		{
+			for( j = 0; j < vertexLookup.length; j++ )
+			{
+				if( vertexLookup[ i ][ j ] === true )
+				{
+					var edge = new Edge( i, j );
+					this.addEdge( edge );
+				}
+			}
+		}
+	},
+
+
+	clearEdges : function()
+	{
+		this.edges = [];
 	}
-
-
 
 	
 };
