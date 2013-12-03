@@ -81,8 +81,11 @@ var CuboidFactory = {
 	
 	generateFaces : function( cuboid )
 	{
-		var material = new SolidColorMaterial( new Color( 0, 192, 0 ) );
-		var material2 = new SolidColorMaterial( new Color( 0, 0, 192 ) );
+		var material	= new TexturedMaterial( new CanvasTexture( 'resources/textures/plastic.jpg' ) );
+		material.color	= new Color( 0, 192, 0 );
+
+		var material2	= new TexturedMaterial( new CanvasTexture( 'resources/textures/silver.jpg' ) );
+		material2.color	= new Color( 0, 0, 192 );
 		
 		cuboid.addFace( new Face( 0, 1, 3, material ) );
 		cuboid.addFace( new Face( 2, 0, 3, material2 ) );
