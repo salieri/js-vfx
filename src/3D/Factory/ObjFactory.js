@@ -15,7 +15,7 @@ var ObjFactory = {
 	{
 		var mesh = new Mesh();
 
-		var material	= new TexturedMaterial( new CanvasTexture( 'resources/silver.jpg' ) );
+		var material	= new TexturedMaterial( new CanvasTexture( 'resources/textures/silver.jpg' ) );
 		material.color	= new Color( 0, 192, 0 );
 
 
