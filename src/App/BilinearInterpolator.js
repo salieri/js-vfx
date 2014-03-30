@@ -3,6 +3,8 @@
  *
  * Written by Aleksi Asikainen 2014.
  *
+ * Based on algorithm described in http://en.wikipedia.org/wiki/Bilinear_interpolation
+ *
  */
 
 
@@ -139,6 +141,14 @@ BilinearInterpolator.prototype = {
 	},
 
 
+	/**
+	 * @link http://www.cs.rit.edu/~ncs/color/t_convert.html
+	 * @param {Number} hue 0..359
+	 * @param {Number} saturation 0..1
+	 * @param {Number} value 0..1
+	 * @param {NormalizedColor} targetColor
+	 * @private
+	 */
 	hsvToRgb : function( hue, saturation, value, targetColor )
 	{
 		if( saturation == 0 )
