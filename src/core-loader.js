@@ -35,6 +35,7 @@ require(
 									'Core/CanvasTextureContainer',
 									//'Core/Color',
 									'Core/Draw',
+									'Core/EmptyTexture',
 									'Core/InterpolatedTriangle',
 									'Core/Line',
 									'Core/Matrix',

@@ -1,0 +1,7 @@
+<component name="ProjectRunConfigurationManager">
+  <configuration default="false" name="Debug Camera" type="JavascriptDebugType" factoryName="JavaScript Debug" singleton="true" uri="file://$PROJECT_DIR$/camera/index.html">
+    <RunnerSettings RunnerId="JavascriptDebugRunner" />
+    <ConfigurationWrapper RunnerId="JavascriptDebugRunner" />
+    <method />
+  </configuration>
+</component>

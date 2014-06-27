@@ -1,0 +1,7 @@
+<component name="ProjectRunConfigurationManager">
+  <configuration default="false" name="Debug Bilinear Interpolator" type="JavascriptDebugType" factoryName="JavaScript Debug" singleton="false" uri="file://$PROJECT_DIR$/bilinear-interpolator/index.html">
+    <RunnerSettings RunnerId="JavascriptDebugRunner" />
+    <ConfigurationWrapper RunnerId="JavascriptDebugRunner" />
+    <method />
+  </configuration>
+</component>
