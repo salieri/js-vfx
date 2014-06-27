@@ -102,13 +102,13 @@
 			if( ( lenses[ i ].x + lenses[ i ].radius >= canvas.width ) && ( lenses[ i ].speedX >= 0 ) )
 			{
 				lenses[ i ].x		= canvas.width - lenses[ i ].radius;
-				lenses[ i ].speedX	= -lenses[ i ].speedX * ( 0.7 + Math.random() );
+				lenses[ i ].speedX = -Math.min( 8.0, Math.abs( lenses[ i ].speedX ) * ( 0.7 + Math.random() ) );
 			}
 
 			if( ( lenses[ i ].x < 0 ) && ( lenses[ i ].speedX <= 0 ) )
 			{
 				lenses[ i ].x = 0;
-				lenses[ i ].speedX = -lenses[ i ].speedX * ( 0.5 + Math.random() );
+				lenses[ i ].speedX = Math.min( 8.0, Math.abs( lenses[ i ].speedX ) * ( 0.5 + Math.random() ) );
 			}
 
 
