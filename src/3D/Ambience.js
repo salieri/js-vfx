@@ -1,11 +1,19 @@
 
-/**
- * @constructor
- * @param {NormalizedColor} [light]
- */
+define( [ 'Core/NormalizedColor' ],
 
-function Ambience( light )
+function( NormalizedColor )
 {
-	this.light		= light || new NormalizedColor( 0.3, 0.3, 0.3 );
-}
+	'use strict';
 
+	/**
+	 * @constructor
+	 * @param {NormalizedColor} [light]
+	 */
+
+	var Ambience = function( light )
+	{
+		this.light		= light || new NormalizedColor( 0.3, 0.3, 0.3 );
+	};
+
+	return Ambience;
+} );

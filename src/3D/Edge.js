@@ -1,27 +1,34 @@
-/**
- * @param a
- * @param b
- * @constructor
- */
+define( [],
 
-function Edge( a, b )
+function()
 {
-	this.a = a;
-	this.b = b;
-}
+	'use strict';
 
-
-Edge.prototype = {
-	
 	/**
-	 * @param {int} a
-	 * @param {int} b
+	 * @param a
+	 * @param b
+	 * @constructor
 	 */
-	
-	set : function( a, b )
+	var Edge = function( a, b )
 	{
 		this.a = a;
 		this.b = b;
-	}
-};
+	};
 
+
+	Edge.prototype = {
+
+		/**
+		 * @param {int} a
+		 * @param {int} b
+		 * @public
+		 */
+		set : function( a, b )
+		{
+			this.a = a;
+			this.b = b;
+		}
+	};
+
+	return Edge;
+} );

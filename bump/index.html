@@ -5,12 +5,6 @@
 	
 	<link rel='stylesheet' type='text/css' href='http://ajax.googleapis.com/ajax/libs/jqueryui/1.10.4/themes/ui-lightness/jquery-ui.min.css' />
 	<link rel='stylesheet' type='text/css' href='http://cdnjs.cloudflare.com/ajax/libs/foundation/4.3.1/css/foundation.min.css' />
-	
-	<script src='http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js'></script>
-	<script src='http://ajax.googleapis.com/ajax/libs/jqueryui/1.10.4/jquery-ui.min.js'></script>
-	
-	<script data-main='../src/core-loader'  src='../vendor/require.js'></script>
-	<script src='../src/App/Bumper.js'></script>
 </head>
 <body>
 	<div class='row'>
@@ -33,25 +27,6 @@
 		<h4>Light Distance from Surface</h4>
 		
 		<div id='inputLightHeight'></div>
-		
-		<script type='text/javascript'>
-			$(
-				function()
-				{
-					$( '#inputLightHeight' ).slider({
-							value		: 77,
-							orientation	: 'horizontal',
-							min			: 0,
-							max			: 512,
-							slide		: function()
-							{
-								bumpApp.setLightPos( bumpApp.lightPosition.x, bumpApp.lightPosition.y, $( '#inputLightHeight' ).slider( 'value' ) );
-								bumpApp.draw();
-							}
-						});
-				}
-			);
-		</script>
 	</div>
 	
 	
@@ -59,110 +34,8 @@
 		<h4>Emboss Depth</h4>
 		
 		<div id='inputEmbossDepth'></div>
-		
-		<script type='text/javascript'>
-			$(
-				function()
-				{
-					$( '#inputEmbossDepth' ).slider({
-							value		: 150,
-							orientation	: 'horizontal',
-							min			: 1,
-							max			: 1000,
-							slide		: function()
-							{
-								bumpApp.setEmbossDepth( $( '#inputEmbossDepth' ).slider( 'value' ) / 50 );
-								bumpApp.draw();
-							}
-						});
-				}
-			);
-		</script>
 	</div>
-	
-	
-<script type='text/javascript'>
-	var bumpApp;
-	
-	var startTime		= new Date();
-	var radsPerSecond	= 0.8;
-	var radius			= 120;
-	var lightPosX		= 160;
-	var lightPosY		= 100;
-	var isPaused		= false;
 
-	var myInterval;
-	
-	
-	$( document ).on( 
-			'EVS:CoreLoaded', 
-			function()
-			{
-				var heightmap	= new CanvasTexture( 'resources/mbaco-heightmap2.png' );
-				var texture		= new CanvasTexture( 'resources/mbaco-texture.png' );
-				/*var heightmap	= new CanvasTexture( 'resources/empty-heightmap.png' );
-				var texture		= new CanvasTexture( 'resources/empty-texture.png' ); */
-				bumpApp			= new Bumper( 'surface', texture, heightmap );
-
-				bumpApp.setLightPos( 0, 0, 77 );
-
-				$( document ).on(
-						'mousemove',
-						'#surface',
-						function( event )
-						{
-							coordinates = Helper.getCanvasCoordinates( event, 'surface' );
-
-							bumpApp.setLightPos( coordinates.x, coordinates.y, bumpApp.lightPosition.z );
-							bumpApp.draw();
-						}
-					);
-
-
-				$( document ).on(
-						'mouseout',
-						'#surface',
-						function()
-						{
-							isPaused = false;
-						}
-					);
-
-
-				$( document ).on(
-						'mouseover',
-						'#surface',
-						function()
-						{
-							isPaused	= true;
-						}
-					);
-	
-
-				// Rotating light
-				myInterval = setInterval( 
-						function()
-						{
-							if( ( bumpApp.isDrawing() === true ) || ( isPaused === true ) )
-							{
-								return;
-							}
-
-							var curTime	= new Date();
-							var runTime	= ( curTime.getTime() - startTime.getTime() ) / 1000.00;
-
-							var x		= lightPosX + radius * Math.sin( radsPerSecond * runTime );
-							var y		= lightPosY + radius * Math.cos( radsPerSecond * runTime );
-							var z		= bumpApp.lightPosition.z;
-
-							bumpApp.setLightPos( x, y, z );
-							bumpApp.draw();
-						},
-						25
-					);
-			}
-		);
-</script>
-
+	<script data-main='app'  src='../vendor/require.js'></script>
 </body>
 </html>

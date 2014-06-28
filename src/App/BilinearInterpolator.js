@@ -8,35 +8,42 @@
  */
 
 
-/**
- * @param {string} targetCanvasID
- * @param {Number} q11
- * @param {Number} q12
- * @param {Number} q21
- * @param {Number} q22
- * @constructor
- */
-function BilinearInterpolator( targetCanvasID, q11, q12, q21, q22 )
+define( [ 'Core/App', 'Core/NormalizedColor' ],
+
+function( App, NormalizedColor )
 {
-	this.targetCanvasID			= targetCanvasID;
-	this.targetCanvas			= Helper.getElement( this.targetCanvasID );
+	/**
+	 * @param {string} targetCanvasId
+	 * @param {number} q11
+	 * @param {number} q12
+	 * @param {number} q21
+	 * @param {number} q22
+	 * @constructor
+	 * @extends {App}
+	 */
+	var BilinearInterpolator = function ( targetCanvasId, q11, q12, q21, q22 )
+	{
+		App.call( this, targetCanvasId );
 
-	this.q11					= q11;
-	this.q12					= q12;
-	this.q21					= q21;
-	this.q22					= q22;
+		this.q11					= q11;
+		this.q12					= q12;
+		this.q21					= q21;
+		this.q22					= q22;
 
-	this.drawing				= false;
-
-	this.texturePixels			= this.targetCanvas.getContext( '2d' ).createImageData( this.targetCanvas.width, this.targetCanvas.height );
-
-	this.initializeLookupTable();
-}
+		this.initializeLookupTable();
+	};
 
 
-BilinearInterpolator.prototype = {
 
-	createMultidimensionalArray : function()
+	BilinearInterpolator.prototype = new App();
+
+
+
+	/**
+	 * @private
+	 * @returns {Array}
+	 */
+	BilinearInterpolator.prototype.createMultidimensionalArray = function()
 	{
 		if( arguments.length > 1 )
 		{
@@ -58,13 +65,16 @@ BilinearInterpolator.prototype = {
 		}
 
 		throw new Error( 'Failed to create the specified array' );
-	},
+	};
 
 
-	initializeLookupTable : function()
+	/**
+	 * @private
+	 */
+	BilinearInterpolator.prototype.initializeLookupTable = function()
 	{
-		var width		= this.targetCanvas.width;
-		var height		= this.targetCanvas.height;
+		var width		= this.canvas.width;
+		var height		= this.canvas.height;
 		var heightMinus	= height - 1;
 		var widthMinus	= width - 1;
 
@@ -88,21 +98,21 @@ BilinearInterpolator.prototype = {
 				this.lookupTable[ x - x1 ][ y - y1 ] = ( x - x1 ) * ( y - y1 ) * oneDivX2MinusX1MulY2MinusY1;
 			}
 		}
-	},
+	};
 
 
-	draw : function()
+	BilinearInterpolator.prototype.draw = function()
 	{
-		this.drawing	= true;
+		this.startDrawing();
 
-		var width		= this.targetCanvas.width;
-		var height		= this.targetCanvas.height;
+		var width		= this.canvas.width;
+		var height		= this.canvas.height;
 		var widthMinus	= width - 1;
 		var heightMinus	= height - 1;
 		var ptr			= 0;
 
-		var texturePixels	= this.texturePixels;
-		var textureData		= texturePixels.data;
+		var canvasPixels	= this.canvasPixels;
+		var canvasData		= canvasPixels.data;
 
 		var x1 = 0;
 		var x2 = widthMinus;
@@ -126,84 +136,22 @@ BilinearInterpolator.prototype = {
 						this.q12 * this.lookupTable[ x2MinusX ][ yMinusY1 ] +
 						this.q22 * this.lookupTable[ xMinusX1 ][ yMinusY1 ];
 
-				this.hsvToRgb( hue, 1.0, 1.0, normalColor );
+				NormalizedColor.hsvToRgb( hue, 1.0, 1.0, normalColor );
 
-				textureData[ ptr++ ] = Math.round( normalColor.r * 255 );
-				textureData[ ptr++ ] = Math.round( normalColor.g * 255 );
-				textureData[ ptr++ ] = Math.round( normalColor.b * 255 );
-				textureData[ ptr++ ] = 255;
+				canvasData[ ptr++ ] = Math.round( normalColor.r * 255 );
+				canvasData[ ptr++ ] = Math.round( normalColor.g * 255 );
+				canvasData[ ptr++ ] = Math.round( normalColor.b * 255 );
+				canvasData[ ptr++ ] = 255;
 			}
 		}
 
-		this.targetCanvas.getContext( '2d' ).putImageData( texturePixels, 0, 0 );
+		this.canvas.getContext( '2d' ).putImageData( canvasPixels, 0, 0 );
 
-		this.drawing = false;
-	},
-
-
-	/**
-	 * @link http://www.cs.rit.edu/~ncs/color/t_convert.html
-	 * @param {Number} hue 0..359
-	 * @param {Number} saturation 0..1
-	 * @param {Number} value 0..1
-	 * @param {NormalizedColor} targetColor
-	 * @private
-	 */
-	hsvToRgb : function( hue, saturation, value, targetColor )
-	{
-		if( saturation == 0 )
-		{
-			targetColor.set( value, value, value );
-			return;
-		}
-
-		var sector = hue / 60.0;
-
-		var flooredHue	= Math.floor( sector );
-		var factorial	= sector - flooredHue;
-
-		var p = value * ( 1 - saturation );
-		var q = value * ( 1 - ( saturation * factorial ) );
-		var t = value * ( 1 - ( saturation * ( 1 - factorial ) ) );
-
-		switch( flooredHue )
-		{
-			case 0:
-				targetColor.set( value, t, p );
-				break;
-
-			case 1:
-				targetColor.set( q, value, p );
-				break;
-
-			case 2:
-				targetColor.set( p, value, t );
-				break;
-
-			case 3:
-				targetColor.set( p, q, value );
-				break;
-
-			case 4:
-				targetColor.set( t, p, value );
-				break;
-
-			default:
-				targetColor.set( value, p, q );
-				break;
-		}
-	},
+		this.endDrawing();
+	};
 
 
+	return BilinearInterpolator;
 
-	/**
-	 * @returns {Boolean}
-	 */
-
-	isDrawing : function()
-	{
-		return this.drawing;
-	}
-
-};
+} );
 

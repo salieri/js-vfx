@@ -1,16 +1,26 @@
 
-/**
- * @param {Color} [color]
- * @extends Material
- * @constructor
- */
+define( [ '3D/Material/Material', 'Core/Color' ],
 
-function SolidColorMaterial( color )
+function( Material, Color )
 {
-	this.color		= color || new Color( 0, 192, 0 );
-	this.texture	= null;
-}
+	'use strict';
+
+	/**
+	 * @param {Color} [color]
+	 * @extends Material
+	 * @constructor
+	 */
+	function SolidColorMaterial( color )
+	{
+		this.color		= color || new Color( 0, 192, 0 );
+		this.texture	= null;
+	}
 
 
-SolidColorMaterial.prototype = Helper.extend( Material.prototype );
+	SolidColorMaterial.prototype = new Material();
+
+
+	return SolidColorMaterial;
+
+} );
 

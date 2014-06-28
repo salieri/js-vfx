@@ -1,35 +1,44 @@
-"use strict";
 
-/**
- * @constructor
- */
+define( [],
 
-function Material()
+function()
 {
-	this.color		= null;
-	this.texture	= null;
-}
-	
-	
-Material.prototype = {
+	'use strict';
 
 	/**
-	 * @returns {null|Color}
+	 * @constructor
 	 */
 
-	getColor : function()
+	var Material = function()
 	{
-		return this.color;
-	},
+		this.color		= null;
+		this.texture	= null;
+	};
 
 
-	/**
-	 * @returns {null|CanvasTexture}
-	 */
+	Material.prototype = {
 
-	getTexture : function()
-	{
-		return this.texture;
-	}
-};
+		/**
+		 * @returns {null|Color}
+		 */
 
+		getColor : function()
+		{
+			return this.color;
+		},
+
+
+		/**
+		 * @returns {null|CanvasTexture}
+		 */
+
+		getTexture : function()
+		{
+			return this.texture;
+		}
+	};
+
+
+	return Material;
+
+} );

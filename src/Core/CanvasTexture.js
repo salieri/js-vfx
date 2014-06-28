@@ -1,82 +1,71 @@
 
-/**
- * @param {string} src URI/URL to texture resource
- * @constructor
- */
 
-function CanvasTexture( src ) 
+define( [ 'Core/Texture', 'Core/Helper' ],
+
+function( Texture, Helper )
 {
-	this.canvas		= this.create();
-	this.context	= this.canvas.getContext( '2d' );
-	this.loaded		= false;
-
-	this.image				= new Image();
-	this.image.crossOrigin	= 'Anonymous';
-	this.image.src			= src;
-	
-
-	// Let's update stuff once the image has loaded
-	var me			= this;
-	
-	this.image.onload = function()
-		{
-			me.loaded			= true;
-			me.canvas.width		= me.image.width;
-			me.canvas.height	= me.image.height;			
-			me.data				= me.getPixels().data;
-			
-			if( typeof( me.onload ) === 'function' )
-			{
-				me.onload();
-			}
-		};
-}
-
-
-CanvasTexture.prototype = {
+	'use strict';
 
 	/**
-	 * @return {int}
-	 */	 	
+	 * @param {string} src URI/URL to texture resource
+	 * @constructor
+	 * @extends {Texture}
+	 */
+	var CanvasTexture = function( src )
+	{
+		Texture.call( this );
 
-	getWidth : function()
+		this.canvas		= this.create();
+		this.context	= this.canvas.getContext( '2d' );
+		this.loaded		= false;
+
+		this.image				= new Image();
+		this.image.crossOrigin	= 'Anonymous';
+		this.image.src			= src;
+
+
+		// Let's update stuff once the image has loaded
+		var me			= this;
+
+		this.image.onload = function()
+			{
+				me.loaded			= true;
+				me.canvas.width		= me.image.width;
+				me.canvas.height	= me.image.height;
+				me.data				= me.getPixels().data;
+
+				if( typeof( me.onload ) === 'function' )
+				{
+					me.onload();
+				}
+			};
+	};
+
+
+
+	CanvasTexture.prototype = new Texture();
+
+
+	CanvasTexture.prototype.getWidth = function()
 	{
 		return this.image.width;
-	},
+	};
+
 	
-	
-	/**
-	 * @return {int}
-	 */	 	
-	
-	getHeight : function()
+	CanvasTexture.prototype.getHeight = function()
 	{
 		return this.image.height;
-	},
+	};
 	
 	
-	/**
-	 * @return {CanvasPixelArray}
-	 **/	 	
-	
-	getPixels : function()
+	CanvasTexture.prototype.getPixels = function()
 	{
 		this.context.drawImage( this.image, 0, 0 );
 		return this.context.getImageData( 0, 0, this.getWidth(), this.getHeight() );
-	},
+	};
 	
 	
-	/**
-	 * @param {CanvasPixelArray} pixels
-	 */
-	 
-	 setPixels : function( pixels )
-	 {
-	 	this.context.putImageData( pixels, 0, 0 );
-	 },
-	
-
-	create : function()
+	CanvasTexture.prototype.create = function()
 	{
 		var canvas	= Helper.createElement( 'canvas' );
 		
@@ -84,10 +73,10 @@ CanvasTexture.prototype = {
 		canvas.height	= 1;
 		
 		return canvas;
-	},
+	};
 	
 	
-	destroy : function()
+	CanvasTexture.prototype.destroy = function()
 	{
 		Helper.removeElement( this.canvas );
 		
@@ -95,7 +84,9 @@ CanvasTexture.prototype = {
 		this.image		= null;
 		this.context	= null;
 		this.canvas		= null;
-	}
-	
-};
+	};
+
+
+	return CanvasTexture;
+} );
 

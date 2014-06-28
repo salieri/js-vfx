@@ -1,167 +1,177 @@
-/**
- * @constructor
- */
 
-function CanvasTextureContainer()
+define( [ 'Core/CanvasTexture' ],
+
+function( CanvasTexture )
 {
-	this.textures	= {};
-}
-	
-
-CanvasTextureContainer.prototype = {
-	
-	/**
-	 * Add texture to container
-	 * 
-	 * @param {string} textureName
-	 * @param {string} src
-	 */
-	
-	add : function( textureName, src )
-	{
-		if( this.exists( textureName ) === true )
-		{
-			this.remove( textureName );
-		}		
-		
-		var ct = new CanvasTexture( src );
-		var me = this;
-		
-		this.textures[ textureName ] = ct;
-		
-		ct.onload = function() {
-			me.eventImageLoaded( textureName );
-		};
-		
-		return ct;
-	},
-	
+	'use strict';
 
 	/**
-	 * Add multiple canvas textures
-	 * 
-	 * Usage:
-	 * 
-	 * srcReferenceObject = {
-	 *		myTexture1 : 'http://www.google.com/logo.png',
-	 *		myTexture2 : 'http://www.microsoft.com/logo.png',
-	 *		...
-	 * };
-	 * 
-	 * @param {Object} srcReferenceObject
+	 * @constructor
 	 */
-	
-	addMany : function( srcReferenceObject )
+	var CanvasTextureContainer = function()
 	{
-		for( var textureName in srcReferenceObject )
+		this.textures	= {};
+	};
+
+
+	CanvasTextureContainer.prototype = {
+
+		/**
+		 * Add texture to container
+		 *
+		 * @param {string} textureName
+		 * @param {string} src
+		 * @public
+		 */
+		add : function( textureName, src )
 		{
-			if( srcReferenceObject.hasOwnProperty( textureName ) === true )
+			if( this.exists( textureName ) === true )
 			{
-				if( this.textures.hasOwnProperty( textureName ) === true )
-				{
-					this.add( textureName, srcReferenceObject[ textureName ] );
-				}
+				this.remove( textureName );
 			}
-		}
-	},
-	
-	
-	/**
-	 * @param {string} textureName
-	 */
-	
-	remove : function( textureName )
-	{
-		if( this.textures[ textureName ] !== null )
+
+			var ct = new CanvasTexture( src );
+			var me = this;
+
+			this.textures[ textureName ] = ct;
+
+			ct.onload = function() {
+				me.eventImageLoaded( textureName );
+			};
+
+			return ct;
+		},
+
+
+		/**
+		 * Add multiple canvas textures
+		 *
+		 * Usage:
+		 *
+		 * srcReferenceObject = {
+		 *		myTexture1 : 'http://www.google.com/logo.png',
+		 *		myTexture2 : 'http://www.microsoft.com/logo.png',
+		 *		...
+		 * };
+		 *
+		 * @param {Object} srcReferenceObject
+		 * @public
+		 */
+		addMany : function( srcReferenceObject )
 		{
-			this.textures[ textureName ].destroy();
-		}
-		
-		delete this.textures[ textureName ];
-	},
-	
-	
-	/**
-	 * @param {string} textureName
-	 * @returns {Boolean}
-	 */
-	
-	exists : function( textureName )
-	{
-		if( this.get( textureName ) !== null )
-		{
-			return true;
-		}
-		
-		return false;
-	},
-	
-	
-	reset : function()
-	{
-		for( var key in this.textures )
-		{
-			if( this.textures.hasOwnProperty( key ) === true )
+			for( var textureName in srcReferenceObject )
 			{
-				this.remove( key );
-			}
-		}
-		
-		this.textures = {};
-	},
-	
-	
-	/**
-	 * @param {string} textureName
-	 * @returns {CanvasTexture|null}
-	 */
-	
-	get : function( textureName )
-	{
-		if( this.textures.hasOwnProperty( textureName ) === true )
-		{
-			return this.textures[ textureName ];
-		}
-		
-		return null;
-	},
-	
-	
-	/**
-	 * @returns {Boolean}
-	 */
-	
-	isLoaded : function()
-	{
-		for( var key in this.textures )
-		{
-			if( this.textures.hasOwnProperty( key ) === true )
-			{
-				if( this.textures[ key ] !== null )
+				if( srcReferenceObject.hasOwnProperty( textureName ) === true )
 				{
-					if( this.textures[ key ].loaded !== true )
+					if( this.textures.hasOwnProperty( textureName ) === true )
 					{
-						return false;
+						this.add( textureName, srcReferenceObject[ textureName ] );
 					}
 				}
 			}
-		}
-		
-		return true;
-	},
-	
-	
-	eventImageLoaded : function ( textureName )
-	{
-		if( this.isLoaded() === true )
-		{
-			if( typeof( this.onload ) === 'function' )
-			{
-				this.onload();
-			}			
-		}
-	}
-	
-};
+		},
 
+
+		/**
+		 * @param {string} textureName
+		 * @public
+		 */
+		remove : function( textureName )
+		{
+			if( this.textures[ textureName ] !== null )
+			{
+				this.textures[ textureName ].destroy();
+			}
+
+			delete this.textures[ textureName ];
+		},
+
+
+		/**
+		 * @param {string} textureName
+		 * @returns {Boolean}
+		 * @public
+		 */
+		exists : function( textureName )
+		{
+			return ( this.get( textureName ) !== null );
+		},
+
+
+		/**
+		 * @public
+		 */
+		reset : function()
+		{
+			for( var key in this.textures )
+			{
+				if( this.textures.hasOwnProperty( key ) === true )
+				{
+					this.remove( key );
+				}
+			}
+
+			this.textures = {};
+		},
+
+
+		/**
+		 * @param {string} textureName
+		 * @returns {CanvasTexture|null}
+		 * @public
+		 */
+		get : function( textureName )
+		{
+			if( this.textures.hasOwnProperty( textureName ) === true )
+			{
+				return this.textures[ textureName ];
+			}
+
+			return null;
+		},
+
+
+		/**
+		 * @returns {Boolean}
+		 */
+		isLoaded : function()
+		{
+			for( var key in this.textures )
+			{
+				if( this.textures.hasOwnProperty( key ) === true )
+				{
+					if( this.textures[ key ] !== null )
+					{
+						if( this.textures[ key ].loaded !== true )
+						{
+							return false;
+						}
+					}
+				}
+			}
+
+			return true;
+		},
+
+
+		/**
+		 * @public
+		 * @param {string} textureName
+		 */
+		eventImageLoaded : function ( textureName ) // jshint ignore:line
+		{
+			if( this.isLoaded() === true )
+			{
+				if( typeof( this.onload ) === 'function' )
+				{
+					this.onload();
+				}
+			}
+		}
+
+	};
+
+
+	return CanvasTextureContainer;
+} );
 

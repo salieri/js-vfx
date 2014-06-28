@@ -1,18 +1,26 @@
 
-/**
- * @constructor
- */
+define( [],
 
-function Camera()
+function()
 {
-	
-}
+	'use strict';
+
+	/**
+	 * @constructor
+	 */
+	var Camera = function()
+	{
+
+	};
+
+	Camera.prototype = {
 
 
-Camera.prototype = {
-	
-	
-};
+	};
 
+
+	return Camera;
+
+} );
 
 

@@ -1,164 +1,183 @@
-/**
- * This just generates a sphere-shaped mesh
- * @link http://stackoverflow.com/a/9787745/844771
- * @class
- */
 
-var SphereFactory = {
-	
-	/**
-	 * @param {float} radiusX
-	 * @param {float} radiusY
-	 * @param {float} radiusZ
-	 * @param {int} steps
-	 * @returns {Mesh}
-	 */
-	generate : function( radiusX, radiusY, radiusZ, steps )
-	{
-		var sphere		= new Mesh();
-		var uSteps		= steps;
-		var vSteps		= steps * 2;
+define( [
+		'Core/Point3D', 'Core/Color', 'Core/CanvasTexture',
+		'3D/Mesh', '3D/Edge', '3D/Face', '3D/Material/TexturedMaterial'
+	],
 
-		this.generateVertices( radiusX, radiusY, radiusZ, sphere, uSteps, vSteps );
-		this.generateEdges( sphere, uSteps, vSteps );
-		this.generateFaces( sphere, uSteps, vSteps );
-
-		return sphere;
-	},
-
+function(
+		Point3D, Color, CanvasTexture,
+		Mesh, Edge, Face, TexturedMaterial
+	)
+{
+	'use strict';
 
 	/**
-	 * @param {int|float|Number} radiusX
-	 * @param {int|float|Number} radiusY
-	 * @param {int|float|Number} radiusZ
-	 * @param {Mesh} sphere
-	 * @param {int|Number} uSteps
-	 * @param {int|Number} vSteps
+	 * This just generates a sphere-shaped mesh
+	 * @link http://stackoverflow.com/a/9787745/844771
+	 * @namespace
 	 */
-	generateVertices : function( radiusX, radiusY, radiusZ, sphere, uSteps, vSteps )
-	{
-		var resolution	= Math.PI / ( uSteps );
-		var inclination	= 0;
+	var SphereFactory = {
 
-		for( var u = 0; u <= uSteps; u++ )
+		/**
+		 * @param {float} radiusX
+		 * @param {float} radiusY
+		 * @param {float} radiusZ
+		 * @param {int} steps
+		 * @returns {Mesh}
+		 * @public
+		 */
+		generate : function( radiusX, radiusY, radiusZ, steps )
 		{
-			var azimuth = 0;
+			var sphere		= new Mesh();
+			var uSteps		= steps;
+			var vSteps		= steps * 2;
 
-			for( var v = 0; v <= vSteps; v++ )
-			{
-				var p = new Point3D(
-						radiusX * Math.sin( inclination ) * Math.cos( azimuth ),
-						radiusY * Math.sin( inclination ) * Math.sin( azimuth ),
-						radiusZ * Math.cos( inclination )
-				);
+			this.generateVertices( radiusX, radiusY, radiusZ, sphere, uSteps, vSteps );
+			this.generateEdges( sphere, uSteps, vSteps );
+			this.generateFaces( sphere, uSteps, vSteps );
 
-				sphere.addVertex( p );
-
-				azimuth += Math.abs( resolution );
-			}
-
-			inclination += Math.abs( resolution );
-		}
-	},
+			return sphere;
+		},
 
 
-	/**
-	 * @param {Mesh} sphere
-	 * @param {int|Number} uSteps
-	 * @param {int|Number} vSteps
-	 */
-	generateEdges : function( sphere, uSteps, vSteps )
-	{
-		for( var u = 0; u < uSteps; u++ )
+		/**
+		 * @param {int|float|Number} radiusX
+		 * @param {int|float|Number} radiusY
+		 * @param {int|float|Number} radiusZ
+		 * @param {Mesh} sphere
+		 * @param {int|Number} uSteps
+		 * @param {int|Number} vSteps
+		 * @private
+		 */
+		generateVertices : function( radiusX, radiusY, radiusZ, sphere, uSteps, vSteps )
 		{
-			for( var v = 0; v < vSteps; v++ )
+			var resolution	= Math.PI / ( uSteps );
+			var inclination	= 0;
+
+			for( var u = 0; u <= uSteps; u++ )
 			{
-				var thisVertex = u * ( vSteps + 1 ) + v;
+				var azimuth = 0;
 
-				var nextUI = u + 1;
-
-				if( nextUI > uSteps )
+				for( var v = 0; v <= vSteps; v++ )
 				{
-					nextUI = 0;
+					var p = new Point3D(
+							radiusX * Math.sin( inclination ) * Math.cos( azimuth ),
+							radiusY * Math.sin( inclination ) * Math.sin( azimuth ),
+							radiusZ * Math.cos( inclination )
+					);
+
+					sphere.addVertex( p );
+
+					azimuth += Math.abs( resolution );
 				}
 
-				var uiNextVertex = ( nextUI * ( vSteps + 1 ) ) + v;
-
-				sphere.addEdge( new Edge( thisVertex, uiNextVertex ) );
-
-
-				var nextVI = v + 1;
-
-				if( nextVI > vSteps )
-				{
-					nextVI = 0;
-				}
-
-				var viNextVertex	= ( u * ( vSteps + 1 ) ) + nextVI;
-
-				sphere.addEdge( new Edge( thisVertex, viNextVertex ) );
+				inclination += Math.abs( resolution );
 			}
-		}
-	},
+		},
 
 
-	/**
-	 * @param {Mesh} sphere
-	 * @param {int|Number} uSteps
-	 * @param {int|Number} vSteps
-	 */
-	generateFaces : function( sphere, uSteps, vSteps )
-	{
-		var material	= new TexturedMaterial( new CanvasTexture( 'resources/textures/plastic.jpg' ) );
-		material.color	= new Color( 0, 192, 0 );
-
-		var material2	= new TexturedMaterial( new CanvasTexture( 'resources/textures/silver.jpg' ) );
-		material2.color	= new Color( 0, 0, 192 );
-
-
-		for( var u = 0; u < uSteps; u++ )
+		/**
+		 * @param {Mesh} sphere
+		 * @param {int|Number} uSteps
+		 * @param {int|Number} vSteps
+		 * @private
+		 */
+		generateEdges : function( sphere, uSteps, vSteps )
 		{
-			for( var v = 0; v < vSteps; v++ )
+			for( var u = 0; u < uSteps; u++ )
 			{
-				var nextUI = u + 1;
-
-				if( nextUI > uSteps )
+				for( var v = 0; v < vSteps; v++ )
 				{
-					// break;
-					nextUI = 0;
+					var thisVertex = u * ( vSteps + 1 ) + v;
+
+					var nextUI = u + 1;
+
+					if( nextUI > uSteps )
+					{
+						nextUI = 0;
+					}
+
+					var uiNextVertex = ( nextUI * ( vSteps + 1 ) ) + v;
+
+					sphere.addEdge( new Edge( thisVertex, uiNextVertex ) );
+
+
+					var nextVI = v + 1;
+
+					if( nextVI > vSteps )
+					{
+						nextVI = 0;
+					}
+
+					var viNextVertex	= ( u * ( vSteps + 1 ) ) + nextVI;
+
+					sphere.addEdge( new Edge( thisVertex, viNextVertex ) );
 				}
+			}
+		},
 
 
-				var nextVI = v + 1;
+		/**
+		 * @param {Mesh} sphere
+		 * @param {int|Number} uSteps
+		 * @param {int|Number} vSteps
+		 * @private
+		 */
+		generateFaces : function( sphere, uSteps, vSteps )
+		{
+			var material	= new TexturedMaterial( new CanvasTexture( 'resources/textures/plastic.jpg' ) );
+			material.color	= new Color( 0, 192, 0 );
 
-				if( nextVI > vSteps )
+			var material2	= new TexturedMaterial( new CanvasTexture( 'resources/textures/silver.jpg' ) );
+			material2.color	= new Color( 0, 0, 192 );
+
+
+			for( var u = 0; u < uSteps; u++ )
+			{
+				for( var v = 0; v < vSteps; v++ )
 				{
-					// break;
-					nextVI = 0;
+					var nextUI = u + 1;
+
+					if( nextUI > uSteps )
+					{
+						// break;
+						nextUI = 0;
+					}
+
+
+					var nextVI = v + 1;
+
+					if( nextVI > vSteps )
+					{
+						// break;
+						nextVI = 0;
+					}
+
+					sphere.addFace( new Face(
+							u * ( vSteps + 1 ) + v,
+							nextUI * ( vSteps + 1 ) + v,
+							nextUI * ( vSteps + 1 ) + nextVI,
+							material,
+							new Point3D( 0, 0, 0 ),
+							new Point3D( 0, 1, 0 ),
+							new Point3D( 1, 0, 0 )
+					) );
+
+					sphere.addFace( new Face(
+							u * ( vSteps + 1 ) + v,
+							nextUI * ( vSteps + 1 ) + nextVI,
+							u * ( vSteps + 1 ) + nextVI,
+							material2,
+							new Point3D( 0, 1, 0 ),
+							new Point3D( 1, 0, 0 ),
+							new Point3D( 1, 1, 0 )
+					) );
 				}
-
-				sphere.addFace( new Face(
-						u * ( vSteps + 1 ) + v,
-						nextUI * ( vSteps + 1 ) + v,
-						nextUI * ( vSteps + 1 ) + nextVI,
-						material,
-						new Point3D( 0, 0, 0 ),
-						new Point3D( 0, 1, 0 ),
-						new Point3D( 1, 0, 0 )
-				) );
-
-				sphere.addFace( new Face(
-						u * ( vSteps + 1 ) + v,
-						nextUI * ( vSteps + 1 ) + nextVI,
-						u * ( vSteps + 1 ) + nextVI,
-						material2,
-						new Point3D( 0, 1, 0 ),
-						new Point3D( 1, 0, 0 ),
-						new Point3D( 1, 1, 0 )
-				) );
 			}
 		}
-	}
 
-};
+	};
 
+	return SphereFactory;
+
+} );

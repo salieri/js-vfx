@@ -8,64 +8,84 @@
  */
 
 
-/**
- * @link http://popscan.blogspot.co.uk/2012/04/fisheye-lens-equation-simple-fisheye.html
- * @param {string} targetCanvasId
- * @param {string} bgImageUrl
- * @constructor
- */
-function FisheyeLens( targetCanvasId, bgImageUrl )
+define( [ 'Core/App', 'Core/CanvasTexture', 'Core/EmptyTexture' ],
+
+function( App, CanvasTexture, EmptyTexture )
 {
-	this.targetCanvasId			= targetCanvasId;
-	this.targetCanvas			= Helper.getElement( this.targetCanvasId );
+	/**
+	 * @link http://popscan.blogspot.co.uk/2012/04/fisheye-lens-equation-simple-fisheye.html
+	 * @param {string} targetCanvasId
+	 * @param {string} bgImageUrl
+	 * @constructor
+	 * @extends {App}
+	 */
+	var FisheyeLens = function( targetCanvasId, bgImageUrl )
+	{
+		App.call( this, targetCanvasId );
 
-	this.bgImage				= new CanvasTexture( bgImageUrl );
-	this.canvases				= [ new EmptyTexture( targetCanvasId ), new EmptyTexture( targetCanvasId ) ];
-
-	this.lenses					= [];
-
-	this.drawing				= false;
-
-	this.textureContext			= this.targetCanvas.getContext( '2d' );
-	this.texturePixels			= this.targetCanvas.getContext( '2d' ).createImageData( this.targetCanvas.width, this.targetCanvas.height );
-}
+		this.bgImage	= new CanvasTexture( bgImageUrl );
+		this.textures	= [ new EmptyTexture( targetCanvasId ), new EmptyTexture( targetCanvasId ) ];
+		this.lenses		= [];
+	};
 
 
-FisheyeLens.prototype = {
 
-	addLens : function( lens )
+	FisheyeLens.prototype = new App();
+
+
+	/**
+	 * Add a new lens
+	 *
+	 * <code>
+	 * var lens = {
+	 * 		x		: 0,
+	 * 		y		: 0,
+	 *		radius	: 50
+	 * };
+	 * </code>
+	 *
+	 * @param {object} lens
+	 * @public
+	 */
+	FisheyeLens.prototype.addLens = function( lens )
 	{
 		this.lenses.push( lens );
-	},
+	};
 
 
-	draw : function()
+	FisheyeLens.prototype.draw = function()
 	{
 		this.drawing			= true;
+		this.textures[ 0 ].data	= this.bgImage.context.getImageData( 0, 0, this.textures[ 0 ].getWidth(), this.textures[ 0 ].getHeight() );
 
-		this.canvases[ 0 ].data	= this.bgImage.context.getImageData( 0, 0, this.canvases[ 0 ].getWidth(), this.canvases[ 0 ].getHeight() );
-
-		var curSourceCanvas	= 0;
-		var curDestCanvas	= 1;
+		var curSourceCanvas		= 0;
+		var curDestCanvas		= 1;
 
 		// this is very unoptimized
 		for( var i = 0; i < this.lenses.length; i++ )
 		{
-			this.canvases[ curDestCanvas ].data.data.set( new Uint8ClampedArray( this.canvases[ curSourceCanvas ].data.data ) );
-		 	this.drawLens( Math.round( this.lenses[ i ].x ), Math.round( this.lenses[ i ].y ), Math.round( this.lenses[ i ].radius ), this.canvases[ curDestCanvas ], this.canvases[ curSourceCanvas ] );
+			this.textures[ curDestCanvas ].data.data.set( new Uint8ClampedArray( this.textures[ curSourceCanvas ].data.data ) );
+			this.drawLens( Math.round( this.lenses[ i ].x ), Math.round( this.lenses[ i ].y ), Math.round( this.lenses[ i ].radius ), this.textures[ curDestCanvas ], this.textures[ curSourceCanvas ] );
 
 			curSourceCanvas	= 1 - curSourceCanvas;
 			curDestCanvas	= 1 - curDestCanvas;
 		}
 
-		this.targetCanvas.getContext( '2d' ).putImageData( this.canvases[ curSourceCanvas ].data, 0, 0 );
+		this.canvas.getContext( '2d' ).putImageData( this.textures[ curSourceCanvas ].data, 0, 0 );
 
 		this.drawing = false;
-	},
+	};
 
 
-
-	drawLens : function( posX, posY, radius, destCanvasTexture, sourceCanvasTexture )
+	/**
+	 * @param {int} posX
+	 * @param {int} posY
+	 * @param {int} radius
+	 * @param {CanvasTexture} destCanvasTexture
+	 * @param {CanvasTexture} sourceCanvasTexture
+	 * @private
+	 */
+	FisheyeLens.prototype.drawLens = function( posX, posY, radius, destCanvasTexture, sourceCanvasTexture )
 	{
 		var destData	= destCanvasTexture.data.data;
 		var sourceData	= sourceCanvasTexture.data.data;
@@ -114,17 +134,9 @@ FisheyeLens.prototype = {
 				}
 			}
 		}
-	},
+	};
 
 
-	/**
-	 * @returns {Boolean}
-	 */
-
-	isDrawing : function()
-	{
-		return this.drawing;
-	}
-
-};
+	return FisheyeLens;
+} );
 

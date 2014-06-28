@@ -5,49 +5,53 @@
  * 
  */
 
+define( [ 'Core/App', 'Core/Vector3D', 'Core/CanvasTexture' ],
 
-/**
- * @param {string} targetCanvasID
- * @param {CanvasTexture} texture
- * @param {CanvasTexture} heightMapTexture
- * @constructor
- */
-
-function Bumper( targetCanvasID, texture, heightMapTexture )
+function( App, Vector3D, CanvasTexture )
 {
-	this.targetCanvasID			= targetCanvasID;
-	this.heightMapTexture		= heightMapTexture;
-	this.texture				= texture;
-	
-	this.targetCanvas			= Helper.getElement( this.targetCanvasID );
-	
-	this.lightPosition			= new Vector3D();
-	this.drawing				= false;
-	this.precalculated			= false;
-	this.precalculatedNormals	= [];	
-	this.embossDepth			= 3;
-	
-	
-	// Precalculate normals once height map has been loaded:	
-	var me = this;
-	
-	this.heightMapTexture.onload = function()
-		{
-			me.precalculateNormals();
-		};
-}
+	/**
+	 * @param {string} targetCanvasId
+	 * @param {CanvasTexture} texture
+	 * @param {CanvasTexture} heightMapTexture
+	 * @constructor
+	 * @extends {App}
+	 */
+	function Bumper( targetCanvasId, texture, heightMapTexture )
+	{
+		App.call( this, targetCanvasId );
+
+		this.heightMapTexture		= heightMapTexture;
+		this.texture				= texture;
+
+		this.lightPosition			= new Vector3D();
+		this.drawing				= false;
+		this.precalculated			= false;
+		this.precalculatedNormals	= [];
+		this.embossDepth			= 3;
+
+		// Precalculate normals once height map has been loaded:
+		var me = this;
+
+		this.heightMapTexture.onload = function()
+			{
+				me.precalculateNormals();
+			};
+	}
 
 
-Bumper.prototype = {
-	
+
+	Bumper.prototype = new App();
+
+
+
 	/**
 	 * @param {float} pointHeight Height at X, Y
 	 * @param {float} pointHeightRight Height at X + 1, Y
 	 * @param {float} pointHeightAbove Height at X, Y - 1
-	 * @return {Vector3D} Bump map normal	 
+	 * @return {Vector3D} Bump map normal
+	 * @private
 	 */	 	 	
-
-	calculateNormal : function( pointHeight, pointHeightRight, pointHeightAbove )
+	Bumper.prototype.calculateNormal = function( pointHeight, pointHeightRight, pointHeightAbove )
 	{
 		var phphaDifference = pointHeight - pointHeightAbove;
 		var phphrDifference = pointHeight - pointHeightRight;
@@ -66,14 +70,14 @@ Bumper.prototype = {
 		 */
 	
 		return new Vector3D( phphaDifference / divisor, phphrDifference / divisor, this.embossDepth /* / divisor */ );
-	},
+	};
 
 
 	/**
 	 * Calculates a normal for each pixel in the height map
+	 * @private
 	 */
-
-	precalculateNormals : function()
+	Bumper.prototype.precalculateNormals = function()
 	{
 		var width		= this.heightMapTexture.getWidth();
 		var height		= this.heightMapTexture.getHeight();
@@ -85,8 +89,7 @@ Bumper.prototype = {
 		var data		= pixels.data;
 		
 		this.precalculatedNormals = new Array( width * height );
-		
-		
+
 		for( var y = 1; y < height; y++ )
 		{
 			for( var x = 0; x < widthMinus; x++ )
@@ -115,10 +118,10 @@ Bumper.prototype = {
 		}	
 				
 		this.precalculated = true;
-	},
+	};
 
 
-	draw : function()
+	Bumper.prototype.draw = function()
 	{
 		if( this.isLoaded() !== true )
 		{
@@ -129,9 +132,8 @@ Bumper.prototype = {
 		{
 			this.precalculateNormals();
 		}		
-		
-		
-		this.drawing	= true;
+
+		this.startDrawing();
 		
 		var width		= this.heightMapTexture.getWidth();
 		var height		= this.heightMapTexture.getHeight();
@@ -173,72 +175,58 @@ Bumper.prototype = {
 			singlePtr++;
 		}	
 		
-		this.targetCanvas.getContext( '2d' ).putImageData( texturePixels, 0, 0 );
+		this.canvas.getContext( '2d' ).putImageData( texturePixels, 0, 0 );
 		
-		this.drawing = false;
-	},
+		this.endDrawing();
+	};
 	
 	
 	/**
-	 * @param {float} x
-	 * @param {float} y
-	 * @param {float} z
+	 * @param {float|int} x
+	 * @param {float|int} y
+	 * @param {float|int} z
+	 * @public
 	 */
-	
-	setLightPos : function( x, y, z )
+	Bumper.prototype.setLightPos = function( x, y, z )
 	{
 		this.lightPosition.x = x;
 		this.lightPosition.y = y;
 		this.lightPosition.z = z;
-	},
+	};
 	
 	
 	/**
-	 * @param {float} depth
+	 * @param {float|int} depth
+	 * @public
 	 */
-	
-	setEmbossDepth : function( depth )
+	Bumper.prototype.setEmbossDepth = function( depth )
 	{
 		this.embossDepth = depth;
 		
 		this.precalculateNormals();
-	},
-	
-	
+	};
+
+
 	/**
 	 * @returns {Boolean}
+	 * @public
 	 */
-	
-	isDrawing : function()
+	Bumper.prototype.isLoaded = function()
 	{
-		return this.drawing;
-	},
-
-
-
-	/**
-	 * @returns {Boolean}
-	 */
-	
-	isLoaded : function()
-	{
-		if( ( this.heightMapTexture.loaded === true ) && ( this.texture.loaded === true ) )
-		{
-			return true;
-		}
-		
-		return false;
-	},
+		return ( ( this.heightMapTexture.loaded === true ) && ( this.texture.loaded === true ) )
+	};
 
 
 	/**
 	 * @returns {Boolean}
+	 * @private
 	 */
-	
-	hasPrecalculated : function()
+	Bumper.prototype.hasPrecalculated = function()
 	{
 		return this.precalculated;
-	}
+	};
 
-};
+
+	return Bumper;
+} );
 

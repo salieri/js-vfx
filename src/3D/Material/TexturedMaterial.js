@@ -1,16 +1,25 @@
 
-/**
- * @param {CanvasTexture} [texture]
- * @extends Material
- * @constructor
- */
+define( [ '3D/Material/Material' ],
 
-function TexturedMaterial( texture )
+function( Material )
 {
-	this.texture	= texture;
-	this.color		= null;
-}
+	'use strict';
+
+	/**
+	 * @param {CanvasTexture} [texture]
+	 * @extends Material
+	 * @constructor
+	 */
+	var TexturedMaterial = function( texture )
+	{
+		this.texture	= texture;
+		this.color		= null;
+	};
 
 
-TexturedMaterial.prototype = Helper.extend( Material.prototype );
+	TexturedMaterial.prototype = new Material();
 
+
+	return TexturedMaterial;
+
+} );

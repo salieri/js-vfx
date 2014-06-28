@@ -1,13 +1,22 @@
+define( [],
 
-/**
- * @param {Face} face
- * @param {Mesh} mesh
- * @constructor
- */
-
-function FaceLookup( face, mesh )
+function()
 {
-	this.face = face;
-	this.mesh = mesh;
-}
+	'use strict';
 
+	/**
+	 * @param {Face} face
+	 * @param {Mesh} mesh
+	 * @constructor
+	 */
+
+	var FaceLookup = function( face, mesh )
+	{
+		this.face = face;
+		this.mesh = mesh;
+	};
+
+
+	return FaceLookup;
+
+} );

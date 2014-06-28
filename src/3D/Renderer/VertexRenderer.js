@@ -1,26 +1,35 @@
 
-/**
- * @constructor
- * @extends Renderer
- */
+define( [ '3D/Renderer/Renderer' ],
 
-function VertexRenderer()
+function( Renderer )
 {
-	
-}
+	'use strict';
 
-
-VertexRenderer.prototype = Helper.extend( Renderer.prototype );
-
-
-/**
- * @param {Scene} scene
- */
-VertexRenderer.prototype.draw = function( scene )
-{
-	for( var m = 0; m < scene.meshes.length; m++ )
+	/**
+	 * @constructor
+	 * @extends Renderer
+	 */
+	var VertexRenderer = function()
 	{
-		scene.meshes[ m ].drawVertices();
-	}
-};
+
+	};
+
+
+	VertexRenderer.prototype = new Renderer();
+
+
+	/**
+	 * @param {Scene} scene
+	 */
+	VertexRenderer.prototype.draw = function( scene )
+	{
+		for( var m = 0; m < scene.meshes.length; m++ )
+		{
+			scene.meshes[ m ].drawVertices();
+		}
+	};
+
+	return VertexRenderer;
+
+} );
 	

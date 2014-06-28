@@ -5,12 +5,6 @@
 	
 	<link rel='stylesheet' type='text/css' href='http://ajax.googleapis.com/ajax/libs/jqueryui/1.10.4/themes/ui-lightness/jquery-ui.min.css' />
 	<link rel='stylesheet' type='text/css' href='http://cdnjs.cloudflare.com/ajax/libs/foundation/4.3.1/css/foundation.min.css' />
-	
-	<script src='http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js'></script>
-	<script src='http://ajax.googleapis.com/ajax/libs/jqueryui/1.10.4/jquery-ui.min.js'></script>
-	
-	<script data-main='../src/core-loader'  src='../vendor/require.js'></script>
-	<script src='../src/App/BilinearInterpolator.js'></script>
 </head>
 <body>
 	<div class='row'>
@@ -28,90 +22,6 @@
 	</div>
 	
 
-	
-<script type='text/javascript'>
-
-	var biApp;
-	var startTime = new Date();
-	var myInterval;
-	var isPaused = false;
-
-	var directions = [
-		{
-			name		: 'q11',
-			speed		: 0.005,
-			direction	: -1
-		},
-		{
-			name		: 'q12',
-			speed		: 0.0035,
-			direction	: 1
-		},
-		{
-			name		: 'q21',
-			speed		: 0.0015,
-			direction	: 1
-		},
-		{
-			name		: 'q22',
-			speed		: 0.002,
-			direction	: -1
-		}
-	];
-
-
-	function updateDirections()
-	{
-		for( i = 0; i < 4; i++ )
-		{
-			var val = biApp[ directions[ i ].name ];
-
-			val += ( directions[ i ].speed * directions[ i ].direction );
-
-			if( val < 0 )
-			{
-				directions[ i ].direction = 1;
-				val = 0;
-			}
-
-			if( val > 1 )
-			{
-				directions[ i ].direction = -1;
-				val = 1;
-			}
-
-			biApp[ directions[ i ].name ] = val;
-		}
-	}
-
-
-	$( document ).on( 
-			'EVS:CoreLoaded', 
-			function()
-			{
-				biApp = new BilinearInterpolator( 'surface', 1.0, 0.7, 0.5, 0.3 ); // new Color( 255, 0, 0 ), new Color( 0, 255, 0 ), new Color( 0, 0, 255 ), new Color( 255, 0, 0 ) );
-
-				myInterval = setInterval(
-						function()
-						{
-							if( ( biApp.isDrawing() === true ) || ( isPaused === true ) )
-							{
-								return;
-							}
-
-
-							updateDirections();
-
-							biApp.draw();
-
-							console.log( 'drew' );
-						},
-						25
-					);
-			}
-		);
-
-</script>
-
+	<script data-main='app'  src='../vendor/require.js'></script>
 </body>
 </html>

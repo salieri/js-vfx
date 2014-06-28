@@ -1,30 +1,39 @@
 
-/**
- * Creates a new light
- * @constructor
- */
+define( [ 'Core/Point3D' ],
 
-function Light()
+function( Point3D )
 {
-	this.position = new Point3D();
-}
+	'use strict';
 
-
-Light.prototype = {
-	
-	
 	/**
-	 * @param {Vector3D} viewerDirection
-	 * @param {Point3D} normal3DPosition
-	 * @param {Vector3D} normal
-	 * @param {LightData} targetLightData
+	 * Creates a new light
+	 * @constructor
 	 */
-	
-	calculateLightData : function( viewerDirection, normal3DPosition, normal, targetLightData )
-	{
-		// do nothing
-	}
-	
-};
 
+	var Light = function()
+	{
+		this.position = new Point3D();
+	};
+
+
+	Light.prototype = {
+
+
+		/**
+		 * @param {Vector3D} viewerDirection
+		 * @param {Point3D} normal3DPosition
+		 * @param {Vector3D} normal
+		 * @param {LightData} targetLightData
+		 * @abstract
+		 */
+		calculateLightData : function( viewerDirection, normal3DPosition, normal, targetLightData ) // jshint ignore:line
+		{
+			// do nothing
+		}
+
+	};
+
+	return Light;
+
+} );
 

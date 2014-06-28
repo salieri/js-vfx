@@ -1,25 +1,34 @@
-/**
- * @constructor
- */
 
-function Renderer()
+define( [],
+
+function()
 {
-	
-}
-
-
-Renderer.prototype = {
+	'use strict';
 
 	/**
-	 * Rasterize scene
-	 *
-	 * @param {Scene} scene
+	 * @constructor
 	 */
-
-	draw : function( scene )
+	var Renderer = function()
 	{
-		// do nothing
-	}
-	
-};
 
+	};
+
+
+	Renderer.prototype = {
+
+		/**
+		 * Rasterize scene
+		 *
+		 * @param {Scene} scene
+		 * @abstract
+		 */
+		draw : function( scene ) // jshint ignore:line
+		{
+			// do nothing
+		}
+
+	};
+
+	return Renderer;
+
+} );

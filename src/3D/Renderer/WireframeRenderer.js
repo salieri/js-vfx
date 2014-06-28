@@ -1,29 +1,36 @@
-/**
- * @constructor
- * @extends Renderer
- */
 
-function WireframeRenderer()
+define( [ '3D/Renderer/Renderer' ],
+
+function( Renderer )
 {
-	
-}
+	'use strict';
 
-
-WireframeRenderer.prototype = Helper.extend( Renderer.prototype );
-
-
-/**
- * @param {Scene} scene
- */
-
-WireframeRenderer.prototype.draw = function( scene )
-{
-	for( var m = 0; m < scene.meshes.length; m++ )
+	/**
+	 * @constructor
+	 * @extends {Renderer}
+	 */
+	var WireframeRenderer = function()
 	{
-		scene.meshes[ m ].drawWireframe();
-	}
-};
-	
+
+	};
 
 
+	WireframeRenderer.prototype = new Renderer();
 
+
+	/**
+	 * @param {Scene} scene
+	 */
+
+	WireframeRenderer.prototype.draw = function( scene )
+	{
+		for( var m = 0; m < scene.meshes.length; m++ )
+		{
+			scene.meshes[ m ].drawWireframe();
+		}
+	};
+
+
+	return WireframeRenderer;
+
+} );

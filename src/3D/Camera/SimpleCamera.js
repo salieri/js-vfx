@@ -1,61 +1,71 @@
 
-/**
- * @constructor
- * @extends Camera
- */
+define( [ 'Core/Point2D', '3D/Camera/Camera' ],
 
-function SimpleCamera()
+function( Point2D, Camera )
 {
-	this.viewerPosition		= new Point2D( 320, 240 );
-	this.perspectiveDepth	= 100;
-}
+	'use strict';
 
+	/**
+	 * @constructor
+	 * @extends Camera
+	 */
 
-
-SimpleCamera.prototype = Helper.extend( Camera.prototype );
-
-
-
-/**
- * @param {Vertex[]} vertices
- */
-
-SimpleCamera.prototype.transform = function( vertices )
-{
-	var l = vertices.length;
-
-	for( var i = 0; i < l; i++ )
+	var SimpleCamera = function()
 	{
-		var vertex		= vertices[ i ];
-		var sourcePoint = vertex.transformed;
-		var targetPoint	= vertex.cameraTransformed;
+		this.viewerPosition		= new Point2D( 320, 240 );
+		this.perspectiveDepth	= 100;
+	};
 
-		targetPoint.x = sourcePoint.x;
-		targetPoint.y = sourcePoint.y;
-		targetPoint.z = sourcePoint.z;
-	}
-};
 
-	
-/**
- * @param {Vertex[]} vertices
- */
 
-SimpleCamera.prototype.project = function( vertices )
-{
-	var l				= vertices.length;
-	var viewerPosition	= this.viewerPosition;
+	SimpleCamera.prototype = new Camera();
 
-	for( var i = 0; i < l; i++ )
+
+
+	/**
+	 * @param {Vertex[]} vertices
+	 */
+
+	SimpleCamera.prototype.transform = function( vertices )
 	{
-		var vertex		= vertices[ i ];
-		var sourcePoint = vertex.cameraTransformed;
-		var targetPoint	= vertex.cameraProjected;
-		
-		var pd			= this.perspectiveDepth / sourcePoint.z;
+		var l = vertices.length;
 
-		targetPoint.x	= ( sourcePoint.x * pd ) + this.viewerPosition.x;
-		targetPoint.y	= ( sourcePoint.y * pd ) + this.viewerPosition.y;
-	}
-};
+		for( var i = 0; i < l; i++ )
+		{
+			var vertex		= vertices[ i ];
+			var sourcePoint = vertex.transformed;
+			var targetPoint	= vertex.cameraTransformed;
 
+			targetPoint.x = sourcePoint.x;
+			targetPoint.y = sourcePoint.y;
+			targetPoint.z = sourcePoint.z;
+		}
+	};
+
+
+	/**
+	 * @param {Vertex[]} vertices
+	 */
+
+	SimpleCamera.prototype.project = function( vertices )
+	{
+		var l				= vertices.length;
+		// var viewerPosition	= this.viewerPosition;
+
+		for( var i = 0; i < l; i++ )
+		{
+			var vertex		= vertices[ i ];
+			var sourcePoint = vertex.cameraTransformed;
+			var targetPoint	= vertex.cameraProjected;
+
+			var pd			= this.perspectiveDepth / sourcePoint.z;
+
+			targetPoint.x	= ( sourcePoint.x * pd ) + this.viewerPosition.x;
+			targetPoint.y	= ( sourcePoint.y * pd ) + this.viewerPosition.y;
+		}
+	};
+
+
+	return SimpleCamera;
+
+} );

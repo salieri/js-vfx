@@ -1,224 +1,233 @@
 
-/**
- * YX notated Matrix
- * @param {int|Matrix|Array} width
- * @param {int} height
- * @constructor
- */
+define( [],
 
-function Matrix( width, height )
+function()
 {
-	this.data	= [];
-	this.width	= 0;
-	this.height	= 0;
-	
-	if( width instanceof Matrix )
-	{
-		this.set( width );
-	}
-	else if( width instanceof Array )
-	{
-		this.set( width );
-	}
-	else
-	{
-		this.resize( width, height );
-	}
-}
+	'use strict';
 
-
-Matrix.prototype = {
-	
 	/**
-	 * @returns {Matrix}
+	 * YX notated Matrix
+	 * @param {int|Matrix|Array} width
+	 * @param {int} height
+	 * @constructor
 	 */
-	
-	clone : function()
+	var Matrix = function( width, height )
 	{
-		var m = new Matrix( this.width, this.height );
-		
-		for( var y = 0; y < this.height; y++ )
+		this.data	= [];
+		this.width	= 0;
+		this.height	= 0;
+
+		if( width instanceof Matrix )
 		{
-			for( var x = 0; x < this.width; x++ )
-			{
-				m.data[ y ][ x ] = this.data[ y ][ x ];
-			}
+			this.set( width );
 		}
-		
-		return m;
-	},
-	
-
-	/**
-	 * @param {Matrix|Array} matrix
-	 */
-	
-	set : function( matrix )
-	{
-		var y;
-
-		if( matrix instanceof Array )
+		else if( width instanceof Array )
 		{
-			this.data	= Array( matrix.length );
-			
-			this.height	= matrix.length;
-			this.width	= matrix[ 0 ].length;
-			
-			for( y = 0; y < matrix.length; y++ )
-			{
-				this.data[ y ] = matrix[ y ].slice( 0 );
-			}		
+			this.set( width );
 		}
 		else
 		{
-			this.data	= Array( matrix.data.length );
-			this.height	= matrix.height;
-			this.width	= matrix.width;
-
-			for( y = 0; y < matrix.data.length; y++ )
-			{
-				this.data[ y ] = matrix.data[ y ].slice( 0 );
-			}		
+			this.resize( width, height );
 		}
-	},
+	};
 
 
-	/**
-	 * @param {int} width
-	 * @param {int} height
-	 */
-	
-	resize : function( width, height )
-	{
-		this.data	= new Array( height );
-		this.width	= width;
-		this.height	= height;
+	Matrix.prototype = {
 
-		for( var y = 0; y < height; y++ )
+		/**
+		 * @returns {Matrix}
+		 * @public
+		 */
+		clone : function()
 		{
-			this.data[ y ] = new Array( width );
-		}		
-	},
+			var m = new Matrix( this.width, this.height );
 
-
-	/**
-	 * sourcePoint and targetPoint MUST NOT be the same object
-	 * 
-	 * @param {Point3D} sourcePoint
-	 * @param {Point3D} targetPoint
-	 * @todo Remove hardcoding
-	 */
-
-	multiplyPoint3D : function( sourcePoint, targetPoint )
-	{
-		targetPoint.x =	sourcePoint.x * this.data[ 0 ][ 0 ] +
-				sourcePoint.y * this.data[ 0 ][ 1 ] +
-				sourcePoint.z * this.data[ 0 ][ 2 ];
-	
-		targetPoint.y =	sourcePoint.x * this.data[ 1 ][ 0 ] +
-				sourcePoint.y * this.data[ 1 ][ 1 ] +
-				sourcePoint.z * this.data[ 1 ][ 2 ];
-
-		targetPoint.z =	sourcePoint.x * this.data[ 2 ][ 0 ] +
-				sourcePoint.y * this.data[ 2 ][ 1 ] +
-				sourcePoint.z * this.data[ 2 ][ 2 ];
-	},
-
-
-	/**
-	 * @param {Matrix} matrix
-	 * @returns {Matrix}
-	 */
-	
-	multiplyMatrix : function( matrix )
-	{
-		if( this.height !== matrix.width )
-		{
-			return null;
-		}
-		
-		var m		= new Matrix( matrix.width, this.height );
-		var size	= this.height;
-		
-		for( var y = 0; y < this.height; y++ )
-		{
-			for( var x = 0; x < matrix.width; x++ )
+			for( var y = 0; y < this.height; y++ )
 			{
-				var val = 0;
-				
-				for( var i = 0; i < size; i++ )
+				for( var x = 0; x < this.width; x++ )
 				{
-					val += this.data[ y ][ i ] * matrix.data[ i ][ x ];
-				}	
-				
-				m.data[ y ][ x ] = val;
-			}			
-		}
-		
-		return m;
-	},
-	
-
-	/**
-	 * @param {Matrix} matrix
-	 */
-
-	add : function( matrix )
-	{
-		if( ( this.width !== matrix.width ) || ( this.height !== matrix.height ) )
-		{
-			return;
-		}		
-				
-		for( var y = 0; y < this.height; y++ )
-		{
-			for( var x = 0; x < matrix.width; x++ )
-			{
-				this.data[ y ][ x ] += matrix.data[ y ][ x ];
+					m.data[ y ][ x ] = this.data[ y ][ x ];
+				}
 			}
-		}
-	},
-	
-	
-	/**
-	 * @param {Matrix} matrix
-	 */
 
-	subtract : function( matrix )
-	{
-		if( ( this.width !== matrix.width ) || ( this.height !== matrix.height ) )
+			return m;
+		},
+
+
+		/**
+		 * @param {Matrix|Array} matrix
+		 * @public
+		 */
+		set : function( matrix )
 		{
-			return;
-		}		
-				
-		for( var y = 0; y < this.height; y++ )
-		{
-			for( var x = 0; x < matrix.width; x++ )
+			var y;
+
+			if( matrix instanceof Array )
 			{
-				this.data[ y ][ x ] -= matrix.data[ y ][ x ];
+				this.data	= new Array( matrix.length );
+
+				this.height	= matrix.length;
+				this.width	= matrix[ 0 ].length;
+
+				for( y = 0; y < matrix.length; y++ )
+				{
+					this.data[ y ] = matrix[ y ].slice( 0 );
+				}
 			}
-		}
-	},
-	
-
-	/**
-	 * @returns {Matrix}
-	 */
-
-	transpose : function()
-	{
-		var t = new Matrix( this.height, this.width );
-		
-		for( var y = 0; y < this.height; y++ )
-		{
-			for( var x = 0; x < this.width; x++ )
+			else
 			{
-				t.data[ x ][ y ] = this.data[ y ][ x ];
+				this.data	= new Array( matrix.data.length );
+				this.height	= matrix.height;
+				this.width	= matrix.width;
+
+				for( y = 0; y < matrix.data.length; y++ )
+				{
+					this.data[ y ] = matrix.data[ y ].slice( 0 );
+				}
 			}
+		},
+
+
+		/**
+		 * @param {int} width
+		 * @param {int} height
+		 * @public
+		 */
+		resize : function( width, height )
+		{
+			this.data	= new Array( height );
+			this.width	= width;
+			this.height	= height;
+
+			for( var y = 0; y < height; y++ )
+			{
+				this.data[ y ] = new Array( width );
+			}
+		},
+
+
+		/**
+		 * sourcePoint and targetPoint MUST NOT be the same object
+		 *
+		 * @param {Point3D} sourcePoint
+		 * @param {Point3D} targetPoint
+		 * @todo Remove hardcoding
+		 * @public
+		 */
+		multiplyPoint3D : function( sourcePoint, targetPoint )
+		{
+			targetPoint.x =	sourcePoint.x * this.data[ 0 ][ 0 ] +
+					sourcePoint.y * this.data[ 0 ][ 1 ] +
+					sourcePoint.z * this.data[ 0 ][ 2 ];
+
+			targetPoint.y =	sourcePoint.x * this.data[ 1 ][ 0 ] +
+					sourcePoint.y * this.data[ 1 ][ 1 ] +
+					sourcePoint.z * this.data[ 1 ][ 2 ];
+
+			targetPoint.z =	sourcePoint.x * this.data[ 2 ][ 0 ] +
+					sourcePoint.y * this.data[ 2 ][ 1 ] +
+					sourcePoint.z * this.data[ 2 ][ 2 ];
+		},
+
+
+		/**
+		 * @param {Matrix} matrix
+		 * @returns {Matrix}
+		 * @public
+		 */
+		multiplyMatrix : function( matrix )
+		{
+			if( this.height !== matrix.width )
+			{
+				return null;
+			}
+
+			var m		= new Matrix( matrix.width, this.height );
+			var size	= this.height;
+
+			for( var y = 0; y < this.height; y++ )
+			{
+				for( var x = 0; x < matrix.width; x++ )
+				{
+					var val = 0;
+
+					for( var i = 0; i < size; i++ )
+					{
+						val += this.data[ y ][ i ] * matrix.data[ i ][ x ];
+					}
+
+					m.data[ y ][ x ] = val;
+				}
+			}
+
+			return m;
+		},
+
+
+		/**
+		 * @param {Matrix} matrix
+		 * @public
+		 */
+
+		add : function( matrix )
+		{
+			if( ( this.width !== matrix.width ) || ( this.height !== matrix.height ) )
+			{
+				return;
+			}
+
+			for( var y = 0; y < this.height; y++ )
+			{
+				for( var x = 0; x < matrix.width; x++ )
+				{
+					this.data[ y ][ x ] += matrix.data[ y ][ x ];
+				}
+			}
+		},
+
+
+		/**
+		 * @param {Matrix} matrix
+		 * @public
+		 */
+		subtract : function( matrix )
+		{
+			if( ( this.width !== matrix.width ) || ( this.height !== matrix.height ) )
+			{
+				return;
+			}
+
+			for( var y = 0; y < this.height; y++ )
+			{
+				for( var x = 0; x < matrix.width; x++ )
+				{
+					this.data[ y ][ x ] -= matrix.data[ y ][ x ];
+				}
+			}
+		},
+
+
+		/**
+		 * @returns {Matrix}
+		 * @public
+		 */
+		transpose : function()
+		{
+			var t = new Matrix( this.height, this.width );
+
+			for( var y = 0; y < this.height; y++ )
+			{
+				for( var x = 0; x < this.width; x++ )
+				{
+					t.data[ x ][ y ] = this.data[ y ][ x ];
+				}
+			}
+
+			return t;
 		}
-		
-		return t;
-	}
 
-};
+	};
 
+
+	return Matrix;
+} );

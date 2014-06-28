@@ -1,39 +1,48 @@
 
-/**
- * Triad face
- * 
- * @param {int} a
- * @param {int} b
- * @param {int} c
- * @param {Material} [material]
- * @param {Number} [u]
- * @param {Number} [v]
- * @constructor
- */
+define( [ 'Core/Point3D', 'Core/Vector3D', '3D/Light/LightData', '3D/Material/SolidColorMaterial' ],
 
-function Face( a, b, c, material, uvA, uvB, uvC )
+function( Point3D, Vector3D, LightData, SolidColorMaterial )
 {
-	this.a	= a;
-	this.b	= b;
-	this.c	= c;
+	'use strict';
 
-	this.uvA	= uvA || new Point3D();
-	this.uvB	= uvB || new Point3D();
-	this.uvC	= uvC || new Point3D();
+	/**
+	 * Triad face
+	 *
+	 * @param {int} a
+	 * @param {int} b
+	 * @param {int} c
+	 * @param {Material} [material]
+	 * @param {Point3D} [uvA]
+	 * @param {Point3D} [uvB]
+	 * @param {Point3D} [uvC]
+	 * @constructor
+	 */
+	var Face = function( a, b, c, material, uvA, uvB, uvC )
+	{
+		this.a	= a;
+		this.b	= b;
+		this.c	= c;
 
-	this.order		= 0;
-	this.visible	= false;
-	
-	this.material		= material || new SolidColorMaterial();
-	this.normal			= new Vector3D();
-	this.position		= new Point3D();	
-	this.lightData		= new LightData();
-}
+		this.uvA	= uvA || new Point3D();
+		this.uvB	= uvB || new Point3D();
+		this.uvC	= uvC || new Point3D();
+
+		this.order		= 0;
+		this.visible	= false;
+
+		this.material		= material || new SolidColorMaterial();
+		this.normal			= new Vector3D();
+		this.position		= new Point3D();
+		this.lightData		= new LightData();
+	};
+
+	Face.prototype = {
 
 
-Face.prototype = {	
-	
-	
-	
-};
 
+	};
+
+
+	return Face;
+
+} );
