@@ -4,6 +4,8 @@ define( [ 'Core/Helper', 'Core/Texture' ],
 
 function( Helper, Texture )
 {
+	'use strict';
+
 	/**
 	 * @param {string} canvasElementId Name of the canvas element to be used
 	 * @constructor

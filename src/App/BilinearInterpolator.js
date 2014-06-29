@@ -12,6 +12,8 @@ define( [ 'Core/App', 'Core/NormalizedColor' ],
 
 function( App, NormalizedColor )
 {
+	'use strict';
+
 	/**
 	 * @param {string} targetCanvasId
 	 * @param {number} q11

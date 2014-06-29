@@ -6,6 +6,8 @@ define( [ 'Core/Point3D' ],
 
 function( Point3D )
 {
+	'use strict';
+
 	/**
 	 * @param {Number|int|float|Vector3D|Point3D} [x=0]
 	 * @param {int|float|Number} [y=0]
@@ -13,7 +15,7 @@ function( Point3D )
 	 * @constructor
 	 * @extends {Point3D}
 	 */
-	Vector3D = function( x, y, z )
+	var Vector3D = function( x, y, z )
 	{
 		if( ( x instanceof Vector3D ) || ( x instanceof Point3D ) )
 		{

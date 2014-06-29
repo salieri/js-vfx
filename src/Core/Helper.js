@@ -3,6 +3,7 @@ define( [ 'jquery' ],
 
 function( $ )
 {
+	'use strict';
 
 	/**
 	 * @namespace
@@ -29,8 +30,10 @@ function( $ )
 			{
 				totalOffsetX += element.offsetLeft - element.scrollLeft;
 				totalOffsetY += element.offsetTop - element.scrollTop;
+
+				element = element.offsetParent;
 			}
-			while( element = element.offsetParent );
+			while( element );
 
 			canvasX = event.pageX - totalOffsetX;
 			canvasY = event.pageY - totalOffsetY;

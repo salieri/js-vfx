@@ -7,8 +7,10 @@
 
 define( [ 'Core/App', 'Core/Vector3D', 'Core/CanvasTexture' ],
 
-function( App, Vector3D, CanvasTexture )
+function( App, Vector3D /*, CanvasTexture */ )
 {
+	'use strict';
+
 	/**
 	 * @param {string} targetCanvasId
 	 * @param {CanvasTexture} texture
@@ -58,9 +60,9 @@ function( App, Vector3D, CanvasTexture )
 	
 		var divisor = Math.sqrt(
 							( phphaDifference * phphaDifference )
-							+
+							+ // jshint ignore:line
 							( phphrDifference * phphrDifference )
-							+
+							+ // jshint ignore:line
 							this.embossDepth
 						);
 	

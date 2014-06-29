@@ -12,6 +12,8 @@ define( [ 'Core/App', 'Core/CanvasTexture', 'Core/EmptyTexture' ],
 
 function( App, CanvasTexture, EmptyTexture )
 {
+	'use strict';
+
 	/**
 	 * @link http://popscan.blogspot.co.uk/2012/04/fisheye-lens-equation-simple-fisheye.html
 	 * @param {string} targetCanvasId
@@ -65,7 +67,13 @@ function( App, CanvasTexture, EmptyTexture )
 		for( var i = 0; i < this.lenses.length; i++ )
 		{
 			this.textures[ curDestCanvas ].data.data.set( new Uint8ClampedArray( this.textures[ curSourceCanvas ].data.data ) );
-			this.drawLens( Math.round( this.lenses[ i ].x ), Math.round( this.lenses[ i ].y ), Math.round( this.lenses[ i ].radius ), this.textures[ curDestCanvas ], this.textures[ curSourceCanvas ] );
+
+			this.drawLens(
+					Math.round( this.lenses[ i ].x ),
+					Math.round( this.lenses[ i ].y ),
+					Math.round( this.lenses[ i ].radius ),
+					this.textures[ curDestCanvas ], this.textures[ curSourceCanvas ]
+				);
 
 			curSourceCanvas	= 1 - curSourceCanvas;
 			curDestCanvas	= 1 - curDestCanvas;
