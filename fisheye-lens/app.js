@@ -68,7 +68,7 @@ function()
 
 					if( Math.abs( lenses[ i ].speedY ) < 8 )
 					{
-						lenses[ i ].speedY *= 3;
+						lenses[ i ].speedY *= 2;
 					}
 				}
 			}
