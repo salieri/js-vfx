@@ -1,8 +1,8 @@
 
 
-define( [ 'Core/Helper', 'Core/Texture' ],
+define( [ 'Core/Helper', 'Core/Texture', 'Core/VirtualSurface' ],
 
-function( Helper, Texture )
+function( Helper, Texture, VirtualSurface )
 {
 	'use strict';
 
@@ -51,6 +51,8 @@ function( Helper, Texture )
 
 		this.width	= this.canvas.width;
 		this.height	= this.canvas.height;
+
+		this.virtualSurface	= new VirtualSurface( this.width, this.height, this.data.data );
 	};
 
 

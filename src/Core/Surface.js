@@ -1,7 +1,7 @@
 
-define( [ 'Core/Helper', 'Core/Color' ],
+define( [ 'Core/Helper', 'Core/Color', 'Core/VirtualSurface' ],
 
-function( Helper /*, Color*/ )
+function( Helper, Color, VirtualSurface )
 {
 	'use strict';
 
@@ -27,8 +27,9 @@ function( Helper /*, Color*/ )
 
 		this.context	= this.canvas.getContext( '2d' );
 
-		this.imageData	= null;
-		this.drawing	= false;
+		this.imageData		= null;
+		this.virtualSurface	= null;
+		this.drawing		= false;
 	};
 
 
@@ -81,7 +82,9 @@ function( Helper /*, Color*/ )
 		 */
 		beginPaint : function()
 		{
-			this.imageData	= this.context.createImageData( this.getWidth(), this.getHeight() );
+			this.imageData		= this.context.createImageData( this.getWidth(), this.getHeight() );
+			this.virtualSurface	= new VirtualSurface( this.getWidth(), this.getHeight(), this.imageData.data );
+
 			this.drawing	= true;
 		},
 

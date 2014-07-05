@@ -1,0 +1,7 @@
+<component name="ProjectRunConfigurationManager">
+  <configuration default="false" name="Debug Fisheye Lens" type="JavascriptDebugType" factoryName="JavaScript Debug" singleton="false" uri="file://$PROJECT_DIR$/fisheye-lens/index.html">
+    <RunnerSettings RunnerId="JavascriptDebugRunner" />
+    <ConfigurationWrapper RunnerId="JavascriptDebugRunner" />
+    <method />
+  </configuration>
+</component>

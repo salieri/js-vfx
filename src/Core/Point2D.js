@@ -105,6 +105,17 @@ function( Point3D, Vector3D )
 		{
 			this.x -= point.x;
 			this.y -= point.y;
+		},
+
+
+		/**
+		 * @param {int|float|number} val
+		 * @public
+		 */
+		multiplyByVal : function( val )
+		{
+			this.x *= val;
+			this.y *= val;
 		}
 
 	};

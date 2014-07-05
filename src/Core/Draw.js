@@ -144,6 +144,22 @@ function( Surface, Color, Point2D, Point3D, CanvasTexture, Line, BetterTriangle,
 		},
 
 
+		blendValue : function( bgValue, fgValue, opacity )
+		{
+			if( opacity === 255 )
+			{
+				return fgValue;
+			}
+
+			if( opacity === 0 )
+			{
+				return bgValue;
+			}
+
+			return Math.min( 255, Math.max( 0, bgValue + Math.round( ( fgValue - bgValue ) * ( opacity / 255 ) ) ) );
+		},
+
+
 		/**
 		 * @param {Point2D} p1
 		 * @param {Point2D} p2

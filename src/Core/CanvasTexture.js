@@ -1,8 +1,8 @@
 
 
-define( [ 'Core/Texture', 'Core/Helper' ],
+define( [ 'Core/Texture', 'Core/Helper', 'Core/VirtualSurface' ],
 
-function( Texture, Helper )
+function( Texture, Helper, VirtualSurface )
 {
 	'use strict';
 
@@ -22,6 +22,7 @@ function( Texture, Helper )
 		this.image				= new Image();
 		this.image.crossOrigin	= 'Anonymous';
 		this.image.src			= src;
+		this.wasDrawn			= false;
 
 
 		// Let's update stuff once the image has loaded
@@ -33,6 +34,9 @@ function( Texture, Helper )
 				me.canvas.width		= me.image.width;
 				me.canvas.height	= me.image.height;
 				me.data				= me.getPixels().data;
+				me.wasDrawn			= false;
+
+				me.virtualSurface	= new VirtualSurface( me.image.width, me.image.height, me.data );
 
 				if( typeof( me.onload ) === 'function' )
 				{
@@ -60,7 +64,12 @@ function( Texture, Helper )
 	
 	CanvasTexture.prototype.getPixels = function()
 	{
-		this.context.drawImage( this.image, 0, 0 );
+		if( this.wasDrawn === false )
+		{
+			this.context.drawImage( this.image, 0, 0 );
+			this.wasDrawn = true;
+		}
+
 		return this.context.getImageData( 0, 0, this.getWidth(), this.getHeight() );
 	};
 	

@@ -215,7 +215,7 @@ function( App, Vector3D /*, CanvasTexture */ )
 	 */
 	Bumper.prototype.isLoaded = function()
 	{
-		return ( ( this.heightMapTexture.loaded === true ) && ( this.texture.loaded === true ) )
+		return ( ( this.heightMapTexture.loaded === true ) && ( this.texture.loaded === true ) );
 	};
 
 

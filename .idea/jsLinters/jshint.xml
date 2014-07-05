@@ -9,7 +9,7 @@
     <option couch="false" />
     <option curly="true" />
     <option debug="false" />
-    <option devel="false" />
+    <option devel="true" />
     <option dojo="false" />
     <option eqeqeq="true" />
     <option eqnull="false" />

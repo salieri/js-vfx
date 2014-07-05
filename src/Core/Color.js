@@ -67,7 +67,7 @@ function()
 
 		/**
 		 * @param {Color} color
-		 * @param {boolean} skipSafety
+		 * @param {boolean} [skipSafety=false]
 		 */
 		add : function( color, skipSafety )
 		{
@@ -85,7 +85,7 @@ function()
 
 		/**
 		 * @param {Color} color
-		 * @param {boolean} skipSafety
+		 * @param {boolean} [skipSafety=false]
 		 */
 		subtract : function( color, skipSafety )
 		{
@@ -126,7 +126,7 @@ function()
 
 		/**
 		 * @param {Color|NormalizedColor} color
-		 * @param {boolean} skipSafety
+		 * @param {boolean} [skipSafety=false]
 		 */
 		multiply : function( color, skipSafety )
 		{
@@ -144,8 +144,8 @@ function()
 
 
 		/**
-		 * @param {float} value
-		 * @param {boolean} skipSafety
+		 * @param {float|int|number} value
+		 * @param {boolean} [skipSafety=false]
 		 */
 		multiplyByVal : function( value, skipSafety )
 		{
@@ -162,8 +162,8 @@ function()
 
 
 		/**
-		 * @param {int|float} divisor
-		 * @param {boolean} skipSafety
+		 * @param {int|float|number} divisor
+		 * @param {boolean} [skipSafety=false]
 		 */
 		divideByVal : function( divisor, skipSafety )
 		{
@@ -183,7 +183,7 @@ function()
 		 * @param {Color} colorA
 		 * @param {Color} colorB
 		 * @param {int} stepCount
-		 * @param {boolean} skipSafety
+		 * @param {boolean} [skipSafety=false]
 		 */
 		interpolate : function( colorA, colorB, stepCount, skipSafety )
 		{

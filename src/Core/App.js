@@ -1,7 +1,7 @@
 
-define( [ 'Core/Helper' ],
+define( [ 'Core/Helper', 'Core/VirtualSurface' ],
 
-function( Helper )
+function( Helper, VirtualSurface )
 {
 	'use strict';
 
@@ -17,6 +17,8 @@ function( Helper )
 			this.canvas			= Helper.getElement( this.canvasId );
 			this.canvasContext	= this.canvas.getContext( '2d' );
 			this.canvasPixels	= this.canvas.getContext( '2d' ).createImageData( this.canvas.width, this.canvas.height );
+
+			this.virtualSurface	= new VirtualSurface( this.canvas.width, this.canvas.height, this.canvasPixels.data );
 		}
 		else
 		{
@@ -24,6 +26,7 @@ function( Helper )
 			this.canvasId		= '';
 			this.canvasContext	= null;
 			this.canvasPixels	= null;
+			this.virtualSurface	= null;
 		}
 	};
 
@@ -42,8 +45,13 @@ function( Helper )
 		/**
 		 * @public
 		 */
-		endDrawing : function()
+		endDrawing : function( pushToCanvas )
 		{
+			if( pushToCanvas === true )
+			{
+				this.canvas.getContext( '2d' ).putImageData( this.canvasPixels, 0, 0 );
+			}
+
 			this.drawing = false;
 		},
 
