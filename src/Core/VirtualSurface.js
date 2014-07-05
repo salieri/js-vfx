@@ -7,15 +7,28 @@ function()
 	'use strict';
 
 	/**
-x	 * @param {int} width
+	 * @param {int} width
 	 * @param {int} height
 	 * @param {Uint8ClampedArray} [data]
 	 */
 	var VirtualSurface = function( width, height, data )
 	{
-		this.data	= data || new Uint8ClampedArray( width * height * 4 );
+		var doClear = false;
+
+		if( !data )
+		{
+			data	= new Uint8ClampedArray( width * height * 4 );
+			doClear	= true;
+		}
+
+		this.data	= data;
 		this.width	= width;
 		this.height	= height;
+
+		if( doClear )
+		{
+			this.clear();
+		}
 	};
 
 
@@ -64,6 +77,21 @@ x	 * @param {int} width
 					this.data[ ptr + 1 ],
 					this.data[ ptr + 2 ]
 				);
+		},
+
+
+		clear : function()
+		{
+			var maxPtr	= this.data.length,
+				ptr		= 0;
+
+			while( ptr < maxPtr )
+			{
+				this.data[ ptr++ ] =  0;
+				this.data[ ptr++ ] =  0;
+				this.data[ ptr++ ] =  0;
+				this.data[ ptr++ ] =  255;
+			}
 		}
 
 	};

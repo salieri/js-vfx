@@ -19,6 +19,8 @@ function( Helper, VirtualSurface )
 			this.canvasPixels	= this.canvas.getContext( '2d' ).createImageData( this.canvas.width, this.canvas.height );
 
 			this.virtualSurface	= new VirtualSurface( this.canvas.width, this.canvas.height, this.canvasPixels.data );
+
+			this.virtualSurface.clear();
 		}
 		else
 		{

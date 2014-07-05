@@ -89,12 +89,6 @@ function( App, CanvasTexture, Draw, Texture, Point2D, Color, VirtualSurface )
 		}
 
 
-		for( i = 3; i < this.virtualSurface.data.length; i += 4 )
-		{
-			this.virtualSurface.data[ i ] = 255;
-			// this.drawArea.data[ i ] = 255;
-		}
-
 		this.endDrawing( true );
 
 
