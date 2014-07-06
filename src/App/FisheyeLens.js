@@ -31,7 +31,6 @@ function( App, CanvasTexture, EmptyTexture )
 	};
 
 
-
 	FisheyeLens.prototype = new App();
 
 
