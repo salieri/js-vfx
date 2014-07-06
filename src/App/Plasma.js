@@ -94,8 +94,6 @@ function( App, NormalizedColor, Color )
 			col.getColor( finalColor );
 			this.precalcColors[ i ]	= finalColor;
 		}
-
-
 	};
 
 	
