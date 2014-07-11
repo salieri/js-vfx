@@ -88,7 +88,6 @@ function( App, NormalizedColor, Color )
 			}
 		}
 
-console.log( "Drew" );
 		this.endDrawing( true );
 	};
 

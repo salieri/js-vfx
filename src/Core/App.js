@@ -1,7 +1,7 @@
 
-define( [ 'Core/Helper', 'Core/VirtualSurface' ],
+define( [ 'Core/Helper', 'Core/VirtualSurface', 'Core/Draw' ],
 
-function( Helper, VirtualSurface )
+function( Helper, VirtualSurface, Draw )
 {
 	'use strict';
 
@@ -41,6 +41,8 @@ function( Helper, VirtualSurface )
 		startDrawing : function()
 		{
 			this.drawing = true;
+
+			Draw.setSurface( this.virtualSurface );
 		},
 
 

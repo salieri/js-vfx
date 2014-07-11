@@ -4,14 +4,14 @@ function()
 {
 	'use strict';
 	
-	require( [ 'App/Mandelbrot', '../mandelbrot/ui' ],
-	function( Mandelbrot, ui )
+	require( [ 'App/Sierpinski', '../sierpinski/ui' ],
+	function( Sierpinski, ui )
 	{
 		var app;
 
 		var init = function()
 		{
-			app = new Mandelbrot( 'surface' );
+			app = new Sierpinski( 'surface' );
 
 			ui.init( app );
 
