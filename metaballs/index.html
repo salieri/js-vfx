@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Sierpiński Triangle</title>
+	<title>Metaballs</title>
 	
 	<link rel='stylesheet' type='text/css' href='http://ajax.googleapis.com/ajax/libs/jqueryui/1.10.4/themes/ui-lightness/jquery-ui.min.css' />
 	<link rel='stylesheet' type='text/css' href='http://cdnjs.cloudflare.com/ajax/libs/foundation/4.3.1/css/foundation.min.css' />
@@ -9,9 +9,9 @@
 <body>
 	<div class='row'>
 		<div class='twenty columnns'>
-			<h1>Sierpiński Triangle</h1>
+			<h1>Metaballs</h1>
 			
-			<p>A pure JavaScript implementation of <a href='http://en.wikipedia.org/wiki/Sierpi%C5%84ski_triangle'>Sierpiński triangle</a>.</p>
+			<p>A pure JavaScript implementation of <a href='http://en.wikipedia.org/wiki/Metaballs'>Blinn's Metaballs</a>.</p>
 		</div>
 	</div>	
 
@@ -21,17 +21,16 @@
 		</div>
 	</div>
 
-
 	<div class='row'>
-		<h4>Resolution</h4>
+		<h4>Min Threshold</h4>
 
-		<div id='inputIterations'></div>
+		<div id='inputMinThreshold'></div>
 	</div>
 
 	<div class='row'>
-		<h4>Zoom</h4>
+		<h4>Max Threshold</h4>
 
-		<div id='inputZoom'></div>
+		<div id='inputMaxThreshold'></div>
 	</div>
 
 	<script data-main='app'  src='../vendor/require.js'></script>

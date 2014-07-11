@@ -22,7 +22,7 @@ function( App, NormalizedColor, Color, Point2D, Draw )
 		App.call( this, targetCanvasId );
 
 		this.zoom			= 1;
-		this.maxIterations	= 100;
+		this.maxIterations	= 15;
 
 		this.calculatePalette();
 	};

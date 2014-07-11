@@ -114,8 +114,19 @@ function( Color )
 			color.g = Math.round( this.g * 255 );
 			color.b = Math.round( this.b * 255 );
 			color.a = Math.round( this.a * 255 );
+		},
+
+
+		/**
+		 * @param {NormalizedColor} color
+		 */
+		add : function( color )
+		{
+			this.r = this.r + color.r;
+			this.g = this.g + color.g;
+			this.b = this.b + color.b;
 		}
-	
+
 	};
 
 
