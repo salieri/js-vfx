@@ -2,6 +2,8 @@
  * Metaballs demo
  *
  * @link http://en.wikipedia.org/wiki/Metaballs
+ * @link http://www.gamedev.net/page/resources/_/technical/graphics-programming-and-theory/exploring-metaballs-and-isosurfaces-in-2d-r2556
+ * @link http://www.somethinghitme.com/2012/06/06/2d-metaballs-with-canvas/
  *
  * Written by Aleksi Asikainen 2014.
  */
@@ -32,7 +34,7 @@ function( App, NormalizedColor, Color, Point2D, Draw )
 	Metaballs.prototype = new App();
 
 
-	Metaballs.prototype.draw = function()
+	Metaballs.prototype.draw = function() // jshint ignore:line
 	{
 		this.startDrawing();
 

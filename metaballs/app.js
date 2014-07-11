@@ -25,7 +25,7 @@ function()
 						radius		: radius,
 						power		: 0.5 + Math.random() * 0.5,
 						direction	: new Point2D( -1 + Math.random() * 2, -1 + Math.random() ),
-						tint		: new NormalizedColor( 0.7 + 0.3 * Math.random(), 0.5 + 0.5 * Math.random(), 0.5 + 0.5 * Math.random() )
+						tint		: new NormalizedColor( 0.7 + 0.3 * Math.random(), 0.7 + 0.3 * Math.random(), 0.7 + 0.3 * Math.random() )
 					}
 				);
 		}
