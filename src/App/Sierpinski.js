@@ -82,6 +82,7 @@ function( App, NormalizedColor, Color, Point2D, Draw )
 	{
 		this.startDrawing();
 
+		Draw.setSurface( this.virtualSurface );
 		Draw.clear();
 
 /*		var data	= this.virtualSurface.getData();

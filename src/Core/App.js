@@ -1,5 +1,5 @@
 
-define( [ 'Core/Helper', 'Core/VirtualSurface', 'Core/Draw' ],
+define( [ 'Core/Helper', 'Core/VirtualSurface' ],
 
 function( Helper, VirtualSurface, Draw )
 {
@@ -42,7 +42,7 @@ function( Helper, VirtualSurface, Draw )
 		{
 			this.drawing = true;
 
-			Draw.setSurface( this.virtualSurface );
+			// Draw.setSurface( this.virtualSurface );
 		},
 
 
