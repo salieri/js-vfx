@@ -3,7 +3,7 @@
 * Particle engine
 * Rotozoomer
 * Fractals
-* Metaballs
+* -Metaballs-
 * Raytracing
 * Shadebobs
 * Image processing effects
@@ -19,6 +19,8 @@
 * Mipmapping
 * Collision detection
 * Starfield
+* Ripple
+* Twirl
 
 
 
