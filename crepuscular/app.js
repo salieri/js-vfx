@@ -4,8 +4,8 @@ function()
 {
 	'use strict';
 
-	require( [ '../crepuscular/ui', 'App/CrepuscularApp', 'Core/Point2D', 'jquery', 'jqueryui' ],
-	function( ui, CrepuscularApp, Point2D, $ )
+	require( [ '../crepuscular/ui', 'App/Crepuscular', 'Core/Point2D', 'jquery', 'jqueryui' ],
+	function( ui, Crepuscular, Point2D, $ )
 	{
 		var myInterval;
 
@@ -37,7 +37,7 @@ function()
 
 		var init = function()
 		{
-			var app	= new CrepuscularApp( 'surface', 'resources/bg.png', 'resources/mask3.png', 'resources/light.png' );
+			var app	= new Crepuscular( 'surface', 'resources/bg.png', 'resources/mask3.png', 'resources/light.png' );
 
 			app.addLight( lights );
 

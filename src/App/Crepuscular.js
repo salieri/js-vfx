@@ -12,7 +12,7 @@ function( App, CanvasTexture, Draw, Texture, Point2D, Color, VirtualSurface )
 {
 	'use strict';
 
-	var CrepuscularApp = function( canvasId, backgroundImageUrl, maskImageUrl )
+	var Crepuscular = function( canvasId, backgroundImageUrl, maskImageUrl )
 	{
 		App.call( this, canvasId );
 
@@ -39,10 +39,10 @@ function( App, CanvasTexture, Draw, Texture, Point2D, Color, VirtualSurface )
 	};
 
 
-	CrepuscularApp.prototype = new App();
+	Crepuscular.prototype = new App();
 
 
-	CrepuscularApp.prototype.draw = function()
+	Crepuscular.prototype.draw = function()
 	{
 		var i;
 		var drawStart = Date.now();
@@ -121,7 +121,7 @@ function( App, CanvasTexture, Draw, Texture, Point2D, Color, VirtualSurface )
 	 * @public
 	 * @param {object|Array} lightObject
 	 */
-	CrepuscularApp.prototype.addLight = function( lightObject )
+	Crepuscular.prototype.addLight = function( lightObject )
 	{
 		if( lightObject instanceof Array )
 		{
@@ -139,7 +139,7 @@ function( App, CanvasTexture, Draw, Texture, Point2D, Color, VirtualSurface )
 	};
 
 
-	CrepuscularApp.prototype.processRays = function( light, dest, source ) // jshint ignore:line
+	Crepuscular.prototype.processRays = function( light, dest, source ) // jshint ignore:line
 	{
 		var dataPtr = 0;
 		// var data	= this.virtualSurface.data;
@@ -251,6 +251,6 @@ function( App, CanvasTexture, Draw, Texture, Point2D, Color, VirtualSurface )
 	};
 
 
-	return CrepuscularApp;
+	return Crepuscular;
 } );
 

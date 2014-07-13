@@ -88,6 +88,17 @@ function( App, NormalizedColor, Color, Point2D, Draw )
 
 				if( ( power >= thresholdMin ) && ( power <= thresholdMax ) )
 				{
+					if( power < 1.0 ) // this helps with the fall-off
+					{
+						var sine = Math.sin( 0.5 * Math.PI * power );
+
+						var m = sine * sine * sine;
+
+						colR *= m;
+						colG *= m;
+						colB *= m;
+					}
+
 					colR = Math.round( Math.min( 255, Math.max( 0, colR * 255 ) ) );
 					colG = Math.round( Math.min( 255, Math.max( 0, colG * 255 ) ) );
 					colB = Math.round( Math.min( 255, Math.max( 0, colB * 255 ) ) );
