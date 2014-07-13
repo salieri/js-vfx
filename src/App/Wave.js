@@ -44,9 +44,9 @@ function( App, CanvasTexture )
 			destHeight	= this.virtualSurface.height,
 			destPtr		= 0;
 
-		var source			= this.bgImage.virtualSurface.data,
-			sourceWidth		= this.bgImage.virtualSurface.width,
-			sourceHeight	= this.bgImage.virtualSurface.height;
+		var source			= this.bgImage.getData(),
+			sourceWidth		= this.bgImage.getWidth(),
+			sourceHeight	= this.bgImage.getHeight();
 
 		var period			= 0,
 			periodIncrement	= Math.PI / this.frequency,
