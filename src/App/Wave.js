@@ -59,6 +59,12 @@ function( App, CanvasTexture )
 		var periodY			= period,
 			periodX			= period;
 
+
+		if( ( !source ) || ( !dest ) )
+		{
+			return;
+		}
+
 		for( y = 0; y < destHeight; y++ )
 		{
 			displacementY[ y ] = Math.round( amplitude * Math.sin( phase + periodY ) );
