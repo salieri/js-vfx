@@ -44,7 +44,7 @@ function( App, CanvasTexture )
 			destHeight	= this.virtualSurface.height,
 			destPtr		= 0;
 
-		var source			= this.bgImage.getData(),
+		var source			= this.bgImage.data,
 			sourceWidth		= this.bgImage.getWidth(),
 			sourceHeight	= this.bgImage.getHeight();
 
