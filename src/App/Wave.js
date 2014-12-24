@@ -62,6 +62,7 @@ function( App, CanvasTexture )
 
 		if( ( !source ) || ( !dest ) )
 		{
+			this.endDrawing( false );
 			return;
 		}
 

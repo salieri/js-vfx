@@ -32,7 +32,7 @@ function( App, NormalizedColor, Color, Point2D, Draw )
 
 	Sierpinski.prototype.drawRecursive = function( sideLength, posCenter, calculatedTriangleHeight, depth )
 	{
-		if( sideLength < 0.5 )
+		if( sideLength < 0.2 )
 		{
 			return;
 		}
