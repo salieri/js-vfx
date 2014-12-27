@@ -89,10 +89,10 @@ function(
 		 */
 		generateFaces : function( cuboid )
 		{
-			var material	= new TexturedMaterial( new CanvasTexture( 'resources/textures/plastic.jpg' ) );
+			var material	= new TexturedMaterial( new CanvasTexture( 'resources/textures/chrome-4.jpg' ) );
 			material.color	= new Color( 0, 192, 0 );
 
-			var material2	= new TexturedMaterial( new CanvasTexture( 'resources/textures/silver.jpg' ) );
+			var material2	= new TexturedMaterial( new CanvasTexture( 'resources/textures/chrome-4.jpg' ) );
 			material2.color	= new Color( 0, 0, 192 );
 
 			cuboid.addFace( new Face( 0, 1, 3, material ) );

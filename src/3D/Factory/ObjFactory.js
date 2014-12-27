@@ -27,7 +27,7 @@ function(
 		{
 			var mesh = new Mesh();
 
-			var material	= new TexturedMaterial( new CanvasTexture( 'resources/textures/silver.jpg' ) );
+			var material	= new TexturedMaterial( new CanvasTexture( 'resources/textures/chrome-4.jpg' ) );
 			material.color	= new Color( 0, 192, 0 );
 
 

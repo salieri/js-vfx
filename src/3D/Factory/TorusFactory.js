@@ -143,10 +143,10 @@ function(
 			/* var material = new SolidColorMaterial( new Color( 0, 192, 0 ) );
 			var material2 = new SolidColorMaterial( new Color( 0, 0, 192 ) );*/
 
-			var material	= new TexturedMaterial( new CanvasTexture( 'resources/textures/plastic.jpg' ) );
+			var material	= new TexturedMaterial( new CanvasTexture( 'resources/textures/chrome-4.jpg' ) );
 			material.color	= new Color( 0, 192, 0 );
 
-			var material2	= new TexturedMaterial( new CanvasTexture( 'resources/textures/silver.jpg' ) );
+			var material2	= new TexturedMaterial( new CanvasTexture( 'resources/textures/chrome-4.jpg' ) );
 			material2.color	= new Color( 0, 0, 192 );
 
 
