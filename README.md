@@ -1,5 +1,4 @@
-Elements of Visual Style
-========================
+# JS-VFX
 
 Visual effects implemented on HTML5 Canvas.
 
