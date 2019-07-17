@@ -2,24 +2,25 @@
 <html>
 <head>
 	<title>3D Projection</title>
-	
-	<link rel='stylesheet' type='text/css' href='http://ajax.googleapis.com/ajax/libs/jqueryui/1.10.4/themes/ui-lightness/jquery-ui.min.css' />
-	<link rel='stylesheet' type='text/css' href='http://cdnjs.cloudflare.com/ajax/libs/foundation/4.3.1/css/foundation.min.css' />
+	<meta charset="utf-8">
+
+	<link rel='stylesheet' type='text/css' href='../vendor/css/jquery-ui-lightness-1.10.4.min.css' />
+	<link rel='stylesheet' type='text/css' href='../vendor/css/foundation-4.3.1.min.css' />
 </head>
 <body>
 	<div class='row'>
 		<div class='twenty columnns'>
 			<h1>3D Projection</h1>
-			
+
 			<p>Pure JavaScript (not WebGL) implementation of <a href='http://en.wikipedia.org/wiki/3D_projection'>camera projection.</a></p>
 		</div>
-	</div>	
+	</div>
 
 	<div class='row'>
 		<div class='twenty columns'>
 			<canvas id='surface' width='640' height='480' style='border: 1px solid #000000;'></canvas>
 		</div>
-		
+
 		<div id='sceneFPS' class='twenty columns'></div>
 	</div>
 
@@ -53,7 +54,7 @@
 	</div>
 
 
-	<script data-main='app'  src='../vendor/require.js'></script>
+	<script data-main='app'  src='../vendor/js/require.js'></script>
 </body>
 </html>
 
