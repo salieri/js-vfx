@@ -15,7 +15,7 @@ function( App, NormalizedColor, Color )
 	/**
 	 * @param {string} targetCanvasId
 	 * @constructor
-	 * @extends {App}
+	 * @extends {app.js}
 	 */
 	var Mandelbrot = function( targetCanvasId )
 	{

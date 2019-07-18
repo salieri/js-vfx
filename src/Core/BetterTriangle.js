@@ -16,9 +16,9 @@ function( Color, Point2D, Line )
 
 
 		/**
-		 * @param {Point2D} p1
-		 * @param {Point2D} p2
-		 * @param {Point2D} p3
+		 * @param {Point2d} p1
+		 * @param {Point2d} p2
+		 * @param {Point2d} p3
 		 * @param {Color} color
 		 * @param {Surface} surface
 		 * @public
@@ -113,9 +113,9 @@ function( Color, Point2D, Line )
 
 		/**
 		 * @protected
-		 * @param {Point2D} p1
-		 * @param {Point2D} p2
-		 * @param {Point2D} p3
+		 * @param {Point2d} p1
+		 * @param {Point2d} p2
+		 * @param {Point2d} p3
 		 */
 		sortPoints : function( p1, p2, p3 )
 		{

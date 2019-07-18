@@ -90,7 +90,7 @@ function( Surface, Color, Point2D, Point3D, CanvasTexture, Line, BetterTriangle,
 
 
 		/**
-		 * @param {Point2D} point
+		 * @param {Point2d} point
 		 * @param {Color} color
 		 * @public
 		 */
@@ -114,7 +114,7 @@ function( Surface, Color, Point2D, Point3D, CanvasTexture, Line, BetterTriangle,
 
 
 		/**
-		 * @param {Point2D} point
+		 * @param {Point2d} point
 		 * @param {Color} color
 		 * @public
 		 */
@@ -161,8 +161,8 @@ function( Surface, Color, Point2D, Point3D, CanvasTexture, Line, BetterTriangle,
 
 
 		/**
-		 * @param {Point2D} p1
-		 * @param {Point2D} p2
+		 * @param {Point2d} p1
+		 * @param {Point2d} p2
 		 * @param {Color} color
 		 * @public
 		 */
@@ -173,9 +173,9 @@ function( Surface, Color, Point2D, Point3D, CanvasTexture, Line, BetterTriangle,
 
 
 		/**
-		 * @param {Point2D} p1
-		 * @param {Point2D} p2
-		 * @param {Point2D} p3
+		 * @param {Point2d} p1
+		 * @param {Point2d} p2
+		 * @param {Point2d} p3
 		 * @param {Color} color
 		 * @public
 		 */
@@ -187,9 +187,9 @@ function( Surface, Color, Point2D, Point3D, CanvasTexture, Line, BetterTriangle,
 
 
 		/**
-		 * @param {Point2D} p1
-		 * @param {Point2D} p2
-		 * @param {Point2D} p3
+		 * @param {Point2d} p1
+		 * @param {Point2d} p2
+		 * @param {Point2d} p3
 		 * @param {Color} c1
 		 * @param {Color} c2
 		 * @param {Color} c3
@@ -202,12 +202,12 @@ function( Surface, Color, Point2D, Point3D, CanvasTexture, Line, BetterTriangle,
 
 
 		/**
-		 * @param {Point2D} p1
-		 * @param {Point2D} p2
-		 * @param {Point2D} p3
-		 * @param {Point3D} uv1
-		 * @param {Point3D} uv2
-		 * @param {Point3D} uv3
+		 * @param {Point2d} p1
+		 * @param {Point2d} p2
+		 * @param {Point2d} p3
+		 * @param {Point3d} uv1
+		 * @param {Point3d} uv2
+		 * @param {Point3d} uv3
 		 * @param {CanvasTexture} texture
 		 * @public
 		 */

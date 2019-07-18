@@ -13,8 +13,8 @@ function( /*, Point2D, Color*/ )
 
 		/**
 		 * @public
-		 * @param {Point2D} p1
-		 * @param {Point2D} p2
+		 * @param {Point2d} p1
+		 * @param {Point2d} p2
 		 * @returns {object}
 		 */
 		calculate : function( p1, p2 )
@@ -113,8 +113,8 @@ function( /*, Point2D, Color*/ )
 
 
 		/**
-		 * @param {Point2D} p1
-		 * @param {Point2D} p2
+		 * @param {Point2d} p1
+		 * @param {Point2d} p2
 		 * @param {Color} color
 		 * @param {Surface} surface
 		 * @public

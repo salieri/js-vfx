@@ -64,7 +64,7 @@ function()
 
 
 		/**
-		 * @param {Point2D} pos
+		 * @param {Point2d} pos
 		 * @param {Color} destColor
 		 * @public
 		 */

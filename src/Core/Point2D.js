@@ -6,7 +6,7 @@ function( Point3D, Vector3D )
 	'use strict';
 
 	/**
-	 * @param {int|float|Number|Vector3D|Point3D|Point2D} [x=0]
+	 * @param {int|float|Number|Vector3D|Point3d|Point2D} [x=0]
 	 * @param {int|float|Number} [y=0]
 	 * @constructor
 	 */
@@ -65,7 +65,7 @@ function( Point3D, Vector3D )
 
 
 		/**
-		 * @param {int|float|Number|Vector3D|Point3D|Point2D} [x=0]
+		 * @param {int|float|Number|Vector3D|Point3d|Point2D} [x=0]
 		 * @param {int|float|Number} [y=0]
 		 * @public
 		 */

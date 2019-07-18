@@ -31,12 +31,12 @@ function( Point2D, Point3D, Color, Line /*, Texture*/ )
 
 
 		/**
-		 * @param {Point2D} p1
-		 * @param {Point2D} p2
-		 * @param {Point2D} p3
-		 * @param {Point3D} uv1
-		 * @param {Point3D} uv2
-		 * @param {Point3D} uv3
+		 * @param {Point2d} p1
+		 * @param {Point2d} p2
+		 * @param {Point2d} p3
+		 * @param {Point3d} uv1
+		 * @param {Point3d} uv2
+		 * @param {Point3d} uv3
 		 * @param {Texture} texture
 		 * @param {Surface} surface
 		 */
@@ -112,9 +112,9 @@ function( Point2D, Point3D, Color, Line /*, Texture*/ )
 		/**
 		 * @protected
 		 * @param {object} line
-		 * @param {Point3D} uv1
-		 * @param {Point3D} uv2
-		 * @param {Point3D} resultLine
+		 * @param {Point3d} uv1
+		 * @param {Point3d} uv2
+		 * @param {Point3d} resultLine
 		 */
 		interpolate : function( line, uv1, uv2, resultLine )
 		{
@@ -136,10 +136,10 @@ function( Point2D, Point3D, Color, Line /*, Texture*/ )
 		 * @protected
 		 * @param {object} lineA
 		 * @param {object} lineB
-		 * @param {Point3D} uvLeft
-		 * @param {Point3D} uvRight
-		 * @param {Point3D} uvAdderLeft
-		 * @param {Point3D} uvAdderRight
+		 * @param {Point3d} uvLeft
+		 * @param {Point3d} uvRight
+		 * @param {Point3d} uvAdderLeft
+		 * @param {Point3d} uvAdderRight
 		 * @param {Material} texture
 		 * @param {Boolean} secondHalf
 		 * @param {Number} uvLeftLength

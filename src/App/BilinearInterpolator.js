@@ -21,7 +21,7 @@ function( App, NormalizedColor )
 	 * @param {number} q21
 	 * @param {number} q22
 	 * @constructor
-	 * @extends {App}
+	 * @extends {app.js}
 	 */
 	var BilinearInterpolator = function ( targetCanvasId, q11, q12, q21, q22 )
 	{

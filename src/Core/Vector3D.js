@@ -9,11 +9,11 @@ function( Point3D )
 	'use strict';
 
 	/**
-	 * @param {Number|int|float|Vector3D|Point3D} [x=0]
+	 * @param {Number|int|float|Vector3D|Point3d} [x=0]
 	 * @param {int|float|Number} [y=0]
 	 * @param {int|float|Number} [z=0]
 	 * @constructor
-	 * @extends {Point3D}
+	 * @extends {Point3d}
 	 */
 	var Vector3D = function( x, y, z )
 	{
@@ -123,9 +123,9 @@ function( Point3D )
 
 
 	/**
-	 * @param {Point3D|Vector3D} p1
-	 * @param {Point3D|Vector3D} p2
-	 * @param {Point3D|Vector3D} p3
+	 * @param {Point3d|Vector3D} p1
+	 * @param {Point3d|Vector3D} p2
+	 * @param {Point3d|Vector3D} p3
 	 * @link http://www.opengl.org/wiki/Calculating_a_Surface_Normal
 	 * @public
 	 */

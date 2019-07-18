@@ -16,9 +16,9 @@ function( Point2D )
 
 
 		/**
-		 * @param {Point2D} p1
-		 * @param {Point2D} p2
-		 * @param {Point2D} p3
+		 * @param {Point2d} p1
+		 * @param {Point2d} p2
+		 * @param {Point2d} p3
 		 * @protected
 		 */
 		calculateBounds : function( p1, p2, p3 )
@@ -34,9 +34,9 @@ function( Point2D )
 
 
 		/**
-		 * @param {Point2D} p1
-		 * @param {Point2D} p2
-		 * @param {Point2D} p3
+		 * @param {Point2d} p1
+		 * @param {Point2d} p2
+		 * @param {Point2d} p3
 		 * @param {Color} color
 		 * @param {Surface} surface
 		 * @public
@@ -68,9 +68,9 @@ function( Point2D )
 
 
 		/**
-		 * @param {Point2D} p1
-		 * @param {Point2D} p2
-		 * @param {Point2D} p3
+		 * @param {Point2d} p1
+		 * @param {Point2d} p2
+		 * @param {Point2d} p3
 		 * @param {Number} lAdder
 		 * @param {Number} rAdder
 		 * @param {Number} lx
@@ -153,9 +153,9 @@ function( Point2D )
 		 *
 		 * Relies on arguments being treated as byref
 		 *
-		 * @param {Point2D} p1
-		 * @param {Point2D} p2
-		 * @param {Point2D} p3
+		 * @param {Point2d} p1
+		 * @param {Point2d} p2
+		 * @param {Point2d} p3
 		 * @protected
 		 */
 		sortPoints : function( p1, p2, p3 )

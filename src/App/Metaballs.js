@@ -17,7 +17,7 @@ function( App, NormalizedColor, Color, Point2D, Draw )
 	/**
 	 * @param {string} targetCanvasId
 	 * @constructor
-	 * @extends {App}
+	 * @extends {app.js}
 	 */
 	var Metaballs = function( targetCanvasId )
 	{

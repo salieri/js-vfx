@@ -32,12 +32,12 @@ function( Point2D, Point3D )
 
 
 		/**
-		 * @param {Point2D} p1
-		 * @param {Point2D} p2
-		 * @param {Point2D} p3
-		 * @param {Point3D} uv1
-		 * @param {Point3D} uv2
-		 * @param {Point3D} uv3
+		 * @param {Point2d} p1
+		 * @param {Point2d} p2
+		 * @param {Point2d} p3
+		 * @param {Point3d} uv1
+		 * @param {Point3d} uv2
+		 * @param {Point3d} uv3
 		 * @param {Surface} surface
 		 */
 		draw : function( p1, p2, p3, color ) //( p1, p2, p3, uv1, uv2, uv3, texture )

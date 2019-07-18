@@ -13,7 +13,7 @@ function( App, NormalizedColor, Color )
 	/**
 	 * @param {string} targetCanvasId
 	 * @constructor
-	 * @extends {App}
+	 * @extends {app.js}
 	 */
 	var Plasma = function( targetCanvasId )
 	{
@@ -96,7 +96,7 @@ function( App, NormalizedColor, Color )
 		}
 	};
 
-	
+
 	Plasma.prototype.calculatePlasma = function()
 	{
 		var width	= this.virtualSurface.getWidth();

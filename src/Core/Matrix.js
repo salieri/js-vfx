@@ -109,8 +109,8 @@ function()
 		/**
 		 * sourcePoint and targetPoint MUST NOT be the same object
 		 *
-		 * @param {Point3D} sourcePoint
-		 * @param {Point3D} targetPoint
+		 * @param {Point3d} sourcePoint
+		 * @param {Point3d} targetPoint
 		 * @todo Remove hardcoding
 		 * @public
 		 */

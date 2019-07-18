@@ -19,7 +19,7 @@ function( App, CanvasTexture, EmptyTexture )
 	 * @param {string} targetCanvasId
 	 * @param {string} bgImageUrl
 	 * @constructor
-	 * @extends {App}
+	 * @extends {app.js}
 	 */
 	var FisheyeLens = function( targetCanvasId, bgImageUrl )
 	{

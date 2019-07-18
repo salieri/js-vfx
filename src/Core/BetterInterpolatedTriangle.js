@@ -26,9 +26,9 @@ function( Point2D, Color, Line )
 
 
 		/**
-		 * @param {Point2D} p1
-		 * @param {Point2D} p2
-		 * @param {Point2D} p3
+		 * @param {Point2d} p1
+		 * @param {Point2d} p2
+		 * @param {Point2d} p3
 		 * @param {Color} c1
 		 * @param {Color} c2
 		 * @param {Color} c3
@@ -186,9 +186,9 @@ function( Point2D, Color, Line )
 
 		/**
 		 * @protected
-		 * @param {Point2D} p1
-		 * @param {Point2D} p2
-		 * @param {Point2D} p3
+		 * @param {Point2d} p1
+		 * @param {Point2d} p2
+		 * @param {Point2d} p3
 		 * @param {Color} c1
 		 * @param {Color} c2
 		 * @param {Color} c3

@@ -16,7 +16,7 @@ function( App, CanvasTexture )
 	 * @param {string} targetCanvasId
 	 * @param {string} bgImageUrl
 	 * @constructor
-	 * @extends {App}
+	 * @extends {app.js}
 	 */
 	var Wave = function( targetCanvasId, bgImageUrl )
 	{
