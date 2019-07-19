@@ -9,6 +9,8 @@ class VueWrapper extends Vue {
 
   intervalFrequency = 25;
 
+  startTime = new Date();
+
   mounted() {
     this.start();
   }

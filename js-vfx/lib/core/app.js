@@ -1,5 +1,6 @@
 import { Helper } from './helper';
 import { VirtualSurface } from './virtual-surface';
+import { Draw } from './draw';
 
 export class App {
   constructor(canvasElementId) {
@@ -14,7 +15,6 @@ export class App {
       this.canvasPixels = this.canvas.getContext('2d').createImageData(this.canvas.width, this.canvas.height);
 
       this.virtualSurface = new VirtualSurface(this.canvas.width, this.canvas.height, this.canvasPixels.data);
-
       this.virtualSurface.clear();
     } else {
       this.canvas = null;
@@ -30,6 +30,8 @@ export class App {
    */
   startDrawing() {
     this.drawing = true;
+
+    Draw.setSurface(this.virtualSurface);
 
     // Draw.setSurface( this.virtualSurface );
   }

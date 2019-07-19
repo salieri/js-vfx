@@ -1,3 +1,5 @@
+import { Color } from './color';
+
 export class VirtualSurface {
   /**
    * @param {int} width
@@ -63,16 +65,26 @@ export class VirtualSurface {
   }
 
 
-  clear() {
+  clear(color) {
     const maxPtr = this.data.length;
+
+    if (!color) {
+      color = new Color(0, 0, 0, 255);
+    }
 
     let ptr = 0;
 
+    const r = color.r;
+    const b = color.b;
+    const g = color.g;
+    const a = color.a;
+
+
     while (ptr < maxPtr) {
-      this.data[ptr++] = 0;
-      this.data[ptr++] = 0;
-      this.data[ptr++] = 0;
-      this.data[ptr++] = 255;
+      this.data[ptr++] = r;
+      this.data[ptr++] = g;
+      this.data[ptr++] = b;
+      this.data[ptr++] = a;
     }
   }
 }

@@ -80,6 +80,7 @@ export class Surface {
    */
   endPaint() {
     this.context.putImageData(this.imageData, 0, 0, 0, 0, this.getWidth(), this.getHeight());
+    // this.canvas.getContext('2d').putImageData(this.imageData, 0, 0);
 
     this.imageData = null;
     this.drawing = false;

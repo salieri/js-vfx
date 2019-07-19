@@ -81,7 +81,7 @@ function()
 
 		var init = function()
 		{
-			var surface		= new Surface( 'surface', false );
+			var surface = new Surface( 'surface', false );
 
 			Draw.setSurface( surface );
 			Draw.bgColor.set( 220, 220, 220 );
