@@ -3,7 +3,8 @@ import Vue from 'vue';
 
 @Component()
 class VueWrapper extends Vue {
-  app = null;
+  // intentionally not declared here, to keep it from being converted into a reactive object
+  // app = null;
 
   interval = null;
 

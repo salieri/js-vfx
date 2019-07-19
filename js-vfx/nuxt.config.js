@@ -47,7 +47,7 @@ export default {
     */
     extend(config, ctx) {
       if (ctx.isClient) {
-        config.devtool = 'eval-source-map'; // create sourcemaps
+        // config.devtool = 'eval-source-map'; // create sourcemaps
       }
     }
   }

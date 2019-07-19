@@ -3,7 +3,7 @@
     <b-nav pills vertical align="left" class="sidebar">
       <template v-for="(item, key, index) in sidebarItems">
         <h3 v-if="item.type === 'title'" :key="item.id || `sidebar-title-${index}`" class="subtitle" :class="item.classes">{{ item.title }}</h3>
-        <b-nav-item v-else :class="item.classes" :key="item.id || `sidebar-nav-item-${index}`" :active="activeItem === item.id" @click=selectApp(item)>{{ item.title }}</b-nav-item>
+        <b-nav-item v-else :class="item.classes" :key="item.id || `sidebar-nav-item-${index}`" :active="activeItem === item.id" @click=menuSelect(item)>{{ item.title }}</b-nav-item>
       </template>
 
       <div class="toggle-sidebar backdrop" @click="toggleSidebar()"></div>
@@ -61,7 +61,11 @@ import BilinearInterpolator from '~/components/apps/bilinear-interpolator';
 import BumpMapping from '~/components/apps/bump-mapping';
 import CrepuscularRays from '~/components/apps/crepuscular-rays';
 import FisheyeLens from '~/components/apps/fisheye-lens';
+import Mandelbrot from '~/components/apps/mandelbrot';
+import Metaballs from '~/components/apps/metaballs';
+import Plasma from '~/components/apps/plasma';
 import WaveDistortion from '~/components/apps/wave-distortion';
+
 
 import InterpolatedTriangle from '~/components/apps/interpolated-triangle';
 import LineComponent from '~/components/apps/line';
@@ -113,10 +117,33 @@ class IndexPage extends Vue {
       id: 'FisheyeLens'
     },
     {
+      title: 'Metaballs',
+      component: Metaballs,
+      id: 'Metaballs'
+    },
+    {
+      title: 'Plasma',
+      component: Plasma,
+      id: 'Plasma'
+    },
+    {
       title: 'Wave Distortion',
       component: WaveDistortion,
       id: 'WaveDistortion'
     },
+
+
+    {
+      type: 'title',
+      title: 'Fractals',
+      id: 'FractalsTitle'
+    },
+    {
+      title: 'Mandelbrot Set',
+      component: Mandelbrot,
+      id: 'Mandelbrot'
+    },
+
 
     {
       type: 'title',
@@ -145,6 +172,15 @@ class IndexPage extends Vue {
     const el = this.$refs.appContainer;
 
     el.childNodes.forEach(c => el.removeChild(c));
+  }
+
+
+  menuSelect(item) {
+    this.selectApp(item);
+
+    if ((window.innerWidth <= 640) && (this.sidebarActive)) {
+      this.toggleSidebar();
+    }
   }
 
 
@@ -182,6 +218,8 @@ export default IndexPage;
 </script>
 
 <style lang="scss">
+$tSpeed: 0.3s;
+
 .container {
   margin: 0 auto;
   min-height: 100vh;
@@ -219,6 +257,7 @@ export default IndexPage;
   canvas {
     width: 90%;
     margin-bottom: 20pt;
+    box-shadow: 1px 2px 3px 0 rgba(0, 0, 0, 0.15);
   }
 
   .container {
@@ -248,8 +287,11 @@ export default IndexPage;
     padding-right: 10px;
     width: 14rem;
     border-right: 4px solid #727777;
-    z-index: 10000;
+    z-index: 1000;
     box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.5);
+
+    display: block;
+    overflow: auto;
 
     .toggle-sidebar {
       display: none;
@@ -258,6 +300,8 @@ export default IndexPage;
     a.nav-link {
       color: white;
       padding: 0.25rem 1rem;
+
+      transition: all 0.1s;
     }
 
     a.nav-link.active {
@@ -271,6 +315,10 @@ export default IndexPage;
       font-weight: bold;
     }
 
+    a.nav-link:hover {
+      background-color: rgba(255, 255, 255, 0.03);
+    }
+
     li.nav-item {
       text-align: left;
     }
@@ -281,10 +329,11 @@ export default IndexPage;
       line-height: 125%;
       padding: 0;
       font-size: 200%;
+      margin-top: 0.5rem;
 
       &.main {
         margin-bottom: 1rem;
-        color: rgba(255, 255, 255, 0.8);
+        color: rgba(255, 255, 255, 0.9);
         font-size: 260%;
       }
     }
@@ -296,7 +345,10 @@ export default IndexPage;
   .wrapper {
     .sidebar {
       width: 1rem;
-      transition: all 0.25s;
+      transition: all $tSpeed;
+
+      // display: flex;
+      overflow: initial;
 
       h3,
       a.nav-link {
@@ -306,7 +358,7 @@ export default IndexPage;
       * {
         opacity: 0;
         pointer-events: none;
-        transition: opacity 0.2s;
+        transition: opacity $tSpeed;
       }
 
       button.toggle-sidebar {
@@ -314,7 +366,7 @@ export default IndexPage;
         position: absolute;
         opacity: 1;
         right: -1.25rem;
-        transition: all 0.3s;
+        transition: all $tSpeed;
         top: 50%;
         transform: translateY(-50%);
         /* transform: translateY(-20rem); */
@@ -334,7 +386,6 @@ export default IndexPage;
       }
 
       .toggle-sidebar.backdrop {
-        transition: background-color 0.3s, left 0.3s, width 0s;
         background: rgba(0, 0, 0, 0);
         opacity: 1;
         display: block;
@@ -346,6 +397,7 @@ export default IndexPage;
         margin: 0;
         padding: 0;
         pointer-events: auto;
+        transition: background-color $tSpeed, left $tSpeed, width 0s $tSpeed, backdrop-filter $tSpeed;
       }
     }
 
@@ -368,10 +420,12 @@ export default IndexPage;
         }
 
         .toggle-sidebar.backdrop {
-          background: rgba(0, 0, 0, 0.2);
+          background: rgba(0, 0, 0, 0.1);
           opacity: 1;
           width: 100vw;
           left: 14rem;
+          backdrop-filter: blur(5px) grayscale(0.65);
+          transition: background-color $tSpeed, left $tSpeed, width 0s, backdrop-filter $tSpeed;
         }
       }
     }
