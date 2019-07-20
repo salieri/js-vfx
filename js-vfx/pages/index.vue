@@ -64,11 +64,14 @@ import FisheyeLens from '~/components/apps/fisheye-lens';
 import Mandelbrot from '~/components/apps/mandelbrot';
 import Metaballs from '~/components/apps/metaballs';
 import Plasma from '~/components/apps/plasma';
+import Sierpinski from '~/components/apps/sierpinski';
 import WaveDistortion from '~/components/apps/wave-distortion';
 
 
 import InterpolatedTriangle from '~/components/apps/interpolated-triangle';
 import LineComponent from '~/components/apps/line';
+import SolidTriangle from '~/components/apps/solid-triangle';
+import TexturedTriangle from '~/components/apps/textured-triangle';
 
 @Component(
   {
@@ -143,8 +146,11 @@ class IndexPage extends Vue {
       component: Mandelbrot,
       id: 'Mandelbrot'
     },
-
-
+    {
+      title: 'Sierpiński Triangle',
+      component: Sierpinski,
+      id: 'Sierpinski'
+    },
     {
       type: 'title',
       title: 'Primitives',
@@ -159,6 +165,16 @@ class IndexPage extends Vue {
       title: 'Line',
       component: LineComponent,
       id: 'LineComponent'
+    },
+    {
+      title: 'Solid Triangle',
+      component: SolidTriangle,
+      id: 'SolidTriangle'
+    },
+    {
+      title: 'Textured Triangle',
+      component: TexturedTriangle,
+      id: 'TexturedTriangle'
     }
   ];
 

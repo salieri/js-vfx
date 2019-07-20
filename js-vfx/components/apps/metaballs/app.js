@@ -76,6 +76,8 @@ export class MetaballsApp extends App {
   draw() {
     this.startDrawing();
 
+    Draw.bgColor.set(0, 0, 0);
+
     Draw.setSurface(this.virtualSurface);
     Draw.clear();
 
