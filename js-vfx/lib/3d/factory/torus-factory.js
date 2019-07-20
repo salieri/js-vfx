@@ -120,10 +120,10 @@ export const TorusFactory = {
    * @private
    */
   generateFaces: function (torus, outerSteps, innerSteps) {
-    const material = new TexturedMaterial(new CanvasTexture('resources/textures/chrome-4.jpg'));
+    const material = new TexturedMaterial(new CanvasTexture('./resources/3d/textures/chrome-4.jpg'));
     material.color = new Color(0, 192, 0);
 
-    const material2 = new TexturedMaterial(new CanvasTexture('resources/textures/chrome-4.jpg'));
+    const material2 = new TexturedMaterial(new CanvasTexture('./resources/3d/textures/chrome-4.jpg'));
     material2.color = new Color(0, 0, 192);
 
 

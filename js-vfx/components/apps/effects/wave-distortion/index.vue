@@ -1,10 +1,10 @@
 <template>
   <div class='row'>
     <div class='col-md-12'>
-      <canvas id='surface' width='480' height='360'></canvas>
+      <canvas id='surface' width='853' height='470'></canvas>
 
-      <h2 class='subtitle'>Title</h2>
-      <p>Explanation</p>
+      <h2 class='subtitle'>Wave Distortion</h2>
+      <p>Pure JavaScript implementation of <a href='http://en.wikipedia.org/wiki/Distortion_(optics)'>wave distortion</a>.</p>
 
       <b-card sub-title="Options" class="options">
         <b-input-group prepend="Amplitude" size="sm" class="mb-3">
@@ -22,18 +22,35 @@
 <script>
 import Component from 'vue-class-component';
 import VueWrapper from '../../vue-wrapper';
-import { TemplateApp } from './app';
+import { WaveDistortionApp } from './app';
 
 @Component
-class TemplateTemplate extends VueWrapper {
+class WaveDistortion extends VueWrapper {
+  amplitude = 2235;
+
+  frequency = 27712;
+
   instantiateApp() {
-    return new TemplateApp('surface');
+    return new WaveDistortionApp('surface', './resources/apps/wave-distortion/bg.jpg', this.amplitude / 100, this.frequency / 100);
   }
 
 
   tick() {
+    this.app.phase += 0.1;
+
+    this.app.draw();
+  }
+
+
+  updateAmplitude(val) {
+    this.app.amplitude = val / 100;
+  }
+
+
+  updateFrequency(val) {
+    this.app.frequency = val / 100;
   }
 }
 
-export default TemplateTemplate;
+export default WaveDistortion;
 </script>

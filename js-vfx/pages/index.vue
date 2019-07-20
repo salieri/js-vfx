@@ -57,21 +57,28 @@ import Component from 'vue-class-component';
 import Vue from 'vue';
 
 // import Logo from '~/components/Logo.vue';
-import BilinearInterpolator from '~/components/apps/bilinear-interpolator';
-import BumpMapping from '~/components/apps/bump-mapping';
-import CrepuscularRays from '~/components/apps/crepuscular-rays';
-import FisheyeLens from '~/components/apps/fisheye-lens';
-import Mandelbrot from '~/components/apps/mandelbrot';
-import Metaballs from '~/components/apps/metaballs';
-import Plasma from '~/components/apps/plasma';
-import Sierpinski from '~/components/apps/sierpinski';
-import WaveDistortion from '~/components/apps/wave-distortion';
+import BilinearInterpolator from '~/components/apps/effects/bilinear-interpolator';
+import BumpMapping from '~/components/apps/effects/bump-mapping';
+import CrepuscularRays from '~/components/apps/effects/crepuscular-rays';
+import FisheyeLens from '~/components/apps/effects/fisheye-lens';
+import Metaballs from '~/components/apps/effects/metaballs';
+import Plasma from '~/components/apps/effects/plasma';
+import WaveDistortion from '~/components/apps/effects/wave-distortion';
 
+import Flat from '~/components/apps/3d/flat';
+import FlatShading from '~/components/apps/3d/flat-shading';
+import GouraudShading from '~/components/apps/3d/gouraud-shading';
+import TextureMapping from '~/components/apps/3d/texture-mapping';
+import Vertex from '~/components/apps/3d/vertex';
+import Wireframe from '~/components/apps/3d/wireframe';
 
-import InterpolatedTriangle from '~/components/apps/interpolated-triangle';
-import LineComponent from '~/components/apps/line';
-import SolidTriangle from '~/components/apps/solid-triangle';
-import TexturedTriangle from '~/components/apps/textured-triangle';
+import Mandelbrot from '~/components/apps/fractals/mandelbrot';
+import Sierpinski from '~/components/apps/fractals/sierpinski';
+
+import InterpolatedTriangle from '~/components/apps/primitives/interpolated-triangle';
+import LineComponent from '~/components/apps/primitives/line';
+import SolidTriangle from '~/components/apps/primitives/solid-triangle';
+import TexturedTriangle from '~/components/apps/primitives/textured-triangle';
 
 @Component(
   {
@@ -94,6 +101,7 @@ class IndexPage extends Vue {
       id: 'JsvfxMain',
       classes: 'main'
     },
+
     {
       type: 'title',
       title: 'Effects',
@@ -135,6 +143,41 @@ class IndexPage extends Vue {
       id: 'WaveDistortion'
     },
 
+    {
+      type: 'title',
+      title: '3D',
+      id: '3DTitle'
+    },
+    {
+      title: 'Flat Polygon',
+      component: Flat,
+      id: 'FlatPolygon'
+    },
+    {
+      title: 'Flat Shading',
+      component: FlatShading,
+      id: 'FlatShading'
+    },
+    {
+      title: 'Gouraud Shading',
+      component: GouraudShading,
+      id: 'GouraudShading'
+    },
+    {
+      title: 'Texture Mapping',
+      component: TextureMapping,
+      id: 'TextureMapping'
+    },
+    {
+      title: 'Vertex',
+      component: Vertex,
+      id: 'Vertex'
+    },
+    {
+      title: 'Wireframe',
+      component: Wireframe,
+      id: 'Wireframe'
+    },
 
     {
       type: 'title',

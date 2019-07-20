@@ -95,7 +95,7 @@ export const Helper = {
 
     xhr.open('get', url);
 
-    xhr.onload = () => successFunction(xhr.response.message, xhr.statusText, xhr);
+    xhr.onload = () => successFunction(xhr.response, xhr.statusText, xhr);
     xhr.onerror = () => errorFunction(xhr.statusText, xhr);
 
     xhr.send();

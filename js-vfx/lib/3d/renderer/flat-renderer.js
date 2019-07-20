@@ -45,7 +45,6 @@ export class FlatRenderer extends Renderer {
           faceLookup.mesh.vertices[ faceLookup.face.a ].cameraProjected,
           faceLookup.face.material.color
         ); */
-
     }
   }
 }
