@@ -38,6 +38,9 @@ export default {
     '@nuxtjs/pwa',
     '@nuxtjs/eslint-module'
   ],
+  router: {
+    base: (process.env.NODE_ENV === 'dev') ? '/' : '/js-vfx/'
+  },
   /*
   ** Build configuration
   */
