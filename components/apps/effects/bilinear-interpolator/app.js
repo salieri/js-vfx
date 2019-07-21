@@ -1,3 +1,5 @@
+import * as _ from 'lodash';
+
 import { App } from '~/lib/core/app';
 import { NormalizedColor } from '~/lib/core/normalized-color';
 
@@ -88,7 +90,7 @@ export class BilinearInterpolatorApp extends App {
 
       return thisDimension;
     } else if (arguments.length === 1) {
-      return new Array(arguments[0]);
+      return new Float32Array(_.isArray(arguments[0]) ? arguments[0][0] : arguments[0]);
     }
 
     throw new Error('Failed to create the specified array');

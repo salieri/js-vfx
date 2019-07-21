@@ -11,6 +11,11 @@
     </b-nav>
 
     <div class="container" ref="appContainer"></div>
+
+    <div class="mobile-navi">
+      <b-button @click="prevItem()">&lsaquo;</b-button>
+      <b-button @click="nextItem()">&rsaquo;</b-button>
+    </div>
   </div>
 </template>
 
@@ -18,6 +23,7 @@
 // import * as _ from 'lodash';
 import Component from 'vue-class-component';
 import Vue from 'vue';
+import _ from 'lodash';
 
 import Main from '~/components/main';
 
@@ -228,6 +234,8 @@ class IndexPage extends Vue {
     this.curInstance.$mount(el);
 
     this.activeItem = item.id;
+
+    this.$router.push({ query: { component: item.id } });
   }
 
 
@@ -236,14 +244,71 @@ class IndexPage extends Vue {
   }
 
 
+  findApp(appId, defaultApp) {
+    return _.find(this.sidebarItems, item => (item.id === appId)) || defaultApp;
+  }
+
+
   mounted() {
-    this.selectApp(
+    const app = this.findApp(
+      _.get(this, '$router.history.current.query.component'),
       {
         title: 'Main',
         id: 'Main',
         component: Main
       }
     );
+
+    this.selectApp(app);
+
+    this.$router.afterEach(
+      (to, from) => {
+        const component = _.get(to, 'query.component');
+
+        if (component !== this.activeItem) {
+          this.selectApp(this.findApp(component));
+        }
+      }
+    );
+  }
+
+
+  findNext(direction) {
+    const itemIndex = this.activeItem ? Math.max(0, _.findIndex(this.sidebarItems, item => (item.id === this.activeItem))) : 0;
+
+    let n = itemIndex;
+
+    do {
+      n += direction;
+
+      if (n < 0) {
+        n = this.sidebarItems.length - 1;
+      }
+
+      if (n >= this.sidebarItems.length) {
+        n = 0;
+      }
+
+      if (this.sidebarItems[n].component) {
+        return this.sidebarItems[n];
+      }
+    } while (n !== itemIndex);
+
+    return null;
+  }
+
+
+  nextItem() {
+    const item = this.findNext(1);
+
+    this.selectApp(item);
+  }
+
+
+  prevItem() {
+    const item = this.findNext(-1);
+
+    this.selectApp(item);
   }
 }
 
@@ -373,6 +438,10 @@ $tSpeed: 0.3s;
       }
     }
   }
+
+  .mobile-navi {
+    display: none;
+  }
 }
 
 
@@ -461,6 +530,30 @@ $tSpeed: 0.3s;
           left: 14rem;
           backdrop-filter: blur(5px) grayscale(0.65);
           transition: background-color $tSpeed, left $tSpeed, width 0s, backdrop-filter $tSpeed;
+        }
+      }
+    }
+
+    .mobile-navi {
+      position: fixed;
+      right: 0;
+      bottom: 0;
+      margin: 0.75rem;
+      display: block;
+      z-index: 100;
+
+      button {
+        display: inline-block;
+        margin-right: 0.5rem;
+        width: 3.5rem;
+        font-size: 175%;
+        margin-bottom: auto;
+        margin-top: auto;
+        position: relative;
+        background-color: #5f6363;
+
+        &:last-child {
+          margin-right: 0;
         }
       }
     }

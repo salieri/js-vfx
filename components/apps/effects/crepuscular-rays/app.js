@@ -145,18 +145,15 @@ export class CrepuscularRaysApp extends App {
           let curPtr = (Math.round(curPosX) + Math.round(curPosY) * width) * 4;
 
           if ((curPtr >= 0) && (curPtr < maxPtr)) {
-            let curR = source[curPtr++];
-            let curG = source[curPtr++];
-            let curB = source[curPtr];
-
             // curColor.multiplyByVal( illuminationDecay * weight, true );
             // initialColor.add( curColor, true );
             // this is faster:
             const curMul = illuminationDecay * weight;
 
-            curR *= curMul;
-            curG *= curMul;
-            curB *= curMul;
+            const curR = source[curPtr++] * curMul;
+            const curG = source[curPtr++] * curMul;
+            const curB = source[curPtr] * curMul;
+
             initialR += curR;
             initialG += curG;
             initialB += curB;

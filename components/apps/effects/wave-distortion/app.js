@@ -42,8 +42,8 @@ export class WaveDistortionApp extends App {
     const periodIncrement = Math.PI / this.frequency;
     const phase = this.phase;
     const amplitude = this.amplitude;
-    const displacementY = new Array(destHeight);
-    const displacementX = new Array(destWidth);
+    const displacementY = new Float32Array(destHeight); // new Array(destHeight);
+    const displacementX = new Float32Array(destWidth); // new Array(destWidth);
 
     let destPtr = 0;
     let period = 0;

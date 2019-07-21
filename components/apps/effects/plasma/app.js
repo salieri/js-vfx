@@ -82,7 +82,7 @@ export class PlasmaApp extends App {
     let min = false;
     let max = false;
 
-    this.precalcTable = new Array(width * height);
+    this.precalcTable = new Uint32Array(width * height);
 
     for (let y = 0; y < height; y++) {
       for (let x = 0; x < width; x++) {
