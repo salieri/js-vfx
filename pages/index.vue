@@ -10,44 +10,7 @@
       <button class="toggle-sidebar" @click="toggleSidebar()">▶</button>
     </b-nav>
 
-    <div class="container" ref="appContainer">
-    </div>
-<!--
-      <b-tabs pills card vertical>
-        <b-tab title="Bilinear Interpolator" active>
-          <bilinear-interpolator />
-        </b-tab>
-        <b-tab title="Crepuscular Rays">
-          Moo
-        </b-tab>
-      </b-tabs>
--->
-
-      <!--
-      <logo />
-      <h1 class="title">
-        js-vfx
-      </h1>
-      <h2 class="subtitle">
-        Pure JS visual effects implemented on HTML5 canvas
-      </h2>
-      <div class="links">
-        <a
-          href="https://nuxtjs.org/"
-          target="_blank"
-          class="button--green"
-        >
-          Documentation
-        </a>
-        <a
-          href="https://github.com/nuxt/nuxt.js"
-          target="_blank"
-          class="button--grey"
-        >
-          GitHub
-        </a>
-      </div>
-      -->
+    <div class="container" ref="appContainer"></div>
   </div>
 </template>
 
@@ -55,6 +18,8 @@
 // import * as _ from 'lodash';
 import Component from 'vue-class-component';
 import Vue from 'vue';
+
+import Main from '~/components/main';
 
 // import Logo from '~/components/Logo.vue';
 import BilinearInterpolator from '~/components/apps/effects/bilinear-interpolator';
@@ -268,6 +233,17 @@ class IndexPage extends Vue {
 
   toggleSidebar() {
     this.sidebarActive = !this.sidebarActive;
+  }
+
+
+  mounted() {
+    this.selectApp(
+      {
+        title: 'Main',
+        id: 'Main',
+        component: Main
+      }
+    );
   }
 }
 

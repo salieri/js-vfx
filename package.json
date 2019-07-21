@@ -4,6 +4,7 @@
   "description": "Pure JS visual effects implemented on HTML5 canvas",
   "author": "Aleksi Asikainen",
   "private": true,
+  "license": "MIT",
   "scripts": {
     "lint": "eslint --ext .js,.vue --ignore-path .gitignore .",
     "precommit": "yarn lint",
