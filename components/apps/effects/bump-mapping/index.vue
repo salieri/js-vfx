@@ -1,7 +1,6 @@
 <template>
-  <div class='row'>
-    <div class='col-md-12'>
-      <canvas
+  <div>
+<canvas
         id='surface'
         width='320'
         height='200'
@@ -23,9 +22,6 @@
           <b-form-input v-model='emboss' type='range' min='1' max='1000' @update="updateEmboss" />
         </b-input-group>
       </b-card>
-    </div>
-
-
   </div>
 </template>
 

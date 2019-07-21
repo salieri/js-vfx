@@ -1,7 +1,6 @@
 <template>
-  <div class='row'>
-    <div class='col-md-12'>
-      <canvas id='surface' width='640' height='480'></canvas>
+  <div>
+<canvas id='surface' width='640' height='480'></canvas>
 
       <h2 class='subtitle'>Wireframe Projection</h2>
       <p>Pure JavaScript (not WebGL) implementation of <a href='https://en.wikipedia.org/wiki/Wire-frame_model'>wireframe projection.</a></p>
@@ -19,7 +18,6 @@
         </b-form-group>
       </b-card>
 
-    </div>
   </div>
 </template>
 

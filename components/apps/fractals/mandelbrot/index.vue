@@ -1,7 +1,6 @@
 <template>
-  <div class='row'>
-    <div class='col-md-12'>
-      <canvas id='surface' width='640' height='400'></canvas>
+  <div>
+<canvas id='surface' width='640' height='400'></canvas>
 
       <h2 class='subtitle'>Mandelbrot Set</h2>
       <p>A pure JavaScript implementation of <a href='http://en.wikipedia.org/wiki/Mandelbrot_set'>Mandelbrot set</a> fractal shape.</p>
@@ -15,7 +14,6 @@
           <b-form-input v-model='zoom' type='range' min='100' max='1000' @update="updateZoom" />
         </b-input-group>
       </b-card>
-    </div>
   </div>
 </template>
 

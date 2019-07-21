@@ -1,7 +1,6 @@
 <template>
-  <div class='row'>
-    <div class='col-md-12'>
-      <canvas id='surface' width='480' height='360'></canvas>
+  <div>
+<canvas id='surface' width='480' height='360'></canvas>
 
       <h2 class='subtitle'>Title</h2>
       <p>Explanation</p>
@@ -15,7 +14,6 @@
           <b-form-input v-model='frequency' type='range' min='300' max='100000' @update="updateFrequency" />
         </b-input-group>
       </b-card>
-    </div>
   </div>
 </template>
 

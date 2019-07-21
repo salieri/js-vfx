@@ -1,11 +1,9 @@
 <template>
-  <div class='row'>
-    <div class='col-md-12'>
-      <canvas id='surface' width='853' height='470'></canvas>
+  <div>
+<canvas id='surface' width='853' height='470'></canvas>
 
       <h2 class='subtitle'>Fisheye Lens</h2>
       <p>Pure JavaScript implementation of <a href='http://en.wikipedia.org/wiki/Distortion_(optics)'>radial barrel distortion</a>.</p>
-    </div>
   </div>
 </template>
 

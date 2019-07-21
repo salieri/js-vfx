@@ -1,7 +1,6 @@
 <template>
-  <div class='row'>
-    <div class='col-md-12'>
-      <canvas id='surface' width='640' height='480'></canvas>
+  <div>
+<canvas id='surface' width='640' height='480'></canvas>
 
       <h2 class='subtitle'>Sierpiński Triangle</h2>
       <p>A pure JavaScript implementation of <a href='http://en.wikipedia.org/wiki/Sierpi%C5%84ski_triangle'>Sierpiński
@@ -16,7 +15,6 @@
           <b-form-input v-model='zoom' type='range' min='100' max='5000' @update="updateZoom"/>
         </b-input-group>
       </b-card>
-    </div>
   </div>
 </template>
 

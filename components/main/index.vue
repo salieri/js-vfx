@@ -1,17 +1,15 @@
 <template>
-  <div class='row'>
-    <div class='col-md-12'>
-      <h1 class="title">
+  <div>
+<h1 class="title">
         JS-VFX
       </h1>
       <div>
-        <p>Pure JavaScript visual effects implemented with HTML5 <code>canvas</code>.</p>
+        <p>Pure JavaScript visual effects <force-wrapper /> implemented with HTML5 <code>canvas</code>.</p>
 
         <p>No dependencies, no WebGL, just pure, unadulterated code written from the ground up.</p>
 
         <p>Check out the source at <a href="https://github.com/salieri/js-vfx" target="_blank">GitHub</a>.</p>
       </div>
-    </div>
   </div>
 </template>
 

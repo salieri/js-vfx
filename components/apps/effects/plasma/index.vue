@@ -1,11 +1,9 @@
 <template>
-  <div class='row'>
-    <div class='col-md-12'>
-      <canvas id='surface' width='640' height='480'></canvas>
+  <div>
+<canvas id='surface' width='640' height='480'></canvas>
 
       <h2 class='subtitle'>Plasma Effect</h2>
       <p>A pure JavaScript implementation of <a href='http://en.wikipedia.org/wiki/Plasma_effect'>plasma effect</a>.</p>
-    </div>
   </div>
 </template>
 

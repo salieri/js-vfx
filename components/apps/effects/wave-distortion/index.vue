@@ -1,7 +1,6 @@
 <template>
-  <div class='row'>
-    <div class='col-md-12'>
-      <canvas id='surface' width='853' height='470'></canvas>
+  <div>
+<canvas id='surface' width='853' height='470'></canvas>
 
       <h2 class='subtitle'>Wave Distortion</h2>
       <p>Pure JavaScript implementation of <a href='http://en.wikipedia.org/wiki/Distortion_(optics)'>wave distortion</a>.</p>
@@ -15,7 +14,6 @@
           <b-form-input v-model='frequency' type='range' min='300' max='100000' @update="updateFrequency" />
         </b-input-group>
       </b-card>
-    </div>
   </div>
 </template>
 

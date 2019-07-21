@@ -1,7 +1,6 @@
 <template>
-  <div class='row'>
-    <div class='col-md-12'>
-      <canvas id='surface' width='640' height='480' ref="metaballsCanvas"></canvas>
+  <div>
+<canvas id='surface' width='640' height='480' ref="metaballsCanvas"></canvas>
 
       <h2 class='subtitle'>Metaballs</h2>
       <p>A pure JavaScript implementation of <a href='http://en.wikipedia.org/wiki/Metaballs'>Blinn's Metaballs</a>.</p>
@@ -15,7 +14,6 @@
           <b-form-input v-model='maxThreshold' type='range' min='1' max='3100' @update="updateMaxThreshold"/>
         </b-input-group>
       </b-card>
-    </div>
   </div>
 </template>
 

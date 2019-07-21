@@ -1,16 +1,20 @@
 <template>
   <div class="wrapper" :class="{'sidebar-active': sidebarActive}">
-    <b-nav pills vertical align="left" class="sidebar">
-      <template v-for="(item, key, index) in sidebarItems">
-        <h3 v-if="item.type === 'title'" :key="item.id || `sidebar-title-${index}`" class="subtitle" :class="item.classes">{{ item.title }}</h3>
-        <b-nav-item v-else :class="item.classes" :key="item.id || `sidebar-nav-item-${index}`" :active="activeItem === item.id" @click=menuSelect(item)>{{ item.title }}</b-nav-item>
-      </template>
+    <div class="sidebar-wrapper">
+      <b-nav pills vertical align="left" class="sidebar">
+        <template v-for="(item, key, index) in sidebarItems">
+          <h3 v-if="item.type === 'title'" :key="item.id || `sidebar-title-${index}`" class="subtitle" :class="item.classes" @click="(item.component ? menuSelect(item) : null)">{{ item.title }}</h3>
+          <b-nav-item v-else :class="item.classes" :key="item.id || `sidebar-nav-item-${index}`" :active="activeItem === item.id" @click=menuSelect(item)>{{ item.title }}</b-nav-item>
+        </template>
+      </b-nav>
 
       <div class="toggle-sidebar backdrop" @click="toggleSidebar()"></div>
       <button class="toggle-sidebar" @click="toggleSidebar()">▶</button>
-    </b-nav>
+    </div>
 
-    <div class="container" ref="appContainer"></div>
+    <div class="app-wrapper">
+      <div class="app-container" ref="appContainer"></div>
+    </div>
 
     <div class="mobile-navi">
       <b-button @click="prevItem()">&lsaquo;</b-button>
@@ -70,6 +74,7 @@ class IndexPage extends Vue {
       type: 'title',
       title: 'JS-VFX',
       id: 'JsvfxMain',
+      component: Main,
       classes: 'main'
     },
 
@@ -320,14 +325,6 @@ export default IndexPage;
 <style lang="scss">
 $tSpeed: 0.3s;
 
-.container {
-  margin: 0 auto;
-  min-height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-}
 
 .title {
   font-family: 'Quicksand', 'Source Sans Pro', -apple-system, BlinkMacSystemFont,
@@ -355,15 +352,44 @@ $tSpeed: 0.3s;
   display: flex;
 
   canvas {
-    width: 90%;
+    width: 100%;
     margin-bottom: 20pt;
     box-shadow: 1px 2px 3px 0 rgba(0, 0, 0, 0.15);
   }
 
-  .container {
+  force-wrapper {
+    display: none;
+  }
+
+  .app-wrapper {
+    position: relative;
+    margin-left: 17rem;
+    margin-right: 0.5rem;
+
+    // left: 17rem;
+    // right: 0.5rem;
+    max-height: 100%;
+    max-width: 720px;
+    min-height: 100%;
+    overflow: hidden auto;
+    overscroll-behavior-x: none;
+
+    /* margin: 0 auto;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
     margin-left: 14rem;
     padding-top: 1rem;
     max-width: 720px;
+    width: 100%; */
+
+    .app-container {
+      padding-top: 1.5rem;
+      overflow: hidden;
+      text-align: center;
+    }
   }
 
   .options.card {
@@ -377,64 +403,72 @@ $tSpeed: 0.3s;
     opacity: 1;
   }
 
-  .sidebar {
-    height: 100vh;
-    background: #5f6363;
+  .sidebar-wrapper {
+    height: 100%;
     left: 0;
     top: 0;
     position: fixed;
+    z-index: 1000;
+    display: block;
+    overflow: visible;
+    width: 14rem;
+    min-height: 100vh;
+    background: #5f6363;
     padding-left: 10px;
     padding-right: 10px;
-    width: 14rem;
     border-right: 4px solid #727777;
-    z-index: 1000;
     box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.5);
-
-    display: block;
-    overflow: auto;
 
     .toggle-sidebar {
       display: none;
     }
 
-    a.nav-link {
-      color: white;
-      padding: 0.25rem 1rem;
+    .sidebar {
+      display: block;
+      // overflow: scroll;
+      max-height: 100%;
+      overflow: visible auto;
+      overscroll-behavior-x: none;
 
-      transition: all 0.1s;
-    }
+      a.nav-link {
+        color: white;
+        padding: 0.25rem 1rem;
 
-    a.nav-link.active {
-        background-color: rgba(255, 255, 255, 0.07) !important;
-        font-weight: 500;
-    }
+        transition: all 0.1s;
+      }
 
-    .nav-pills .nav-link.active {
-      background-color: rgba(255, 255, 255, 0.125);
-      border: solid 2px rgba(0, 0, 0, 0.1);
-      font-weight: bold;
-    }
+      a.nav-link.active {
+          background-color: rgba(255, 255, 255, 0.07) !important;
+          font-weight: 500;
+      }
 
-    a.nav-link:hover {
-      background-color: rgba(255, 255, 255, 0.03);
-    }
+      .nav-pills .nav-link.active {
+        background-color: rgba(255, 255, 255, 0.125);
+        border: solid 2px rgba(0, 0, 0, 0.1);
+        font-weight: bold;
+      }
 
-    li.nav-item {
-      text-align: left;
-    }
+      a.nav-link:hover {
+        background-color: rgba(255, 255, 255, 0.03);
+      }
 
-    h3 {
-      color: rgba(255, 255, 255, 0.4);
-      margin-bottom: 0;
-      line-height: 125%;
-      padding: 0;
-      font-size: 200%;
-      margin-top: 0.5rem;
+      li.nav-item {
+        text-align: left;
+      }
 
-      &.main {
-        margin-bottom: 1rem;
-        color: rgba(255, 255, 255, 0.9);
-        font-size: 260%;
+      h3 {
+        color: rgba(255, 255, 255, 0.4);
+        margin-bottom: 0;
+        line-height: 125%;
+        padding: 0;
+        font-size: 200%;
+        margin-top: 0.5rem;
+
+        &.main {
+          margin-bottom: 1rem;
+          color: rgba(255, 255, 255, 0.9);
+          font-size: 260%;
+        }
       }
     }
   }
@@ -445,24 +479,47 @@ $tSpeed: 0.3s;
 }
 
 
+@media (max-width: 1024px) and (min-width: 641px) {
+  .wrapper {
+    .app-wrapper {
+      margin-left: 15rem;
+      margin-right: 1rem;
+    }
+  }
+}
+
 @media (max-width: 640px) {
   .wrapper {
-    .sidebar {
+    force-wrapper {
+      display: block;
+      line-height: 0;
+      margin: 0;
+      border: 0;
+      padding: 0;
+    }
+
+    h1.title {
+      font-size: 90px;
+    }
+
+    .sidebar-wrapper {
       width: 1rem;
       transition: all $tSpeed;
 
-      // display: flex;
-      overflow: initial;
+      .sidebar {
+        // display: flex;
+        // overflow: initial;
 
-      h3,
-      a.nav-link {
-        white-space: nowrap;
-      }
+        h3,
+        a.nav-link {
+          white-space: nowrap;
+        }
 
-      * {
-        opacity: 0;
-        pointer-events: none;
-        transition: opacity $tSpeed;
+        * {
+          opacity: 0;
+          pointer-events: none;
+          transition: opacity $tSpeed;
+        }
       }
 
       button.toggle-sidebar {
@@ -497,7 +554,7 @@ $tSpeed: 0.3s;
         top: 0;
         left: 0;
         width: 2rem;
-        height: 100vh;
+        height: 100%;
         margin: 0;
         padding: 0;
         pointer-events: auto;
@@ -505,17 +562,32 @@ $tSpeed: 0.3s;
       }
     }
 
-    .container {
-      margin-left: 1rem;
+    .app-wrapper {
+      position: fixed;
+      margin: 0;
+
+      left: 2.5rem;
+      right: 1rem;
+      overflow: hidden auto;
+      overscroll-behavior-x: none;
+      display: flex;
+      min-height: 100%;
+
+      .app-container {
+        margin-top: auto;
+        margin-bottom: auto;
+      }
     }
 
     &.sidebar-active {
-      .sidebar {
+      .sidebar-wrapper {
         width: 14rem;
 
-        * {
-          opacity: 1;
-          pointer-events: auto;
+        .sidebar {
+          * {
+            opacity: 1;
+            pointer-events: auto;
+          }
         }
 
         button.toggle-sidebar {
