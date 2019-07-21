@@ -5,7 +5,9 @@
     <option name="compassSupportEnabled" value="true" />
   </component>
   <component name="NewModuleRootManager">
-    <content url="file://$MODULE_DIR$" />
+    <content url="file://$MODULE_DIR$">
+      <excludeFolder url="file://$MODULE_DIR$/js-vfx/.nuxt" />
+    </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="library" name="jQuery-2.0.0" level="application" />
@@ -13,4 +15,3 @@
     <orderEntry type="library" name="requirejs-DefinitelyTyped" level="application" />
   </component>
 </module>
-
