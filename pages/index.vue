@@ -412,7 +412,7 @@ $tSpeed: 0.3s;
     display: block;
     overflow: visible;
     width: 14rem;
-    min-height: 100vh;
+    min-height: 100%;
     background: #5f6363;
     padding-left: 10px;
     padding-right: 10px;
