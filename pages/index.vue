@@ -364,15 +364,16 @@ $tSpeed: 0.3s;
   .app-wrapper {
     position: relative;
     margin-left: 17rem;
-    margin-right: 0.5rem;
+    margin-right: 2.5rem;
 
     // left: 17rem;
     // right: 0.5rem;
     max-height: 100%;
-    max-width: 720px;
+    max-width: 1050px;
     min-height: 100%;
     overflow: hidden auto;
     overscroll-behavior-x: none;
+    width: 100%;
 
     /* margin: 0 auto;
     min-height: 100vh;
@@ -572,6 +573,7 @@ $tSpeed: 0.3s;
       overscroll-behavior-x: none;
       display: flex;
       min-height: 100%;
+      width: initial;
 
       .app-container {
         margin-top: auto;
