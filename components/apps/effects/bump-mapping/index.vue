@@ -2,11 +2,12 @@
   <div>
 <canvas
         id='surface'
-        width='320'
-        height='200'
+        :width='isMobile() ? 320 : 640'
+        :height='isMobile() ? 200 : 400'
         @mousemove="onMouseMove"
         @mouseout="onMouseOut"
         @mouseover="onMouseOver"
+        ref="bumpSurface"
       ></canvas>
 
       <h2 class='subtitle'>Bump Mapping</h2>
@@ -47,8 +48,24 @@ class BumpMapping extends VueWrapper {
   emboss = 48;
 
   instantiateApp() {
-    const heightmap = new CanvasTexture('./resources/apps/bump-mapping/mbaco-heightmap2.png');
-    const texture = new CanvasTexture('./resources/apps/bump-mapping/mbaco-texture.png');
+    const canvas = this.$refs.bumpSurface;
+
+    this.distance = 100;
+    this.emboss = 48;
+
+    this.radius = Math.round(canvas.width * 0.375);
+    this.lightPosX = Math.round(canvas.width / 2);
+    this.lightPosY = Math.round(canvas.height / 2);
+
+    let heightmap, texture;
+
+    if (this.isMobile()) {
+      heightmap = new CanvasTexture('./resources/apps/bump-mapping/js-vfx-heightmap-small.png');
+      texture = new CanvasTexture('./resources/apps/bump-mapping/js-vfx-texture-small.png');
+    } else {
+      heightmap = new CanvasTexture('./resources/apps/bump-mapping/js-vfx-heightmap.png');
+      texture = new CanvasTexture('./resources/apps/bump-mapping/js-vfx-texture.png');
+    }
 
     const app = new BumpMappingApp('surface', texture, heightmap);
 

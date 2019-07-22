@@ -1,6 +1,6 @@
 <template>
   <div>
-<canvas id='surface' width='480' height='360'></canvas>
+<canvas id='surface' :width='isMobile() ? 320 : 480' :height='isMobile() ? 200 : 360'></canvas>
 
       <h2 class='subtitle'>Bilinear Interpolation</h2>
       <p>Pure JavaScript implementation of <a href='http://en.wikipedia.org/wiki/Bilinear_interpolation'>bilinear interpolation</a>.</p>

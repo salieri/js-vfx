@@ -58,17 +58,17 @@ import { Helper } from '~/lib/core/helper';
 
 @Component
 class CrepuscularRays extends VueWrapper {
-  weight = 250;
+  weight = 85; // 145
 
-  decay = 800;
+  decay = 810; // 810
 
-  exposure = 800;
+  exposure = 755; // 640
 
-  density = 450;
+  density = 700; // 1045
 
   samples = 20;
 
-  selectedButtons = ['drawLight', 'drawMask', 'drawBackground'];
+  selectedButtons = ['drawLight', 'drawMask'];
 
   buttonOptions = [
     { text: 'Draw Light', value: 'drawLight' },
@@ -90,12 +90,12 @@ class CrepuscularRays extends VueWrapper {
   lights = [
     {
       active: true,
-      drawLight: true,
+      drawLight: (this.selectedButtons.indexOf('drawLight') >= 0),
       position: new Point2D(160, 100),
 
       radiusPerSecond: -0.9,
-      radiusX: 80,
-      radiusY: 80,
+      radiusX: 100,
+      radiusY: 50,
       origin: new Point2D(160, 100),
 
       weight: this.weight / 1000,
@@ -109,9 +109,13 @@ class CrepuscularRays extends VueWrapper {
 
 
   instantiateApp() {
-    const app = new CrepuscularRaysApp('surface', './resources/apps/crepuscular-rays/bg.png', './resources/apps/crepuscular-rays/mask3.png', './resources/apps/crepuscular-rays/light.png');
+    const app = new CrepuscularRaysApp('surface', './resources/apps/crepuscular-rays/bg.png', './resources/apps/crepuscular-rays/js-vfx-mask.png', './resources/apps/crepuscular-rays/light.png');
 
     app.addLight(this.lights);
+
+    app.drawBackground = (this.selectedButtons.indexOf('drawBackground') >= 0);
+    app.drawMask = (this.selectedButtons.indexOf('drawMask') >= 0);
+    app.dirtySurface = (this.selectedButtons.indexOf('dirtySurface') >= 0);
 
     return app;
   }
@@ -148,21 +152,25 @@ class CrepuscularRays extends VueWrapper {
 
 
   updateWeight(val) {
+    console.log('weight', val);
     this.app.lights[0].weight = val / 1000;
   }
 
 
   updateDecay(val) {
+    console.log('decay', val);
     this.app.lights[0].decay = val / 1000;
   }
 
 
   updateDensity(val) {
+    console.log('density', val);
     this.app.lights[0].density = val / 1000;
   }
 
 
   updateExposure(val) {
+    console.log('exposure', val);
     this.app.lights[0].exposure = val / 1000;
   }
 

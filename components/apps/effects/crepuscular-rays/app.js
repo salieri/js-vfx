@@ -97,6 +97,7 @@ export class CrepuscularRaysApp extends App {
     const width = this.virtualSurface.getWidth();
     const height = this.virtualSurface.getHeight();
 
+
     const samples = light.samples;
     const weight = light.weight;
     const decay = light.decay;
