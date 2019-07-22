@@ -1,19 +1,19 @@
 <template>
   <div>
-<canvas id='surface' width='480' height='360'></canvas>
+    <canvas id='surface' width='480' height='360'></canvas>
 
-      <h2 class='subtitle'>Title</h2>
-      <p>Explanation</p>
+    <h2 class='subtitle'>Title</h2>
+    <p>Explanation</p>
 
-      <b-card sub-title="Options" class="options">
-        <b-input-group prepend="Amplitude" size="sm" class="mb-3">
-          <b-form-input v-model='amplitude' type='range' min='100' max='16000' @update="updateAmplitude" />
-        </b-input-group>
+    <b-card sub-title="Options" class="options">
+      <b-input-group prepend="Amplitude" size="sm" class="mb-3">
+        <b-form-input v-model='amplitude' type='range' min='100' max='16000' @update="updateAmplitude" />
+      </b-input-group>
 
-        <b-input-group prepend="Frequency" size="sm" class="mb-3">
-          <b-form-input v-model='frequency' type='range' min='300' max='100000' @update="updateFrequency" />
-        </b-input-group>
-      </b-card>
+      <b-input-group prepend="Frequency" size="sm" class="mb-3">
+        <b-form-input v-model='frequency' type='range' min='300' max='100000' @update="updateFrequency" />
+      </b-input-group>
+    </b-card>
   </div>
 </template>
 

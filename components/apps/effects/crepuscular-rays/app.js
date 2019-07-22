@@ -109,6 +109,10 @@ export class CrepuscularRaysApp extends App {
     const normalSamplesByDensity = 1.0 / samples * light.density;
     const maxPtr = width * height * 4;
 
+    const round = Math.round;
+    const min = Math.min;
+    const max = Math.max;
+
     for (let y = 0; y < height; y++) {
       for (let x = 0; x < width; x++) {
         // curPos.set( x, y );
@@ -116,17 +120,9 @@ export class CrepuscularRaysApp extends App {
         // this is faster:
         let curPosX = x;
         let curPosY = y;
-        let deltaTexX = x;
-        let deltaTexY = y;
 
-        // deltaTex.subtract( light.position );
-        // deltaTex.multiplyByVal( normalSamplesByDensity );
-        // this is faster:
-        deltaTexX -= lightPosX;
-        deltaTexY -= lightPosY;
-        deltaTexX *= normalSamplesByDensity;
-        deltaTexY *= normalSamplesByDensity;
-
+        const deltaTexX = (x - lightPosX) * normalSamplesByDensity;
+        const deltaTexY = (y - lightPosY) * normalSamplesByDensity;
 
         // this.virtualSurface.getPixel( curPos, initialColor );
         // this is faster:
@@ -143,7 +139,7 @@ export class CrepuscularRaysApp extends App {
 
           // this.virtualSurface.getPixel( curPos, curColor );
           // this is faster:
-          let curPtr = (Math.round(curPosX) + Math.round(curPosY) * width) * 4;
+          let curPtr = (round(curPosX) + round(curPosY) * width) * 4;
 
           if ((curPtr >= 0) && (curPtr < maxPtr)) {
             // curColor.multiplyByVal( illuminationDecay * weight, true );
@@ -164,9 +160,9 @@ export class CrepuscularRaysApp extends App {
         }
 
         // this is faster:
-        initialR = Math.max(0, Math.min(255, Math.round(initialR * exposure)));
-        initialG = Math.max(0, Math.min(255, Math.round(initialG * exposure)));
-        initialB = Math.max(0, Math.min(255, Math.round(initialB * exposure)));
+        initialR = max(0, min(255, round(initialR * exposure)));
+        initialG = max(0, min(255, round(initialG * exposure)));
+        initialB = max(0, min(255, round(initialB * exposure)));
 
         dest[dataPtr++] = initialR;
         dest[dataPtr++] = initialG;

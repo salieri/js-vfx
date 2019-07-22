@@ -18,4 +18,4 @@ module.exports = {
     'no-prototype-builtins': 0,
     'no-console': 0
   }
-}
+};

@@ -79,28 +79,35 @@ export class FisheyeLensApp extends App {
     const destData = destCanvasTexture.data.data;
     const sourceData = sourceCanvasTexture.data.data;
     const sourceWidth = sourceCanvasTexture.getWidth();
-
+    const destWidth = destCanvasTexture.getWidth();
     const halfRadius = 0.5 * radius;
 
+    const sqrt = Math.sqrt;
+    const cos = Math.cos;
+    const atan2 = Math.atan2;
+    const round = Math.round;
+    const sin = Math.sin;
+
     for (let y = 0; y < radius; y++) {
-      let ptr = (posX + (y + posY) * destCanvasTexture.getWidth()) * 4;
+      let ptr = (posX + (y + posY) * destWidth) * 4;
 
       const ny = (y / halfRadius) - 1.0;
-      const ny2 = ny * ny;
+      const ny2 = (ny ** 2);
 
       for (let x = 0; x < radius; x++) {
         const nx = (x / halfRadius) - 1.0;
-        const r = Math.sqrt(nx * nx + ny2);
+        const r = sqrt((nx ** 2) + ny2);
 
         if ((r >= 0.0) && (r <= 1.0)) {
-          const theta = Math.atan2(ny, nx);
-          const rd = (r + (1 - Math.sqrt(1 - (r * r)))) / 2;
+          const theta = atan2(ny, nx);
+
+          const rd = (r + (1 - sqrt(1 - (r ** 2)))) / 2; // rdLookup[round(r * 10000)];
 
           if (rd <= 1.0) {
-            const fnx = rd * Math.cos(theta);
-            const fny = rd * Math.sin(theta);
-            const px = posX + Math.round((fnx + 1.0) * halfRadius);
-            const py = posY + Math.round((fny + 1.0) * halfRadius);
+            const fnx = rd * cos(theta);
+            const fny = rd * sin(theta);
+            const px = posX + round((fnx + 1.0) * halfRadius);
+            const py = posY + round((fny + 1.0) * halfRadius);
 
             let bgPtr = (py * sourceWidth + px) * 4;
 

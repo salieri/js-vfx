@@ -1,9 +1,9 @@
 <template>
   <div>
-<canvas id='surface' width='640' height='480'></canvas>
+    <canvas id='surface' width='640' height='480'></canvas>
 
-      <h2 class='subtitle'>Line</h2>
-      <p>Pure JavaScript implementation of line (<i>not</i> <code>canvas.lineTo()</code>)</p>
+    <h2 class='subtitle'>Line</h2>
+    <p>Pure JavaScript implementation of line (<i>not</i> <code>canvas.lineTo()</code>)</p>
   </div>
 </template>
 

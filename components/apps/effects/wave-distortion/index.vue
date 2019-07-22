@@ -1,19 +1,19 @@
 <template>
   <div>
-<canvas id='surface' width='853' height='470'></canvas>
+    <canvas id='surface' :width='isMobile() ? 640 : 853' :height='isMobile() ? 350 : 470'></canvas>
 
-      <h2 class='subtitle'>Wave Distortion</h2>
-      <p>Pure JavaScript implementation of <a href='http://en.wikipedia.org/wiki/Distortion_(optics)'>wave distortion</a>.</p>
+    <h2 class='subtitle'>Wave Distortion</h2>
+    <p>Pure JavaScript implementation of <a href='http://en.wikipedia.org/wiki/Distortion_(optics)'>wave distortion</a>.</p>
 
-      <b-card sub-title="Options" class="options">
-        <b-input-group prepend="Amplitude" size="sm" class="mb-3">
-          <b-form-input v-model='amplitude' type='range' min='100' max='16000' @update="updateAmplitude" />
-        </b-input-group>
+    <b-card sub-title="Options" class="options">
+      <b-input-group prepend="Amplitude" size="sm" class="mb-3">
+        <b-form-input v-model='amplitude' type='range' min='100' max='16000' @update="updateAmplitude" />
+      </b-input-group>
 
-        <b-input-group prepend="Frequency" size="sm" class="mb-3">
-          <b-form-input v-model='frequency' type='range' min='300' max='100000' @update="updateFrequency" />
-        </b-input-group>
-      </b-card>
+      <b-input-group prepend="Frequency" size="sm" class="mb-3">
+        <b-form-input v-model='frequency' type='range' min='300' max='100000' @update="updateFrequency" />
+      </b-input-group>
+    </b-card>
   </div>
 </template>
 

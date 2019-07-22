@@ -1,9 +1,9 @@
 <template>
   <div>
-<canvas id='surface' width='853' height='470'></canvas>
+    <canvas id='surface' width='853' height='470'></canvas>
 
-      <h2 class='subtitle'>Fisheye Lens</h2>
-      <p>Pure JavaScript implementation of <a href='http://en.wikipedia.org/wiki/Distortion_(optics)'>radial barrel distortion</a>.</p>
+    <h2 class='subtitle'>Fisheye Lens</h2>
+    <p>Pure JavaScript implementation of <a href='http://en.wikipedia.org/wiki/Distortion_(optics)'>radial barrel distortion</a>.</p>
   </div>
 </template>
 
@@ -76,6 +76,10 @@ class FisheyeLens extends VueWrapper {
 
 
   instantiateApp() {
+    if (this.isMobile()) {
+      this.lenses.pop();
+    }
+
     const app = new FisheyeLensApp('surface', './resources/apps/fisheye-lens/bg.jpg');
     const lenses = this.lenses;
 

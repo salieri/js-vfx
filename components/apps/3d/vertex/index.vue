@@ -1,22 +1,22 @@
 <template>
   <div>
-<canvas id='surface' width='640' height='480'></canvas>
+    <canvas id='surface' :width='isMobile() ? 480 : 640' :height='isMobile() ? 360 : 480'></canvas>
 
-      <h2 class='subtitle'>Vertex Projection</h2>
-      <p>Pure JavaScript (not WebGL) implementation of <a href='http://en.wikipedia.org/wiki/3D_projection'>camera projection.</a></p>
+    <h2 class='subtitle'>Vertex Projection</h2>
+    <p>Pure JavaScript (not WebGL) implementation of <a href='http://en.wikipedia.org/wiki/3D_projection'>camera projection.</a></p>
 
-      <b-card sub-title="Options" class="options">
-        <b-form-group>
-          <b-form-radio-group
-            :options="objectOptions"
-            v-model="activeObject"
-            buttons
-            size="sm"
-            @change="switchObject"
-          >
-          </b-form-radio-group>
-        </b-form-group>
-      </b-card>
+    <b-card sub-title="Options" class="options">
+      <b-form-group>
+        <b-form-radio-group
+          :options="objectOptions"
+          v-model="activeObject"
+          buttons
+          size="sm"
+          @change="switchObject"
+        >
+        </b-form-radio-group>
+      </b-form-group>
+    </b-card>
 
   </div>
 </template>

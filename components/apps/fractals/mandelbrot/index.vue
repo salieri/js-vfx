@@ -1,19 +1,19 @@
 <template>
   <div>
-<canvas id='surface' width='640' height='400'></canvas>
+    <canvas id='surface' :width='isMobile() ? 480 : 640' :height='isMobile() ? 300 : 400'></canvas>
 
-      <h2 class='subtitle'>Mandelbrot Set</h2>
-      <p>A pure JavaScript implementation of <a href='http://en.wikipedia.org/wiki/Mandelbrot_set'>Mandelbrot set</a> fractal shape.</p>
+    <h2 class='subtitle'>Mandelbrot Set</h2>
+    <p>A pure JavaScript implementation of <a href='http://en.wikipedia.org/wiki/Mandelbrot_set'>Mandelbrot set</a> fractal shape.</p>
 
-      <b-card sub-title="Options" class="options">
-        <b-input-group prepend="Resolution" size="sm" class="mb-3">
-          <b-form-input v-model='iterations' type='range' min='1' max='100' @update="updateIterations" />
-        </b-input-group>
+    <b-card sub-title="Options" class="options">
+      <b-input-group prepend="Resolution" size="sm" class="mb-3">
+        <b-form-input v-model='iterations' type='range' min='1' max='100' @update="updateIterations" />
+      </b-input-group>
 
-        <b-input-group prepend="Zoom" size="sm" class="mb-3">
-          <b-form-input v-model='zoom' type='range' min='100' max='1000' @update="updateZoom" />
-        </b-input-group>
-      </b-card>
+      <b-input-group prepend="Zoom" size="sm" class="mb-3">
+        <b-form-input v-model='zoom' type='range' min='100' max='1000' @update="updateZoom" />
+      </b-input-group>
+    </b-card>
   </div>
 </template>
 

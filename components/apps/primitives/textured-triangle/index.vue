@@ -1,9 +1,9 @@
 <template>
   <div>
-<canvas id='surface' width='640' height='480'></canvas>
+    <canvas id='surface' width='640' height='480'></canvas>
 
-      <h2 class='subtitle'>Textured Triangle</h2>
-      <p>Pure JavaScript implementation of textured triangle polygon (<i>not</i> <code>canvas.path</code>)</p>
+    <h2 class='subtitle'>Textured Triangle</h2>
+    <p>Pure JavaScript implementation of textured triangle polygon (<i>not</i> <code>canvas.path</code>)</p>
   </div>
 </template>
 

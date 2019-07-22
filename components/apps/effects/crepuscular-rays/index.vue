@@ -7,6 +7,7 @@
       @mousemove="onMouseMove"
       @mouseout="onMouseOut"
       @mouseover="onMouseOver"
+      ref="raySurface"
     ></canvas>
 
     <h2 class='subtitle'>Crepuscular Rays</h2>
@@ -87,29 +88,38 @@ class CrepuscularRays extends VueWrapper {
 
   noUpdates = false;
 
-  lights = [
-    {
-      active: true,
-      drawLight: (this.selectedButtons.indexOf('drawLight') >= 0),
-      position: new Point2D(160, 100),
-
-      radiusPerSecond: -0.9,
-      radiusX: 100,
-      radiusY: 50,
-      origin: new Point2D(160, 100),
-
-      weight: this.weight / 1000,
-      decay: this.decay / 1000,
-      exposure: this.exposure / 1000,
-      density: this.density / 1000,
-      samples: this.samples,
-      imageUrl: './resources/apps/crepuscular-rays/light.png'
-    }
-  ];
+  lights = [];
 
 
   instantiateApp() {
-    const app = new CrepuscularRaysApp('surface', './resources/apps/crepuscular-rays/bg.png', './resources/apps/crepuscular-rays/js-vfx-mask.png', './resources/apps/crepuscular-rays/light.png');
+    const app = new CrepuscularRaysApp(
+      'surface',
+      './resources/apps/crepuscular-rays/bg.png',
+      './resources/apps/crepuscular-rays/js-vfx-mask.png',
+      './resources/apps/crepuscular-rays/light.png'
+    );
+
+    const canvas = this.$refs.raySurface;
+
+    this.lights.push(
+      {
+        active: true,
+        drawLight: (this.selectedButtons.indexOf('drawLight') >= 0),
+        position: new Point2D(Math.round(canvas.width / 2), Math.round(canvas.height / 2)),
+
+        radiusPerSecond: -0.9,
+        radiusX: Math.round(0.3125 * canvas.width),
+        radiusY: Math.round(0.25 * canvas.height),
+        origin: new Point2D(Math.round(canvas.width / 2), Math.round(canvas.height / 2)),
+
+        weight: this.weight / 1000,
+        decay: this.decay / 1000,
+        exposure: this.exposure / 1000,
+        density: this.density / 1000,
+        samples: this.samples,
+        imageUrl: './resources/apps/crepuscular-rays/light.png'
+      }
+    );
 
     app.addLight(this.lights);
 

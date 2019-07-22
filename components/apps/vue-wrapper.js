@@ -42,6 +42,10 @@ class VueWrapper extends Vue {
   start() {
     this.stop();
 
+    this.drawTime = 0;
+    this.drawCount = 0;
+    this.debug = 1;
+
     this.app = this.instantiateApp();
 
     if (this.intervalFrequency === 0) {
@@ -60,7 +64,20 @@ class VueWrapper extends Vue {
           return;
         }
 
+        const st = Date.now();
+
         this.tick();
+
+        const et = Date.now();
+
+        this.drawCount++;
+        this.drawTime += (et - st);
+
+        if ((this.debug) && (this.drawCount % 100 === 0)) {
+          const avgFrame = this.drawTime / this.drawCount;
+
+          console.log(`Draw average speed: ${Math.round(avgFrame)} ms (${Math.round(1000 / avgFrame, 1)} fps)`);
+        }
       },
       this.intervalFrequency
     );

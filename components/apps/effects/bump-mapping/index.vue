@@ -1,28 +1,28 @@
 <template>
   <div>
-<canvas
-        id='surface'
-        :width='isMobile() ? 320 : 640'
-        :height='isMobile() ? 200 : 400'
-        @mousemove="onMouseMove"
-        @mouseout="onMouseOut"
-        @mouseover="onMouseOver"
-        ref="bumpSurface"
-      ></canvas>
+    <canvas
+      id='surface'
+      :width='isMobile() ? 320 : 640'
+      :height='isMobile() ? 200 : 400'
+      @mousemove="onMouseMove"
+      @mouseout="onMouseOut"
+      @mouseover="onMouseOver"
+      ref="bumpSurface"
+    ></canvas>
 
-      <h2 class='subtitle'>Bump Mapping</h2>
-      <p>Pure JavaScript implementation of <a href='http://en.wikipedia.org/wiki/Normal_mapping'>bump mapping</a>
-        (normal mapping) on a 2D surface. Move your mouse over the canvas to control the light source.</p>
+    <h2 class='subtitle'>Bump Mapping</h2>
+    <p>Pure JavaScript implementation of <a href='http://en.wikipedia.org/wiki/Normal_mapping'>bump mapping</a>
+      (normal mapping) on a 2D surface. Move your mouse over the canvas to control the light source.</p>
 
-      <b-card sub-title="Options" class="options">
-        <b-input-group prepend="Light Distance" size="sm" class="mb-3">
-          <b-form-input v-model='distance' type='range' min='0' max='512' @update="updateDistance" />
-        </b-input-group>
+    <b-card sub-title="Options" class="options">
+      <b-input-group prepend="Light Distance" size="sm" class="mb-3">
+        <b-form-input v-model='distance' type='range' min='0' max='512' @update="updateDistance" />
+      </b-input-group>
 
-        <b-input-group prepend="Emboss Depth" size="sm" class="mb-3">
-          <b-form-input v-model='emboss' type='range' min='1' max='1000' @update="updateEmboss" />
-        </b-input-group>
-      </b-card>
+      <b-input-group prepend="Emboss Depth" size="sm" class="mb-3">
+        <b-form-input v-model='emboss' type='range' min='1' max='1000' @update="updateEmboss" />
+      </b-input-group>
+    </b-card>
   </div>
 </template>
 

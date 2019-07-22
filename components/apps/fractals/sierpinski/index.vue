@@ -1,20 +1,20 @@
 <template>
   <div>
-<canvas id='surface' width='640' height='480'></canvas>
+    <canvas id='surface' :width='isMobile() ? 480 : 640' :height='isMobile() ? 300 : 480'></canvas>
 
-      <h2 class='subtitle'>Sierpiński Triangle</h2>
-      <p>A pure JavaScript implementation of <a href='http://en.wikipedia.org/wiki/Sierpi%C5%84ski_triangle'>Sierpiński
-        triangle</a>.</p>
+    <h2 class='subtitle'>Sierpiński Triangle</h2>
+    <p>A pure JavaScript implementation of <a href='http://en.wikipedia.org/wiki/Sierpi%C5%84ski_triangle'>Sierpiński
+      triangle</a>.</p>
 
-      <b-card sub-title="Options" class="options">
-        <b-input-group prepend="Resolution" size="sm" class="mb-3">
-          <b-form-input v-model='resolution' type='range' min='1' max='30' @update="updateResolution"/>
-        </b-input-group>
+    <b-card sub-title="Options" class="options">
+      <b-input-group prepend="Resolution" size="sm" class="mb-3">
+        <b-form-input v-model='resolution' type='range' min='1' max='30' @update="updateResolution"/>
+      </b-input-group>
 
-        <b-input-group prepend="Zoom" size="sm" class="mb-3">
-          <b-form-input v-model='zoom' type='range' min='100' max='5000' @update="updateZoom"/>
-        </b-input-group>
-      </b-card>
+      <b-input-group prepend="Zoom" size="sm" class="mb-3">
+        <b-form-input v-model='zoom' type='range' min='100' max='5000' @update="updateZoom"/>
+      </b-input-group>
+    </b-card>
   </div>
 </template>
 

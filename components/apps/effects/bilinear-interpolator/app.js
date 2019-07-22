@@ -43,7 +43,12 @@ export class BilinearInterpolatorApp extends App {
     const y1 = 0;
     const y2 = heightMinus;
 
-    const normalColor = new NormalizedColor();
+    const q11 = this.q11;
+    const q21 = this.q21;
+    const q12 = this.q12;
+    const q22 = this.q22;
+
+    // const normalColor = new NormalizedColor();
 
     for (let y = 0; y < height; y++) {
       for (let x = 0; x < width; x++) {
@@ -51,18 +56,19 @@ export class BilinearInterpolatorApp extends App {
         const y2MinusY = y2 - y;
         const xMinusX1 = x - x1;
         const yMinusY1 = y - y1;
+        const ltX2MinusX = this.lookupTable[x2MinusX];
+        const ltxMinusX1 = this.lookupTable[xMinusX1];
 
-        const hue =
-          this.q11 * this.lookupTable[x2MinusX][y2MinusY] +
-          this.q21 * this.lookupTable[xMinusX1][y2MinusY] +
-          this.q12 * this.lookupTable[x2MinusX][yMinusY1] +
-          this.q22 * this.lookupTable[xMinusX1][yMinusY1];
+        const hue = Math.round(
+          (q11 * ltX2MinusX[y2MinusY] +
+          q21 * ltxMinusX1[y2MinusY] +
+          q12 * ltX2MinusX[yMinusY1] +
+          q22 * ltxMinusX1[yMinusY1]) * 100
+        );
 
-        NormalizedColor.hsvToRgb(hue, 1.0, 1.0, normalColor);
-
-        canvasData[ptr++] = Math.round(normalColor.r * 255);
-        canvasData[ptr++] = Math.round(normalColor.g * 255);
-        canvasData[ptr++] = Math.round(normalColor.b * 255);
+        canvasData[ptr++] = this.hueLookupR[hue];
+        canvasData[ptr++] = this.hueLookupG[hue];
+        canvasData[ptr++] = this.hueLookupB[hue];
         canvasData[ptr++] = 255;
       }
     }
@@ -122,6 +128,20 @@ export class BilinearInterpolatorApp extends App {
         this.lookupTable[x2 - x][y - y1] = (x2 - x) * (y - y1) * oneDivX2MinusX1MulY2MinusY1;
         this.lookupTable[x - x1][y - y1] = (x - x1) * (y - y1) * oneDivX2MinusX1MulY2MinusY1;
       }
+    }
+
+    // this.hueLookup = new Array(36001);
+    this.hueLookupR = new Uint8Array(36001);
+    this.hueLookupG = new Uint8Array(36001);
+    this.hueLookupB = new Uint8Array(36001);
+
+    for (let hue = 0; hue <= 36000; hue++) {
+      const nc = new NormalizedColor();
+      NormalizedColor.hsvToRgb(hue / 100, 1.0, 1.0, nc);
+
+      this.hueLookupR[hue] = Math.round(nc.r * 255);
+      this.hueLookupG[hue] = Math.round(nc.g * 255);
+      this.hueLookupB[hue] = Math.round(nc.b * 255);
     }
   }
 }

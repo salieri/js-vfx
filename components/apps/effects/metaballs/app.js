@@ -92,6 +92,14 @@ export class MetaballsApp extends App {
     const thresholdMin = this.thresholdMin;
     const thresholdMax = this.thresholdMax;
 
+    const sqrt = Math.sqrt;
+    const sin = Math.sin;
+    const round = Math.round;
+    const min = Math.min;
+    const max = Math.max;
+    const PI = Math.PI;
+    const halfPi = 0.5 * PI;
+
     for (let y = 0; y < height; y++) {
       for (let x = 0; x < width; x++) {
         let power = 0;
@@ -101,8 +109,10 @@ export class MetaballsApp extends App {
 
         for (let i = 0; i < ballCount; i++) {
           const b = balls[i];
-          const xDiff = x - b.pos.x;
-          const yDiff = y - b.pos.y;
+          const bPos = b.pos;
+
+          const xDiff = x - bPos.x;
+          const yDiff = y - bPos.y;
           const tint = b.tint;
 
           if ((xDiff === 0) && (yDiff === 0)) {
@@ -111,7 +121,7 @@ export class MetaballsApp extends App {
             colG += tint.g;
             colB += tint.b;
           } else {
-            const d = b.radiusTimesPower / Math.sqrt(xDiff * xDiff + yDiff * yDiff);
+            const d = b.radiusTimesPower / sqrt(xDiff ** 2 + yDiff ** 2);
 
             colR += tint.r * d;
             colG += tint.g * d;
@@ -120,21 +130,20 @@ export class MetaballsApp extends App {
           }
         }
 
-
         if ((power >= thresholdMin) && (power <= thresholdMax)) {
           // this helps with the fall-off
           if (power < 1.0) {
-            const sine = Math.sin(0.5 * Math.PI * power);
-            const m = sine * sine * sine;
+            const sine = sin(halfPi * power);
+            const m = sine ** 3;
 
             colR *= m;
             colG *= m;
             colB *= m;
           }
 
-          colR = Math.round(Math.min(255, Math.max(0, colR * 255)));
-          colG = Math.round(Math.min(255, Math.max(0, colG * 255)));
-          colB = Math.round(Math.min(255, Math.max(0, colB * 255)));
+          colR = round(min(255, max(0, colR * 255)));
+          colG = round(min(255, max(0, colG * 255)));
+          colB = round(min(255, max(0, colB * 255)));
 
           data[ptr++] = colR;
           data[ptr++] = colG;

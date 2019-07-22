@@ -1,9 +1,9 @@
 <template>
   <div>
-<canvas id='surface' width='640' height='480'></canvas>
+    <canvas id='surface' width='640' height='480'></canvas>
 
-      <h2 class='subtitle'>Plasma Effect</h2>
-      <p>A pure JavaScript implementation of <a href='http://en.wikipedia.org/wiki/Plasma_effect'>plasma effect</a>.</p>
+    <h2 class='subtitle'>Plasma Effect</h2>
+    <p>A pure JavaScript implementation of <a href='http://en.wikipedia.org/wiki/Plasma_effect'>plasma effect</a>.</p>
   </div>
 </template>
 

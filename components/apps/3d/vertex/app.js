@@ -19,14 +19,14 @@ export class VertexApp extends App {
 
   loadObjects() {
     this.objects = {
-      torus: TorusFactory.generate(500, 500, 350, 20, 12),
+      torus: TorusFactory.generate(500, 500, 320, 25, 20),
       teapot: ObjFactory.load('./resources/3d/objects/teapot.obj', this.scene),
       cube: CuboidFactory.generate(500, 500, 500),
-      sphere: SphereFactory.generate(500, 500, 500, 20)
+      sphere: SphereFactory.generate(600, 600, 600, 25)
     };
 
     this.objects.torus.position.z = -1200;
-    this.objects.teapot.position.z = -1200;
+    this.objects.teapot.position.z = -1000;
     this.objects.cube.position.z = -1200;
     this.objects.sphere.position.z = -1200;
 
@@ -75,7 +75,9 @@ export class VertexApp extends App {
 
 
   rotateMesh() {
-    this.objects[this.activeObject].rotation.addByVal(0.01);
+    const rot = new Point3D(0.002, 0.013, 0.004);
+
+    this.objects[this.activeObject].rotation.add(rot);
   }
 
 
@@ -83,6 +85,8 @@ export class VertexApp extends App {
     this.startDrawing();
 
     Draw.bgColor = new Color(220, 230, 240);
+    Draw.color = new Color(255, 0, 0);
+
     Draw.clear();
 
     this.scene.render();

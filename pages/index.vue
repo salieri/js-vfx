@@ -4,7 +4,7 @@
       <b-nav pills vertical align="left" class="sidebar">
         <template v-for="(item, key, index) in sidebarItems">
           <h3 v-if="item.type === 'title'" :key="item.id || `sidebar-title-${index}`" class="subtitle" :class="item.classes" @click="(item.component ? menuSelect(item) : null)">{{ item.title }}</h3>
-          <b-nav-item v-else :class="item.classes" :key="item.id || `sidebar-nav-item-${index}`" :active="activeItem === item.id" @click=menuSelect(item)>{{ item.title }}</b-nav-item>
+          <b-nav-item v-else :class="item.classes" :key="item.id || `sidebar-nav-item-${index}`" :active="activeItem === item.id" @click="menuSelect(item)">{{ item.title }}</b-nav-item>
         </template>
       </b-nav>
 
