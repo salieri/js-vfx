@@ -29,7 +29,12 @@ class WaveDistortion extends VueWrapper {
   frequency = 27712;
 
   instantiateApp() {
-    return new WaveDistortionApp('surface', './resources/apps/wave-distortion/bg.jpg', this.amplitude / 100, this.frequency / 100);
+    return new WaveDistortionApp(
+      'surface',
+      `./resources/apps/wave-distortion/${this.isMobile() ? 'bg-small' : 'bg'}.jpg`,
+      this.amplitude / 100,
+      this.frequency / 100
+    );
   }
 
 
