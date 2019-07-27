@@ -365,14 +365,11 @@ $tSpeed: 0.3s;
     position: relative;
     margin-left: 2.5rem;
     margin-right: 2.5rem;
+    margin-bottom: 2.5rem;
 
     // left: 17rem;
     // right: 0.5rem;
-    max-height: 100%;
     max-width: 1050px;
-    min-height: 100%;
-    overflow: hidden auto;
-    overscroll-behavior-x: none;
     width: 100%;
 
     /* margin: 0 auto;
@@ -413,7 +410,9 @@ $tSpeed: 0.3s;
     width: 14rem;
     min-width: 14rem;
 
-    min-height: 100%;
+    min-height: 100vh;
+    // height: fit-content;
+
     background: #5f6363;
     padding-left: 10px;
     padding-right: 10px;
@@ -427,10 +426,7 @@ $tSpeed: 0.3s;
     .sidebar {
       display: block;
       // overflow: scroll;
-      max-height: 100%;
       height: auto;
-      overflow: visible auto;
-      overscroll-behavior-x: none;
 
       a.nav-link {
         color: white;
@@ -506,6 +502,8 @@ $tSpeed: 0.3s;
 
     .sidebar-wrapper {
       height: 100%;
+      min-height: 100%;
+
       left: 0;
       top: 0;
       position: fixed;
@@ -515,6 +513,9 @@ $tSpeed: 0.3s;
       transition: all $tSpeed;
 
       .sidebar {
+        max-height: 100%;
+        overflow: visible auto;
+        overscroll-behavior-x: none;
         // display: flex;
         // overflow: initial;
 
@@ -575,6 +576,12 @@ $tSpeed: 0.3s;
       margin: 0;
       margin-left: 2rem;
       margin-right: 0.5rem;
+      margin-bottom: 2.5rem;
+
+      max-height: 100%;
+      min-height: 100%;
+      // overflow: hidden auto;
+      // overscroll-behavior-x: none;
 
       // left: 2.5rem;
       // right: 1rem;
@@ -644,7 +651,9 @@ $tSpeed: 0.3s;
 }
 
 html, body, div#__nuxt,  div#__layout, div#__layout > div, div.wrapper {
-  height: 100%;
+  // height: auto;
+  // min-height: 100%;
+  // height: 100%;
 }
 
 
