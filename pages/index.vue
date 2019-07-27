@@ -363,7 +363,7 @@ $tSpeed: 0.3s;
 
   .app-wrapper {
     position: relative;
-    margin-left: 17rem;
+    margin-left: 2.5rem;
     margin-right: 2.5rem;
 
     // left: 17rem;
@@ -390,6 +390,7 @@ $tSpeed: 0.3s;
       padding-top: 1.5rem;
       overflow: hidden;
       text-align: center;
+      height: auto;
     }
   }
 
@@ -405,14 +406,13 @@ $tSpeed: 0.3s;
   }
 
   .sidebar-wrapper {
-    height: 100%;
-    left: 0;
-    top: 0;
-    position: fixed;
     z-index: 1000;
     display: block;
     overflow: visible;
+
     width: 14rem;
+    min-width: 14rem;
+
     min-height: 100%;
     background: #5f6363;
     padding-left: 10px;
@@ -428,6 +428,7 @@ $tSpeed: 0.3s;
       display: block;
       // overflow: scroll;
       max-height: 100%;
+      height: auto;
       overflow: visible auto;
       overscroll-behavior-x: none;
 
@@ -483,7 +484,7 @@ $tSpeed: 0.3s;
 @media (max-width: 1024px) and (min-width: 641px) {
   .wrapper {
     .app-wrapper {
-      margin-left: 15rem;
+      margin-left: 1rem;
       margin-right: 1rem;
     }
   }
@@ -504,6 +505,12 @@ $tSpeed: 0.3s;
     }
 
     .sidebar-wrapper {
+      height: 100%;
+      left: 0;
+      top: 0;
+      position: fixed;
+      min-width: initial;
+
       width: 1rem;
       transition: all $tSpeed;
 
@@ -564,15 +571,17 @@ $tSpeed: 0.3s;
     }
 
     .app-wrapper {
-      position: fixed;
+      // position: fixed;
       margin: 0;
+      margin-left: 2rem;
+      margin-right: 0.5rem;
 
-      left: 2.5rem;
-      right: 1rem;
+      // left: 2.5rem;
+      // right: 1rem;
       overflow: hidden auto;
       overscroll-behavior-x: none;
       display: flex;
-      min-height: 100%;
+      // min-height: 100%;
       width: initial;
 
       .app-container {
@@ -632,6 +641,10 @@ $tSpeed: 0.3s;
       }
     }
   }
+}
+
+html, body, div#__nuxt,  div#__layout, div#__layout > div, div.wrapper {
+  height: 100%;
 }
 
 
