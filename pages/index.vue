@@ -587,7 +587,7 @@ $tSpeed: 0.3s;
       // right: 1rem;
       overflow: hidden auto;
       overscroll-behavior-x: none;
-      display: flex;
+      // display: flex;
       // min-height: 100%;
       width: initial;
 
