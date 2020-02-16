@@ -7,11 +7,11 @@
 
     <b-card sub-title="Options" class="options">
       <b-input-group prepend="Min Threshold" size="sm" class="mb-3">
-        <b-form-input v-model='minThreshold' type='range' min='1' max='1200' @update="updateMinThreshold"/>
+        <b-form-input v-model='minThreshold' type='range' min='1' max='1200' @update="updateMinThreshold" />
       </b-input-group>
 
       <b-input-group prepend="Max Threshold" size="sm" class="mb-3">
-        <b-form-input v-model='maxThreshold' type='range' min='1' max='3100' @update="updateMaxThreshold"/>
+        <b-form-input v-model='maxThreshold' type='range' min='1' max='3100' @update="updateMaxThreshold" />
       </b-input-group>
     </b-card>
   </div>

@@ -38,6 +38,7 @@ import CrepuscularRays from '~/components/apps/effects/crepuscular-rays';
 import FisheyeLens from '~/components/apps/effects/fisheye-lens';
 import Metaballs from '~/components/apps/effects/metaballs';
 import Plasma from '~/components/apps/effects/plasma';
+import VoxelProjection from '~/components/apps/effects/voxel';
 import WaveDistortion from '~/components/apps/effects/wave-distortion';
 
 import Flat from '~/components/apps/3d/flat';
@@ -112,6 +113,11 @@ class IndexPage extends Vue {
       title: 'Plasma',
       component: Plasma,
       id: 'Plasma'
+    },
+    {
+      title: 'Voxel Projection',
+      component: VoxelProjection,
+      id: 'VoxelProjection'
     },
     {
       title: 'Wave Distortion',
