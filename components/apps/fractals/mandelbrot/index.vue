@@ -3,7 +3,7 @@
     <canvas id='surface' :width='isMobile() ? 480 : 640' :height='isMobile() ? 300 : 400'></canvas>
 
     <h2 class='subtitle'>Mandelbrot Set</h2>
-    <p>A pure JavaScript implementation of <a href='http://en.wikipedia.org/wiki/Mandelbrot_set'>Mandelbrot set</a> fractal shape.</p>
+    <p>Pure JavaScript implementation of <a href='http://en.wikipedia.org/wiki/Mandelbrot_set'>Mandelbrot set</a> fractal shape.</p>
 
     <b-card sub-title="Options" class="options">
       <b-input-group prepend="Resolution" size="sm" class="mb-3">

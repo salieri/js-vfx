@@ -3,7 +3,7 @@
     <canvas id='surface' width='640' height='480' ref="metaballsCanvas"></canvas>
 
     <h2 class='subtitle'>Metaballs</h2>
-    <p>A pure JavaScript implementation of <a href='http://en.wikipedia.org/wiki/Metaballs'>Blinn's Metaballs</a>.</p>
+    <p>Pure JavaScript implementation of <a href='http://en.wikipedia.org/wiki/Metaballs'>Blinn's Metaballs</a>.</p>
 
     <b-card sub-title="Options" class="options">
       <b-input-group prepend="Min Threshold" size="sm" class="mb-3">

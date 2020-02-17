@@ -6,7 +6,7 @@
     <div>
       <p>Pure JavaScript visual effects <force-wrapper /> implemented with HTML5 <code>canvas</code>.</p>
 
-      <p>No dependencies, no WebGL, just pure, unadulterated code written from the ground up.</p>
+      <p>No dependencies, no WebGL, just pure, unadulterated JavaScript written from the ground up.</p>
 
       <p>Check out the source at <a href="https://github.com/salieri/js-vfx" target="_blank">GitHub</a>.</p>
     </div>

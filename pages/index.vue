@@ -472,6 +472,7 @@ $tSpeed: 0.3s;
           margin-bottom: 1rem;
           color: rgba(255, 255, 255, 0.9);
           font-size: 260%;
+          cursor: pointer;
         }
       }
     }

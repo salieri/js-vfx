@@ -3,7 +3,7 @@
     <canvas id='surface' :width='isMobile() ? 480 : 640' :height='isMobile() ? 300 : 480'></canvas>
 
     <h2 class='subtitle'>Sierpiński Triangle</h2>
-    <p>A pure JavaScript implementation of <a href='http://en.wikipedia.org/wiki/Sierpi%C5%84ski_triangle'>Sierpiński
+    <p>Pure JavaScript implementation of <a href='http://en.wikipedia.org/wiki/Sierpi%C5%84ski_triangle'>Sierpiński
       triangle</a>.</p>
 
     <b-card sub-title="Options" class="options">
