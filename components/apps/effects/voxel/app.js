@@ -63,7 +63,7 @@ export class VoxelProjectionApp extends App {
 
     this.destYyy = new Uint32Array(_.map(Array(destHeight), (v, i) => (i * destWidth)));
     this.mapYyy = new Uint32Array(_.map(Array(heightmapHeight), (v, i) => (i * heightmapWidth)));
-    this.yBuffer = new Uint32Array(_.fill(Array(destWidth), destHeight));
+    this.yBuffer = new Uint32Array(Array(destWidth).fill(destHeight));
   }
 
 
@@ -86,8 +86,8 @@ export class VoxelProjectionApp extends App {
     const scaleHeight = this.scaleHeight;
     const horizon = this.horizon;
 
-    const sinPhi = Math.sin(cameraAngle);
-    const cosPhi = Math.cos(cameraAngle);
+    const sinCameraAngle = Math.sin(cameraAngle);
+    const cosCameraAngle = Math.cos(cameraAngle);
 
     const dest = this.virtualSurface.data;
     const destWidth = this.virtualSurface.width;
@@ -112,24 +112,21 @@ export class VoxelProjectionApp extends App {
     const mapYyy = this.mapYyy;
     const yBuffer = this.yBuffer;
 
-    for (let i = 0; i < destWidth; i++) {
-      yBuffer[i] = destHeight;
-    }
-
+    yBuffer.fill(destHeight);
 
     while (z < zDistanceFar) {
-      const sinPhiZ = sinPhi * z;
-      const cosPhiZ = cosPhi * z;
+      const sinCameraAngleZ = sinCameraAngle * z;
+      const cosCameraAngleZ = cosCameraAngle * z;
 
-      const p1x = -cosPhiZ - sinPhiZ + cameraPosX;
-      const p1y = sinPhiZ - cosPhiZ + cameraPosY;
-      const p2x = cosPhiZ - sinPhiZ + cameraPosX;
-      const p2y = -sinPhiZ - cosPhiZ + cameraPosY;
+      const p1x = -cosCameraAngleZ - sinCameraAngleZ + cameraPosX;
+      const p1y = sinCameraAngleZ - cosCameraAngleZ + cameraPosY;
+      const p2x = cosCameraAngleZ - sinCameraAngleZ + cameraPosX;
+      const p2y = -sinCameraAngleZ - cosCameraAngleZ + cameraPosY;
 
       const dx = (p2x - p1x) / destWidth;
       const dy = (p2y - p1y) / destWidth;
 
-      const scanlineSize = (destWidth << 2) - 3;
+      const scanlineSize = (destWidth << 2) - 2;
 
       const zMul = 1 / (z - this.zDistanceNear + 1) * scaleHeight;
 
@@ -156,16 +153,8 @@ export class VoxelProjectionApp extends App {
         const iPx = Math.round(px);
         const iPy = Math.round(py);
 
-        // if ((iPy < 0) || (iPy >= mapYyy.length)) {
-        //   // ((Math.round(py) < 0) || (Math.round(py) >= mapYyy.length)) {
-        //   // eslint-disable-next-line
-        //   destYyy[0] = destYyy[0];
-        // }
-
         if ((iPy >= 0) && (iPy < heightmapHeight) && (iPx >= 0) && (iPx < heightmapWidth)) {
-          // let mapPtr = (Math.round(px) + (mapYyy[Math.round(py)] /* * heightmapWidth */)) << 2;
           let mapPtr = (iPx + mapYyy[iPy]) << 2;
-          // let mapPtr = (iPx + (iPy * heightmapWidth)) << 2;
 
           const airAboveVoxel = Math.round((cameraPosZ - heightmap[mapPtr]) * zMul + horizon);
           const clippedAirAboveVoxel = yBuffer[x];
@@ -173,21 +162,14 @@ export class VoxelProjectionApp extends App {
           if (airAboveVoxel < clippedAirAboveVoxel) {
             const r = texture[mapPtr++];
             const g = texture[mapPtr++];
-            const b = texture[mapPtr++];
+            const b = texture[mapPtr];
 
-            // if ((airAboveVoxel < 0) || (airAboveVoxel >= destYyy.length)) {
-            //   // ((Math.round(py) < 0) || (Math.round(py) >= mapYyy.length)) {
-            //   // eslint-disable-next-line
-            //   destYyy[0] = destYyy[0];
-            // }
-
-            let xPtr = (x + (destYyy[airAboveVoxel] /* * destWidth */)) << 2;
-            // let xPtr = (x + (airAboveVoxel * destWidth)) << 2;
+            let xPtr = (x + (destYyy[airAboveVoxel])) << 2;
 
             for (let y = airAboveVoxel; y < clippedAirAboveVoxel; y++) {
               dest[xPtr++] = r;
               dest[xPtr++] = g;
-              dest[xPtr++] = b;
+              dest[xPtr] = b;
 
               xPtr += scanlineSize;
             }
