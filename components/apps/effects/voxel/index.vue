@@ -44,7 +44,7 @@ import { VoxelProjectionApp } from './app';
 
 @Component
 class VoxelProjection extends VueWrapper {
-  zDistanceFar = 600;
+  zDistanceFar = this.isMobile() ? 400 : 600;
 
   zDistanceNear = 99;
 
@@ -96,7 +96,7 @@ class VoxelProjection extends VueWrapper {
 
 
   updateZDistanceNear(val) {
-    console.log('Distance NEar', val);
+    console.log('Distance Near', val);
     this.app.zDistanceNear = parseInt(val);
   }
 

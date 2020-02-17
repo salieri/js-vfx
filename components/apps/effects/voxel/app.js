@@ -55,9 +55,25 @@ export class VoxelProjectionApp extends App {
   };
 
 
+  recalculate() {
+    const destWidth = this.virtualSurface.width;
+    const destHeight = this.virtualSurface.height;
+    const heightmapWidth = this.heightmap.getWidth();
+    const heightmapHeight = this.heightmap.getHeight();
+
+    this.destYyy = new Uint32Array(_.map(Array(destHeight), (v, i) => (i * destWidth)));
+    this.mapYyy = new Uint32Array(_.map(Array(heightmapHeight), (v, i) => (i * heightmapWidth)));
+    this.yBuffer = new Uint32Array(_.fill(Array(destWidth), destHeight));
+  }
+
+
   draw() {
     if ((!this.textureLoaded) || (!this.heightmapLoaded)) {
       return;
+    }
+
+    if (!this.destYyy) {
+      this.recalculate();
     }
 
     this.startDrawing();
@@ -86,12 +102,20 @@ export class VoxelProjectionApp extends App {
     const cameraPosZ = this.cameraPos.z;
 
     const texture = this.texture.data;
-    const yBuffer = new Uint32Array(_.fill(Array(destWidth), destHeight));
 
     let z = this.zDistanceNear;
     let dz = 1;
 
     const sampleFrequencyReduction = this.sampleFrequencyReduction;
+
+    const destYyy = this.destYyy;
+    const mapYyy = this.mapYyy;
+    const yBuffer = this.yBuffer;
+
+    for (let i = 0; i < destWidth; i++) {
+      yBuffer[i] = destHeight;
+    }
+
 
     while (z < zDistanceFar) {
       const sinPhiZ = sinPhi * z;
@@ -105,7 +129,9 @@ export class VoxelProjectionApp extends App {
       const dx = (p2x - p1x) / destWidth;
       const dy = (p2y - p1y) / destWidth;
 
-      const scanlineSize = 4 * destWidth - 3;
+      const scanlineSize = (destWidth << 2) - 3;
+
+      const zMul = 1 / (z - this.zDistanceNear + 1) * scaleHeight;
 
       let px = p1x;
       let py = p1y;
@@ -127,23 +153,36 @@ export class VoxelProjectionApp extends App {
           py -= heightmapHeight;
         }
 
-        if ((px >= 0) && (px < heightmapWidth) && (py >= 0) && (py < heightmapHeight)) {
-          let mapPtr = (Math.round(px) + (Math.round(py) * heightmapWidth)) * 4;
+        const iPx = Math.round(px);
+        const iPy = Math.round(py);
 
-          const airAboveVoxel = Math.min(destHeight, Math.max(0,
-            Math.round((cameraPosZ - heightmap[mapPtr]) / (z - this.zDistanceNear + 1) * scaleHeight + horizon)
-          ));
+        // if ((iPy < 0) || (iPy >= mapYyy.length)) {
+        //   // ((Math.round(py) < 0) || (Math.round(py) >= mapYyy.length)) {
+        //   // eslint-disable-next-line
+        //   destYyy[0] = destYyy[0];
+        // }
 
+        if ((iPy >= 0) && (iPy < heightmapHeight) && (iPx >= 0) && (iPx < heightmapWidth)) {
+          // let mapPtr = (Math.round(px) + (mapYyy[Math.round(py)] /* * heightmapWidth */)) << 2;
+          let mapPtr = (iPx + mapYyy[iPy]) << 2;
+          // let mapPtr = (iPx + (iPy * heightmapWidth)) << 2;
+
+          const airAboveVoxel = Math.round((cameraPosZ - heightmap[mapPtr]) * zMul + horizon);
           const clippedAirAboveVoxel = yBuffer[x];
 
-          // console.log('airAboveVoxel', airAboveVoxel, z, x, px, py);
-
-          const r = texture[mapPtr++];
-          const g = texture[mapPtr++];
-          const b = texture[mapPtr++];
-
           if (airAboveVoxel < clippedAirAboveVoxel) {
-            let xPtr = (x + (airAboveVoxel * destWidth)) * 4;
+            const r = texture[mapPtr++];
+            const g = texture[mapPtr++];
+            const b = texture[mapPtr++];
+
+            // if ((airAboveVoxel < 0) || (airAboveVoxel >= destYyy.length)) {
+            //   // ((Math.round(py) < 0) || (Math.round(py) >= mapYyy.length)) {
+            //   // eslint-disable-next-line
+            //   destYyy[0] = destYyy[0];
+            // }
+
+            let xPtr = (x + (destYyy[airAboveVoxel] /* * destWidth */)) << 2;
+            // let xPtr = (x + (airAboveVoxel * destWidth)) << 2;
 
             for (let y = airAboveVoxel; y < clippedAirAboveVoxel; y++) {
               dest[xPtr++] = r;
